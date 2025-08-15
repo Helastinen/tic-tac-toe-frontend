@@ -29,13 +29,13 @@ const GridBoard = (props: GridBoardProps) => {
 
   return (
     <Grid container spacing={2} sx={{ minWidth: 250, maxWidth: 300, margin: "0 auto" }}>
-      {[0,1,2].map(row => (
-        <Grid item xs={12} key={row}>
+      {[0, 1, 2].map((row) => (
+        <Grid size={{xs: 12}} key={row}>
           <Grid container spacing={2}>
-            {[0,1,2].map(col => {
+            {[0, 1, 2].map((col) => {
               const i = row * 3 + col;
               return (
-                <Grid item key={i}>
+                <Grid size={{xs: 4}} key={i}>
                   <Square
                     onSquareClick={() => handleClick(i)}
                     index={i}
@@ -49,6 +49,7 @@ const GridBoard = (props: GridBoardProps) => {
         </Grid>
       ))}
     </Grid>
+
   )
 }
 
