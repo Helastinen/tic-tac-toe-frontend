@@ -20,6 +20,13 @@ export type Players = null | {
   player1: string;
   player2: string;
 }
+export type GameStats = {
+    gamesPlayed: number;
+    player1Wins: number;
+    player2Wins: number;
+    ties: number;
+    aborted: number;
+}
 
 export interface StatusProps {
   winningValue: Cell | undefined;
@@ -69,9 +76,11 @@ export interface PlayerFormProps {
   setPlayers: React.Dispatch<React.SetStateAction<Players>>;
   onStartGame: (players: Players) => void;
   gameStarted: boolean;
+  gameStats: GameStats;
 };
 
 export interface GameStatsDialogProps {
   open: boolean;
   onClose: () => void;
+  gameStats: GameStats;
 };

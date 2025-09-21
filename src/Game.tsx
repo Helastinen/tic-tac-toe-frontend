@@ -17,15 +17,23 @@ const Game = () => {
     player1: "Player 1 (X)",
     player2: "Player 2 (O)",
   });
+
   const [winningResult, setWinningResult] = useState<WinningResult>(null);
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameStats, setGameStats] = useState({ 
+    gamesPlayed: 0,
+    player1Wins: 0,
+    player2Wins: 0,
+    ties: 0,
+    aborted: 0,
+  });
 
   const currentGrid: GameBoard = history[history.length - 1];
   const winningValue = winningResult?.cell;
   const winningLine = winningResult?.winningLine;
 
   console.log("----------");;
-  console.log("<Game> players: ", players);
+  // console.log("<Game> players: ", players);
 
   const handlePlayerMove = (nextGrid: GameBoard, nextPlayer: PlayerMark) => {
     setNextPlayer(togglePlayer(nextPlayer));
@@ -63,6 +71,7 @@ const Game = () => {
         setPlayers={setPlayers}
         onStartGame={(players) => handleStartGame(players)}
         gameStarted={gameStarted}
+        gameStats={gameStats}
       ></PlayerForm>
       <Status 
         winningValue={winningValue}

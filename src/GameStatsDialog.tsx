@@ -10,12 +10,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import GamesIcon from '@mui/icons-material/Games';
 
-const GameStatsDialog = ({open, onClose}: GameStatsDialogProps) => {
-  const gameStats = [
-    { name: "Games Played", value: "X" },
-    { name: "Player 1 wins", value: "X" },
-    { name: "Player 2 wins", value: "X" },
-    { name: "Ties", value: "X" },
+const GameStatsDialog = ({open, onClose, gameStats }: GameStatsDialogProps) => {
+  const stats = [
+    { name: "Games Played", value: gameStats.gamesPlayed },
+    { name: "Player 1 wins", value: gameStats.player1Wins },
+    { name: "Player 2 wins", value: gameStats.player2Wins },
+    { name: "Ties", value: gameStats.ties },
+    { name: "Aborted", value: gameStats.aborted },
   ];
 
   return (
@@ -35,7 +36,7 @@ const GameStatsDialog = ({open, onClose}: GameStatsDialogProps) => {
         <CloseIcon />
       </IconButton>
       <List sx={{ margin: "0rem 0.5rem", paddingTop: "0" }}>
-        {gameStats.map(stat => {
+        {stats.map(stat => {
           return (
             <ListItem key={stat.name}>
               <ListItemIcon sx={{ minWidth: "2rem" }}>

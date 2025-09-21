@@ -9,15 +9,15 @@ import { useState } from "react";
 
 import GameStatsDialog from "./GameStatsDialog";
 
-const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted }: PlayerFormProps) => {
+const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted, gameStats }: PlayerFormProps) => {
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState("");
   const [openStatsDialog, setOpenStatsDialog] = useState(false);
 
-  console.log("<PlayerForm> players: ", players);
+  // console.log("<PlayerForm> players: ", players);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    console.log("<PlayerForm> e: ", e);
+    // console.log("<PlayerForm> e: ", e);
     const {name, value} = e.target;
     validate(value);
     setPlayers(prev => ({ ...prev, [name]: value }) as Players)
@@ -105,7 +105,11 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted }: PlayerFor
             {gameStarted ? "New Game" : "Start game"}
           </Button>
           <Button variant="outlined" onClick={handleStatsDialogOpen}>Stats</Button>
-          <GameStatsDialog open={openStatsDialog} onClose={handleStatsDialogClose}>
+          <GameStatsDialog 
+            open={openStatsDialog}  
+            onClose={handleStatsDialogClose}
+            gameStats={gameStats}
+          >
           </GameStatsDialog>
         </Grid>
       </Grid>
