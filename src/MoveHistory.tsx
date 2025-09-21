@@ -5,9 +5,9 @@ import { MoveHistoryProps, PlayerMark } from "./types";
 import Typography from "@mui/material/Typography";
 import togglePlayer from "./utils";
 
-const MoveHistory = ({ history, players } : MoveHistoryProps) => {
+const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
   // show turns only if there have been at least two moves
-  const hasHistory = history.length > 2;
+  const hasHistory = moveHistory.length > 2;
 
   if(!hasHistory) return null;
 
@@ -31,8 +31,8 @@ const MoveHistory = ({ history, players } : MoveHistoryProps) => {
           alignItems: "flex-start",
         }}
       >
-        {history.map((_, i) => { 
-          if (i > 0 && i < history.length - 1) {
+        {moveHistory.map((_, i) => { 
+          if (i > 0 && i < moveHistory.length - 1) {
             return (
               <Grid
                 key={i}
@@ -50,7 +50,7 @@ const MoveHistory = ({ history, players } : MoveHistoryProps) => {
                   Turn <strong>{i}</strong> ({i % 2 === 1 ? players?.player1 : players?.player2})
                 </div>
                 <div key={i} className="small-grid">
-                  <GridBoard mode="history" grid={history[i]} disabled />
+                  <GridBoard mode="moveHistory" grid={moveHistory[i]} disabled />
                 </div>
               </Grid>
             )

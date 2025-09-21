@@ -5,7 +5,7 @@ import { GameBoard, GridBoardProps, InteractiveGridBoardProps, isInteractiveGrid
 import togglePlayer from "./utils";
 
 const GridBoard = (props: GridBoardProps) => {
-  console.log("<GridBoard> gridBoard: ", props.grid);
+  // console.log("<GridBoard> gridBoard: ", props.grid);
   const { grid, disabled } = props;
 
   let nextPlayer: PlayerMark | undefined;

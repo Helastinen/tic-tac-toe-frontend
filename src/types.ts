@@ -8,7 +8,7 @@ export type Optional<T> = T | undefined;
 
 export type Cell = Nullable<PlayerMark>;
 export type GameBoard = Cell[];
-export type History = Cell[][];
+export type moveHistory = Cell[][];
 
 export type WinningLine = number[];
 export type WinningLines = number[][];
@@ -34,7 +34,7 @@ export interface StatusProps {
   players: Players;
   grid: GameBoard;
   gameStarted: boolean;
-  history: History;
+  moveHistory: moveHistory;
 }
 
 export interface SquareProps {
@@ -53,13 +53,13 @@ export interface InteractiveGridBoardProps {
   disabled?: boolean;
 }
 
-export interface HistoryGridBoardProps {
-  mode: "history";
+export interface moveHistoryGridBoardProps {
+  mode: "moveHistory";
   grid: GameBoard;
   disabled?: true;
 }
 
-export type GridBoardProps = InteractiveGridBoardProps | HistoryGridBoardProps;
+export type GridBoardProps = InteractiveGridBoardProps | moveHistoryGridBoardProps;
 
 export function isInteractiveGridBoardProps(
   props: GridBoardProps): props is InteractiveGridBoardProps {
@@ -67,7 +67,7 @@ export function isInteractiveGridBoardProps(
   }
 
 export interface MoveHistoryProps {
-  history: History;
+  moveHistory: moveHistory;
   players: Players;
 };
 

@@ -19,8 +19,8 @@ If you are developing a production application, we recommend using TypeScript wi
 ### A11y
 - check accessibility
 
-### History
-- add history modal, which shows:
+### moveHistory
+- add moveHistory modal, which shows:
   -- add actual stats from state!
   -- average win round
   -- how many times won with X
