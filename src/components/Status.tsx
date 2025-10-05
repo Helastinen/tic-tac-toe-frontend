@@ -1,5 +1,5 @@
-import { Cell, StatusProps, PlayerMark } from './types';
-import { isTieGame, togglePlayer } from './utils';
+import { Cell, StatusProps, PlayerMark } from '../types/types';
+import { isTieGame, togglePlayer } from '../utils/utils';
 
 const Status = ({ winningValue, nextPlayer, players, grid, gameStarted, moveHistory }: StatusProps) => {
   const getNextPlayerName = (): string | undefined => {

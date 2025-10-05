@@ -1,4 +1,4 @@
-import { GameStatsDialogProps } from './types';
+import { GameStatsDialogProps } from '../types/types';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
