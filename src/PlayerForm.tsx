@@ -69,7 +69,15 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted, gameStats }
         sx={{ justifyContent: "space-evenly", alignItems: "center" }}
       >
         <Grid size={{ xs: 12 }}>
-          {!gameStarted && <Typography color="primary">Enter players:</Typography>}
+          {!gameStarted && 
+            <Typography 
+              color="primary"
+              variant="h6"
+              sx={{ textAlign:"center" }}
+            >
+              Enter players:
+            </Typography>
+          }
           <Grid 
             container
             spacing={0}   

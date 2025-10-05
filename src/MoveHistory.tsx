@@ -16,8 +16,8 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
         variant="h2"
         color="info"
         sx={{ 
-          textAlign:"left",
-          margin:"2rem 0 1rem 1rem",
+          textAlign:"center",
+          margin:"2rem 0 1rem 0",
           fontSize: "2rem",
         }}
       >
@@ -27,8 +27,9 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
         container
         spacing={2} 
         sx={{
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "flex-start",
+          wrap: "wrap"
         }}
       >
         {moveHistory.map((_, i) => { 
