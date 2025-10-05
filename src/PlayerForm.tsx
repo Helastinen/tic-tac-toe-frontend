@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { PlayerFormProps, Players } from "../types/types";
+import { PlayerFormProps, Players } from "./types";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField"

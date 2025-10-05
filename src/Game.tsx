@@ -1,11 +1,11 @@
 import Typography from "@mui/material/Typography";
 
-import GridBoard from "./components/GridBoard";
-import PlayerForm from "./components/PlayerForm";
-import MoveHistory from "./components/MoveHistory";
-import Status from "./components/Status";
+import GridBoard from "./GridBoard";
+import PlayerForm from "./PlayerForm";
+import MoveHistory from "./MoveHistory";
+import Status from "./Status";
 
-import { useGameEngine } from "./hooks/useGameEngine";
+import { useGameEngine } from "./useGameEngine";
 
 const Game = () => {
   const {
