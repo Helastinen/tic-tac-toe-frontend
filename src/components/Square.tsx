@@ -1,5 +1,5 @@
 import React from "react";
-import { Nullable, PlayerMark, SquareProps, WinningLine } from "./types";
+import { Nullable, PlayerMark, SquareProps, WinningLine } from "../types/types";
 
 const Square = ({ onSquareClick, index, value, winningLine, disabled }: SquareProps) => {
   const getSquareColor = () => {

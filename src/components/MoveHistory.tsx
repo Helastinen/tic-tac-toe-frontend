@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 
 import GridBoard from "./GridBoard";
-import { MoveHistoryProps } from "./types";
+import { MoveHistoryProps } from "../types/types";
 import Typography from "@mui/material/Typography";
 
 const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {

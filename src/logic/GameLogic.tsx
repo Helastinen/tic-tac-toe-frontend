@@ -1,5 +1,5 @@
-import { Cell, GameBoard, GameStats, PlayerMark, WinningLines, WinningResult } from "./types";
-import { isTieGame } from "./utils";
+import { Cell, GameBoard, GameStats, PlayerMark, WinningLines, WinningResult } from "../types/types";
+import { isTieGame } from "../utils/utils";
 
 /**
  * Determines if the current grid contains a winning line.
