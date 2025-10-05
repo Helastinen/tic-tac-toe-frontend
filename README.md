@@ -13,9 +13,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 ## Todo list
-## refactoring
-- isolate game logic into it's own hook useGameLogic()
-
 ### moveHistory
 - add:
   -- average win round

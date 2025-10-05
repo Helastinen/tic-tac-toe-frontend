@@ -32,7 +32,6 @@ const GridBoard = (props: GridBoardProps) => {
       return "gridboard-move-history"
     }
     return "";
-    // return disabled ? "gridboard-disabled" : "";
   }
 
   return (
