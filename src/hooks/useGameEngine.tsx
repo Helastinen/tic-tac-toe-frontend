@@ -77,14 +77,22 @@ export const useGameEngine = () => {
     }
   };
 
-  const handleEndGame = (
+  const handleEndGame = async (
     winValue: Cell | undefined = undefined,
     nextGrid: GameBoard = [],
     aborted: boolean = false,
   ) => {
     console.log("<Game> -> handleEndGame() triggered!");
-    setGameStats(calculateStats(safeStats, winValue, nextGrid, aborted));
+    const updatedStats = (calculateStats(safeStats, winValue, nextGrid, aborted));
+    setGameStats(updatedStats);
     setGameStarted(false);
+
+    try {
+      await axios.put("http://localhost:3001/stats", updatedStats);
+      console.log("Stats updated to server: ", updatedStats);
+    } catch (error) {
+      console.error("Failed to persist stats: ", error);
+    }
   };
 
   return {

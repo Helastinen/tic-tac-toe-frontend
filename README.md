@@ -20,7 +20,7 @@ If you are developing a production application, we recommend using TypeScript wi
   -- how many times won with O
 
 ### Backend
-- add .json server and HTTP logic (axios)
+-- create backend with Node.js
 
 ### Unit tests
 - add basic tests
