@@ -21,6 +21,7 @@ ul {
   padding-inline-start: 20px;
 }
 
+/* Grid square */
 .square {
   background: rgb(215, 237, 247);
   border: 2px solid #1976d2;
@@ -55,18 +56,11 @@ ul {
   filter: grayscale(100%);
 }
 
+/* GameBoard */
 .board {
   background: #ffffff;
   width: 250px;
   margin: 0 auto;
-}
-
-.status {
-  margin-bottom: 1.5rem;
-}
-
-.game-info {
-  margin: 0 3rem 0 3rem;
 }
 
 .small-grid {
@@ -82,6 +76,14 @@ ul {
 
 .gridboard-move-history {
   filter: grayscale(100%);
+}
+
+.status {
+  margin-bottom: 1.5rem;
+}
+
+.game-info {
+  margin: 0 3rem 0 3rem;
 }
 
 .loading-spinner {

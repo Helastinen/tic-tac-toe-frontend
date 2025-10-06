@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import { calculateStats, calculateWinningResult } from "../logic/GameLogic";
 import { isTieGame, togglePlayer } from "../utils/utils";
@@ -30,18 +31,16 @@ export const useGameEngine = () => {
   const safeStats = getSafeStats(gameStats);
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const getStats = async () => {
       try {
-        const res = await fetch("http://localhost:3001/stats");
-        const data = await res.json();
-        setGameStats(data);
-        // console.log("useGameEngine -> fetchStats run with data: ", data);
-      } catch (error) {
+        const res = await axios.get("http://localhost:3001/stats");
+        setGameStats(res.data);
+      }
+      catch (error) {
         console.error("Failed to fetch stats: ", error);
       };
-    };
-
-    fetchStats();
+    } 
+    getStats();
   }, []);
 
   const currentGrid: GameBoard = moveHistory[moveHistory.length - 1];
@@ -74,7 +73,7 @@ export const useGameEngine = () => {
     console.log("<Game> -> handlePlayerMove(): winValue", winValue);
 
     if (result || tieGame) {
-      handleEndGame(winValue, nextGrid)
+      handleEndGame(winValue, nextGrid);
     }
   };
 

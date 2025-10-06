@@ -51,7 +51,7 @@ const GameStatsDialog = ({open, onClose, gameStats }: GameStatsDialogProps) => {
       >
         <CloseIcon />
       </IconButton>
-        <DialogContent id="game-stats-description">
+        <DialogContent id="game-stats-description" sx={{ paddingTop: "0" }}>
           {!gameStats 
             ? <div className="loading-spinner">
                 <CircularProgress /> 
