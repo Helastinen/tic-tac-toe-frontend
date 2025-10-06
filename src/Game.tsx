@@ -1,4 +1,5 @@
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import GridBoard from "./components/GridBoard";
 import PlayerForm from "./components/PlayerForm";
@@ -27,7 +28,7 @@ const Game = () => {
   // console.log("<Game> moveHistory: ", moveHistory);
   console.log("<Game> gameStats: ", gameStats);
 
-  if (!currentGrid) return <div>Loading board...</div>;
+  if (!currentGrid) return <CircularProgress />;
 
   return (
     <>

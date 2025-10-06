@@ -15,17 +15,17 @@ export type WinningLines = number[][];
 export type WinningResult = null | {
   cell: Cell;
   winningLine: WinningLine;
-} 
+};
 export type Players = null | {
   playerOne: string;
   playerTwo: string;
-}
+};
 export type GameStats = {
   playerOneWins: number;
   playerTwoWins: number;
   ties: number;
   aborted: number;
-}
+};
 
 export interface StatusProps {
   winningValue: Cell | undefined;
@@ -34,7 +34,7 @@ export interface StatusProps {
   grid: GameBoard;
   gameStarted: boolean;
   moveHistory: MoveHistoryType;
-}
+};
 
 export interface SquareProps {
   winningLine: WinningLine | undefined;
@@ -42,7 +42,7 @@ export interface SquareProps {
   value: Nullable<PlayerMark>;
   onSquareClick: () => void;
   disabled?: boolean;
-}
+};
 
 export interface InteractiveGridBoardProps {
   mode: "interactive";
@@ -51,20 +51,20 @@ export interface InteractiveGridBoardProps {
   OnPlayerMove: (nextGrid: GameBoard, nextPlayer: PlayerMark) => void;
   winningLine?: WinningLine | undefined;
   disabled?: boolean;
-}
+};
 
 export interface MoveHistoryGridBoardProps {
   mode: "moveHistory";
   grid: GameBoard;
   disabled?: true;
-}
+};
 
 export type GridBoardProps = InteractiveGridBoardProps | MoveHistoryGridBoardProps;
 
 export function isInteractiveGridBoardProps(
   props: GridBoardProps): props is InteractiveGridBoardProps {
     return props.mode === "interactive";
-  }
+};
 
 export interface MoveHistoryProps {
   moveHistory: MoveHistoryType;
@@ -76,11 +76,11 @@ export interface PlayerFormProps {
   setPlayers: React.Dispatch<React.SetStateAction<Players>>;
   onStartGame: (players: Players) => void;
   gameStarted: boolean;
-  gameStats: GameStats;
+  gameStats: GameStats | null;
 };
 
 export interface GameStatsDialogProps {
   open: boolean;
   onClose: () => void;
-  gameStats: GameStats;
+  gameStats: GameStats | null;
 };

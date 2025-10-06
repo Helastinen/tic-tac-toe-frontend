@@ -6,14 +6,17 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
 
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import GamesIcon from '@mui/icons-material/Games';
-import DialogContent from '@mui/material/DialogContent';
+import CircularProgress from '@mui/material/CircularProgress';
+
+import { getSafeStats } from '../utils/statsHelper';
 
 const GameStatsDialog = ({open, onClose, gameStats }: GameStatsDialogProps) => {
-  const { playerOneWins, playerTwoWins, ties, aborted } = gameStats;
+  const { playerOneWins, playerTwoWins, ties, aborted } = getSafeStats(gameStats);
   const stats = [
     { name: "Games Played", value: playerOneWins + playerTwoWins + ties + aborted },
     { name: "Player One wins", value: playerOneWins },
@@ -49,18 +52,23 @@ const GameStatsDialog = ({open, onClose, gameStats }: GameStatsDialogProps) => {
         <CloseIcon />
       </IconButton>
         <DialogContent id="game-stats-description">
-        <List sx={{ margin: "0rem 0.5rem", paddingTop: "0" }}>
-          {stats.map(stat => {
-            return (
-              <ListItem key={stat.name}>
-                <ListItemIcon sx={{ minWidth: "2rem" }}>
-                  <GamesIcon color="primary" fontSize="small" aria-hidden="true" />
-                </ListItemIcon>
-                {stat.name}:&nbsp;<strong>{stat.value}</strong>.
-              </ListItem>
-            )
-          })}
-        </List>
+          {!gameStats 
+            ? <div className="loading-spinner">
+                <CircularProgress /> 
+              </div>
+            : <List sx={{ margin: "0rem 0.5rem", paddingTop: "0" }}>
+                {stats.map(stat => {
+                  return (
+                    <ListItem key={stat.name}>
+                      <ListItemIcon sx={{ minWidth: "2rem" }}>
+                        <GamesIcon color="primary" fontSize="small" aria-hidden="true" />
+                      </ListItemIcon>
+                      {stat.name}:&nbsp;<strong>{stat.value}</strong>.
+                    </ListItem>
+                  )
+                })}
+              </List>
+          }
       </DialogContent>
     </Dialog>
   )

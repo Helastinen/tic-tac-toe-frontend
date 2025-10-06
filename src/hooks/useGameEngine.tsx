@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { calculateStats, calculateWinningResult } from "../logic/GameLogic";
 import { isTieGame, togglePlayer } from "../utils/utils";
@@ -12,6 +12,7 @@ import {
   Players,
   WinningResult
 } from "../types/types";
+import { getSafeStats } from "../utils/statsHelper";
 
 export const useGameEngine = () => {
   const [moveHistory, setMoveHistory] = useState<MoveHistoryType>([Array(9).fill(null)]);
@@ -24,12 +25,24 @@ export const useGameEngine = () => {
   const [winningResult, setWinningResult] = useState<WinningResult>(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameAborted, setGameAborted] = useState(false);
-  const [gameStats, setGameStats] = useState<GameStats>({ 
-    playerOneWins: 0,
-    playerTwoWins: 0,
-    ties: 0,
-    aborted: 0,
-  });
+  const [gameStats, setGameStats] = useState<GameStats | null>(null);
+
+  const safeStats = getSafeStats(gameStats);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await fetch("http://localhost:3001/stats");
+        const data = await res.json();
+        setGameStats(data);
+        // console.log("useGameEngine -> fetchStats run with data: ", data);
+      } catch (error) {
+        console.error("Failed to fetch stats: ", error);
+      };
+    };
+
+    fetchStats();
+  }, []);
 
   const currentGrid: GameBoard = moveHistory[moveHistory.length - 1];
   const winningValue: Cell | undefined = winningResult?.cell;
@@ -61,7 +74,6 @@ export const useGameEngine = () => {
     console.log("<Game> -> handlePlayerMove(): winValue", winValue);
 
     if (result || tieGame) {
-      // setGameStats(calculateStats(gameStats, winValue, nextGrid));
       handleEndGame(winValue, nextGrid)
     }
   };
@@ -72,7 +84,7 @@ export const useGameEngine = () => {
     aborted: boolean = false,
   ) => {
     console.log("<Game> -> handleEndGame() triggered!");
-    setGameStats(calculateStats(gameStats, winValue, nextGrid, aborted));
+    setGameStats(calculateStats(safeStats, winValue, nextGrid, aborted));
     setGameStarted(false);
   };
 

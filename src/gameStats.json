@@ -1,0 +1,17 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "playerOne": "Alice",
+      "playerTwo": "Bob",
+      "winner": "Alice",
+      "status": "completed"
+    }
+  ],
+  "stats": {
+    "playerOneWins": 3,
+    "playerTwoWins": 2,
+    "ties": 1,
+    "aborted": 0
+  }
+}
