@@ -45,27 +45,25 @@ export const calculateWinningResult = (grid: GameBoard) => {
  * @returns A new GameStats object with updated values for wins, ties, aborted games, and total games played.
  */
 export const calculateStats = (gameStats: GameStats, winningValue: Cell | undefined = undefined, grid: GameBoard = [], gameAborted: boolean): GameStats => {
-  const updatedStats = { ...gameStats, gamesPlayed: gameStats.gamesPlayed + 1 };
-
   if (gameAborted) {
     console.log("aborted updated");
-    return { ...updatedStats, aborted: gameStats.aborted + 1 };
+    return { ...gameStats, aborted: gameStats.aborted + 1 };
   }
 
   if (isTieGame(winningValue, grid)) {
     console.log("ties updated");
-    return { ...updatedStats, ties: gameStats.ties + 1 };
+    return { ...gameStats, ties: gameStats.ties + 1 };
   }
 
   if (winningValue === PlayerMark.X) {
     console.log("winningValue X updated");
-    return { ...updatedStats, playerOneWins: gameStats.playerOneWins + 1 };
+    return { ...gameStats, playerOneWins: gameStats.playerOneWins + 1 };
   }
 
   if (winningValue === PlayerMark.O) {
     console.log("winningValue O updated");
-    return { ...updatedStats, playerTwoWins: gameStats.playerTwoWins + 1 };
+    return { ...gameStats, playerTwoWins: gameStats.playerTwoWins + 1 };
   }
 
-  return updatedStats;
+  return {...gameStats};
 };
