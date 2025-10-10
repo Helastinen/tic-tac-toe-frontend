@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",               // ✅ Enables JSX support for React 17+
+    "module": "ESNext",               // ✅ Ensures modern module resolution
+    "target": "ESNext",               // ✅ Supports modern JS features
+    "lib": ["DOM", "ESNext"],         // ✅ Includes DOM types for browser APIs
+    "moduleResolution": "Node",       // ✅ Resolves modules like Node.js
+    "allowJs": true,                  // Optional: allows JS files in TS project
+    "esModuleInterop": true,          // Optional: improves compatibility with CommonJS
+    "skipLibCheck": true,             // Optional: skips type checking in node_modules
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+  },
+  "include": ["src", "testSetup.ts"],
+  "exclude": ["node_modules"]
+}
