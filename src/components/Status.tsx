@@ -19,19 +19,19 @@ const Status = ({ winningValue, currentPlayer, players, grid, gameStarted, moveH
     if (!isGameActiveOrEnded) return null;
     
     if (isTieGame (winningValue, grid)) {
-      return <span>{UI_TEXT.STATUS.TIE}</span>
+      return <span data-testid="tie-status">{UI_TEXT.STATUS.TIE}</span>
     }
     
     if (winningValue) {
       return (
-        <span>
+        <span data-testid="winner-status">
           Winner is <strong>{getWinningPlayerName(winningValue)}</strong> on turn {moveHistory.length - 1}.
         </span>
       )
     }
 
     return (
-      <span>
+      <span data-testid="turn-status">
         Turn <strong>{moveHistory.length}</strong>: You're up <strong>{getCurrentPlayerName()}</strong>.
       </span>
     )
