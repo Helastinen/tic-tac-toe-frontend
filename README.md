@@ -16,8 +16,8 @@ If you are developing a production application, we recommend using TypeScript wi
 ### json server
 -- move to separate method, out of handleEndGame 
 
-### moveHistory
-- add percentages to stats "aborted 4 (20%)"
+### players
+-- make enter players user flow more clear
 
 ### Backend
 -- create backend with Node.js

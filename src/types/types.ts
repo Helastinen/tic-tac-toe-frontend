@@ -51,6 +51,12 @@ export type GameStats = {
   totalStats: TotalStats;
 }
 
+export type StatsListItem = {
+  name: string;
+  value: number;
+  percentage?: number;
+}
+
 // Components
 export interface StatusProps {
   winningValue: Cell | undefined;

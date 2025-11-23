@@ -27,10 +27,18 @@ export const calculateAverageRoundWin = (gameHistory: GameHistoryStats[]) => {
   console.log("AverageRoundWin: ", averageRoundWin);
 
   // round up to nearest two decimals
-  return Math.round(averageRoundWin * 100) / 100;
+  return roundToDecimals(averageRoundWin, 1);
 };
 
-export const getPlayerMarkWins = (
-  gameHistory: GameHistoryStats[],
-  playerMark: PlayerMark
-) => gameHistory.filter(game => game.winningMark === playerMark).length;
+export const getPlayerMarkWins = (gameHistory: GameHistoryStats[], playerMark: PlayerMark) => 
+  gameHistory.filter(game => game.winningMark === playerMark).length;
+
+export const getStatPercentage = (stat: number, total: number) => {
+  if (total === 0) return 0; 
+  return roundToDecimals(stat / total * 100, 0);
+};
+
+const roundToDecimals = (number: number, decimals: number): number => {
+  const factor = 10 ** decimals;
+  return Math.round(number * factor) / factor;
+};
