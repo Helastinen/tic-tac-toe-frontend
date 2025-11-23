@@ -10,10 +10,10 @@ vi.mock("axios");
 
 describe("Game", () => {
   beforeEach(() => {
-    (axios.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: {
-        mockGameHistoryStats,
-        mockTotalStats,
-    }});
+    (axios.get as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gameHistory: mockGameHistoryStats,
+      totalStats: mockTotalStats,
+    });
   });
 
   test("renders component", async() => {

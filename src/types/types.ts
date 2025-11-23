@@ -1,3 +1,4 @@
+// Enums
 export enum PlayerMark {
   X = "X",
   O = "O"
@@ -8,9 +9,11 @@ export enum GameStatus {
   pending = "pending"
 };
 
+
 export type Nullable<T> = T | null;
 export type Optional<T> = T | undefined;
 
+// Grid
 export type Cell = Nullable<PlayerMark>;
 export type GameBoard = Cell[];
 export type MoveHistoryType = Cell[][];
@@ -26,6 +29,7 @@ export type Players = null | {
   playerTwo: string;
 };
 
+// Stats
 export type TotalStats = {
   playerOneWins: number;
   playerTwoWins: number;
@@ -33,15 +37,21 @@ export type TotalStats = {
   aborted: number;
 };
 
-export type GameHistory = {
-    playerOne: string | undefined;
-    playerTwo: string | undefined;
-    status: GameStatus;
-    winnerName?: string;
-    winningMark?: Cell
-    winningMove?: number;
+export type GameHistoryStats = {
+  playerOne: string | undefined;
+  playerTwo: string | undefined;
+  status: GameStatus;
+  winnerName?: string;
+  winningMark?: Cell
+  winningMove?: number;
 };
 
+export type GameStats = {
+  gameHistory: GameHistoryStats[];
+  totalStats: TotalStats;
+}
+
+// Components
 export interface StatusProps {
   winningValue: Cell | undefined;
   currentPlayer: PlayerMark;
@@ -91,11 +101,11 @@ export interface PlayerFormProps {
   setPlayers: React.Dispatch<React.SetStateAction<Players>>;
   onStartGame: (players: Players) => void;
   gameStarted: boolean;
-  gameStats: TotalStats | null;
+  gameStats: GameStats | null;
 };
 
 export interface GameStatsDialogProps {
   open: boolean;
   onClose: () => void;
-  gameStats: TotalStats | null;
+  gameStats: GameStats | null;
 };

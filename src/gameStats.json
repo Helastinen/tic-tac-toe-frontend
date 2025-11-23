@@ -19,68 +19,6 @@
       "status": "aborted"
     },
     {
-      "id": "ab25",
-      "playerOne": "Player One (X)",
-      "playerTwo": "Player Two (O)",
-      "winnerName": null,
-      "winningMove": 0,
-      "status": "aborted"
-    },
-    {
-      "id": "eb58",
-      "playerOne": "addsgsdg",
-      "playerTwo": "rgberberb",
-      "winningMove": 0,
-      "status": "aborted"
-    },
-    {
-      "id": "1b45",
-      "playerOne": "Player One (X)",
-      "playerTwo": "Player Two (O)",
-      "status": "aborted"
-    },
-    {
-      "id": "44fb",
-      "playerOne": "dsvf",
-      "playerTwo": "sdfvv",
-      "status": "aborted"
-    },
-    {
-      "id": "86ac",
-      "playerOne": "dsvf",
-      "playerTwo": "sdfvv",
-      "winnerName": "dsvf",
-      "winningMark": "X",
-      "status": "completed"
-    },
-    {
-      "id": "62ea",
-      "playerOne": "Player One (X)",
-      "playerTwo": "Player Two (O)",
-      "winnerName": "Player One (X)",
-      "winningMark": "X",
-      "status": "completed"
-    },
-    {
-      "id": "616e",
-      "playerOne": "Player One (X)",
-      "playerTwo": "Player Two (O)",
-      "winnerName": "Player One (X)",
-      "winningMark": "X",
-      "winningMove": [
-        "X",
-        "X",
-        "X",
-        "O",
-        "O",
-        null,
-        null,
-        null,
-        null
-      ],
-      "status": "completed"
-    },
-    {
       "id": "7f94",
       "playerOne": "Player One (X)",
       "playerTwo": "Player Two (O)",
@@ -106,12 +44,55 @@
       "winningMark": "O",
       "winningMove": 8,
       "status": "completed"
+    },
+    {
+      "id": "2a34",
+      "playerOne": "Player One (X)",
+      "playerTwo": "Player Two (O)",
+      "winnerName": "Player One (X)",
+      "winningMark": "X",
+      "winningMove": 5,
+      "status": "completed"
+    },
+    {
+      "id": "e592",
+      "playerOne": "Player One (X)",
+      "playerTwo": "Player Two (O)",
+      "winningMove": 9,
+      "status": "pending"
+    },
+    {
+      "id": "8adc",
+      "playerOne": "Player One (X)",
+      "playerTwo": "Player Two (O)",
+      "winnerName": "Player Two (O)",
+      "winningMark": "O",
+      "winningMove": 8,
+      "status": "completed"
+    },
+    {
+      "id": "8dac",
+      "playerOne": "Player One (X)",
+      "playerTwo": "Player Two (O)",
+      "winnerName": "Player Two (O)",
+      "winningMark": "O",
+      "winningMove": 6,
+      "status": "completed"
+    },
+    {
+      "id": "137c",
+      "playerOne": "Player One (X)",
+      "playerTwo": "Player Two (O)",
+      "winnerName": "Player Two (O)",
+      "winningMark": "O",
+      "winningMove": 8,
+      "status": "completed"
     }
   ],
   "totalStats": {
-    "playerOneWins": 8,
-    "playerTwoWins": 3,
-    "ties": 1,
+    "playerOneWins": 9,
+    "playerTwoWins": 6,
+    "ties": 2,
     "aborted": 13
   }
 }

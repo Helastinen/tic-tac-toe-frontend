@@ -1,5 +1,3 @@
-import { GameStatsDialogProps } from '../types/types';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -13,17 +11,22 @@ import CloseIcon from '@mui/icons-material/Close';
 import GamesIcon from '@mui/icons-material/Games';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { getSafeStats } from '../utils/statsHelper';
+import { calculateAverageRoundWin, getPlayerMarkWins, getSafeStats } from '../utils/statsHelper';
+import { GameStatsDialogProps, PlayerMark } from '../types/types';
 import { UI_TEXT } from '../constants/uiText';
 
 const GameStatsDialog = ({open, onClose, gameStats }: GameStatsDialogProps) => {
-  const { playerOneWins, playerTwoWins, ties, aborted } = getSafeStats(gameStats);
+  const { gameHistory, totalStats } = getSafeStats(gameStats);
+  const { playerOneWins, playerTwoWins, ties, aborted } = totalStats;
   const stats = [
     { name: UI_TEXT.STATS.GAMES_PLAYED, value: playerOneWins + playerTwoWins + ties + aborted },
     { name: UI_TEXT.STATS.PLAYER_ONE_WINS, value: playerOneWins },
     { name: UI_TEXT.STATS.PLAYER_TWO_WINS, value: playerTwoWins },
     { name: UI_TEXT.STATS.TIES, value: ties },
     { name: UI_TEXT.STATS.ABORTED, value: aborted },
+    { name: UI_TEXT.STATS.X_WINS, value: getPlayerMarkWins(gameHistory, PlayerMark.X)},
+    { name: UI_TEXT.STATS.O_WINS, value: getPlayerMarkWins(gameHistory, PlayerMark.O)},
+    { name: UI_TEXT.STATS.AVERAGE_ROUND, value: calculateAverageRoundWin(gameHistory)},
   ];
 
   return (

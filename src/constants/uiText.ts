@@ -19,10 +19,12 @@ export const UI_TEXT = {
     PLAYER_ONE_WINS: "Player One wins",
     PLAYER_TWO_WINS: "Player Two wins",
     TIES: "Ties",
-    ABORTED: "Aborted"
+    ABORTED: "Aborted",
+    X_WINS: "Wins with X",
+    O_WINS: "Wins with O",
+    AVERAGE_ROUND: "Average round game was won"
   },
   STATUS: {
     TIE: "Tie game",
-
   }
 }

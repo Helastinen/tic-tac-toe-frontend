@@ -4,8 +4,8 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import axios from "axios";
 
 import { useGameEngine } from "./useGameEngine";
-import { GameBoard, TotalStats, PlayerMark, Players, GameHistory } from "../types/types";
-import { defaultStats } from "../utils/statsHelper";
+import { GameBoard, TotalStats, PlayerMark, Players } from "../types/types";
+import { defaultGameStats } from "../utils/statsHelper";
 import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testing_mocks";
 
 vi.mock("axios");
@@ -76,7 +76,7 @@ describe("useGameEngine", () => {
       PlayerMark.O, PlayerMark.O, null,
       null, null, null
     ];
-    const updatedMockTotalStats: TotalStats = {...defaultStats, playerOneWins: 1};
+    const updatedMockTotalStats: TotalStats = {...defaultGameStats.totalStats, playerOneWins: 1};
 
     mockedPutAxios.put.mockResolvedValue({});
     mockedPostAxios.post.mockResolvedValue({});
@@ -92,7 +92,7 @@ describe("useGameEngine", () => {
     expect(axios.post).toHaveBeenCalledTimes(1);
     expect(axios.post).toHaveBeenCalledWith(
       expect.stringContaining("/gameHistory"),
-      expect.objectContaining(mockGameHistoryStats)
+      expect.objectContaining(mockGameHistoryStats[0])
     );
   });
 });

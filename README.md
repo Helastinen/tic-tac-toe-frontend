@@ -17,10 +17,7 @@ If you are developing a production application, we recommend using TypeScript wi
 -- move to separate method, out of handleEndGame 
 
 ### moveHistory
-- add:
-  -- average win round
-  -- how many times won with X
-  -- how many times won with O
+- add percentages to stats "aborted 4 (20%)"
 
 ### Backend
 -- create backend with Node.js

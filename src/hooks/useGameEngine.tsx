@@ -9,12 +9,14 @@ import { getSafeStats } from "../utils/statsHelper";
 import { 
   Cell,
   GameBoard,
-  TotalStats,
   MoveHistoryType,
   PlayerMark,
   Players,
   WinningResult,
-  GameStatus
+  GameStatus,
+  GameStats,
+  GameHistoryStats,
+  TotalStats
 } from "../types/types";
 import { UI_TEXT } from "../constants/uiText";
 
@@ -29,21 +31,31 @@ export const useGameEngine = () => {
   const [winningResult, setWinningResult] = useState<WinningResult>(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameAborted, setGameAborted] = useState(false);
-  const [gameStats, setGameStats] = useState<TotalStats | null>(null);
+  const [gameStats, setGameStats] = useState<GameStats | null>(null);
 
   const safeStats = getSafeStats(gameStats);
 
+
   useEffect(() => {
-    const getStats = async () => {
+    const getGameStats = async () => {
       try {
-        const res = await axios.get(`${CONFIG.API_BASE_URL}/totalStats`);
-        setGameStats(res?.data ?? []);
-      }
-      catch (error) {
+        const [gameHistoryRes, totalStatsRes] = await Promise.all([
+          axios.get<GameHistoryStats[]>(`${CONFIG.API_BASE_URL}/gameHistory`),
+          axios.get<TotalStats>(`${CONFIG.API_BASE_URL}/totalStats`),
+        ]);
+        
+        const stats: GameStats = {
+          gameHistory: gameHistoryRes.data,
+          totalStats: totalStatsRes.data
+        };
+
+        setGameStats(stats);
+      } catch (error) {
         console.error("Failed to fetch total stats: ", error);
-      };
-    } 
-    getStats();
+      }
+    };
+
+    getGameStats();
   }, []);
 
   const currentMove: GameBoard = moveHistory[moveHistory.length - 1];
@@ -86,7 +98,7 @@ export const useGameEngine = () => {
     aborted: boolean = false,
   ) => {
     console.log("<Game> -> handleEndGame() triggered!");
-    const updatedTotalStats = (calculateTotalStats(safeStats, winValue, currentMove, aborted));
+    const updatedTotalStats = (calculateTotalStats(safeStats.totalStats, winValue, currentMove, aborted));
 
     const winningMove = currentMove?.filter(square => square != null).length;
     const status = aborted ? GameStatus.aborted : winValue ? GameStatus.completed : GameStatus.pending;
@@ -98,15 +110,18 @@ export const useGameEngine = () => {
         : undefined;
 
     const gameResult = {
-      "playerOne": players?.playerOne,
-      "playerTwo": players?.playerTwo,
+      playerOne: players?.playerOne,
+      playerTwo: players?.playerTwo,
       winnerName,
-      "winningMark": winValue,
-      "winningMove": winningMove,
-      "status": status,
+      winningMark: winValue,
+      winningMove,
+      status,
     }
 
-    setGameStats(updatedTotalStats);
+    setGameStats(prev => ({
+      gameHistory: [...(prev?.gameHistory ?? []), gameResult],
+      totalStats: updatedTotalStats,
+    }));
     setGameStarted(false);
 
     try {
