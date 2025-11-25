@@ -11,6 +11,9 @@ body {
   font-family: sans-serif;
   margin: 20px;
   padding: 0;
+  background-image: url("../images/zen.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 
@@ -58,7 +61,6 @@ ul {
 
 /* GameBoard */
 .board {
-  background: #ffffff;
   width: 250px;
   margin: 0 auto;
 }
@@ -71,7 +73,7 @@ ul {
 }
 
 .move-history-title {
-  margin: 0 2rem 1rem 1rem;
+  margin: 1rem 2rem 1rem 1rem;
 }
 
 .gridboard-move-history {

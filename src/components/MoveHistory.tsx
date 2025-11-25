@@ -41,11 +41,13 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
                 size={{ xs:12, sm:4 }}
                 sx={{
                   maxWidth: 200,
-                  maxHeight: 200,
+                  maxHeight: 220,
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
                   justifyContent: "flex-start",
+                  backgroundColor: "rgba(255, 255, 255, 0.75)",
+                  borderRadius: "1rem"
                   }}
               >
                 <div className="move-history-title">

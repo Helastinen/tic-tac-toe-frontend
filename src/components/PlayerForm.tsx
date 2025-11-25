@@ -91,7 +91,10 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted, gameStats }
               name="playerOne"
               label={UI_TEXT.PLAYER_FORM.PLAYER_ONE_LABEL}
               variant="outlined"
-              sx={{ margin: "1rem" }}
+              sx={{ 
+                margin: "1rem",
+                backgroundColor: "white"
+              }}
               onChange={handleChange}
             ></TextField>
             <TextField
@@ -101,7 +104,10 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted, gameStats }
               name="playerTwo"
               label={UI_TEXT.PLAYER_FORM.PLAYER_TWO_LABEL}
               variant="outlined"
-              sx={{ margin: "1rem" }}
+              sx={{ 
+                margin: "1rem",
+                backgroundColor: "white"
+              }}  
               onChange={handleChange}
             ></TextField>
           </Grid>
@@ -123,7 +129,9 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted, gameStats }
           <Button 
             variant="outlined"
             startIcon={<BarChartIcon />}
-            onClick={handleStatsDialogOpen}>
+            onClick={handleStatsDialogOpen}
+            sx={{ backgroundColor: "white" }}
+          >
             {UI_TEXT.GAME.STATS}
           </Button>
           <GameStatsDialog 
