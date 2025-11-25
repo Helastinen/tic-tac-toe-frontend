@@ -16,10 +16,12 @@ export const getGameStats = async (): Promise<GameStats> => {
 
 export const updateTotalStats = 
   async (updatedTotalStats: TotalStats): Promise<TotalStats> => {
-    return axios.put(`${CONFIG.API_BASE_URL}/totalStats`, updatedTotalStats);
+    const res = await axios.put(`${CONFIG.API_BASE_URL}/totalStats`, updatedTotalStats);
+    return res.data;
 };
 
 export const updateGameHistoryStats = 
   async (gameResult: GameHistoryStats): Promise<GameHistoryStats> => {
-    return axios.post(`${CONFIG.API_BASE_URL}/gameHistory`, gameResult);
+    const res = await axios.post(`${CONFIG.API_BASE_URL}/gameHistory`, gameResult);
+    return res.data;
 };

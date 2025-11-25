@@ -113,15 +113,15 @@ export const useGameEngine = () => {
     setGameStarted(false);
 
     try {
-      await updateTotalStats(updatedTotalStats);
-      console.log("totalStats updated to server: ", updatedTotalStats);
+      const updatedStats = await updateTotalStats(updatedTotalStats);
+      console.log("totalStats updated to server: ", updatedStats);
     } catch (error) {
       console.error("Failed to persist totalStats: ", error);
     }
 
     try {
-      await updateGameHistoryStats(gameResult);
-      console.log("gameHistory updated to server: ", gameResult);
+      const updatedStats = await updateGameHistoryStats(gameResult);
+      console.log("gameHistory updated to server: ", updatedStats);
     } catch (error) {
       console.error("Failed to persist gameHistory: ", error);
     }

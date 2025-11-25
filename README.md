@@ -13,11 +13,8 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 ## Todo list
-### json server
--- move to separate method, out of handleEndGame 
-
-### players
--- make enter players user flow more clear
+### UI
+-- make entering player names user flow more clear
 
 ### Backend
 -- create backend with Node.js
