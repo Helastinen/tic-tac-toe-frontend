@@ -32,7 +32,7 @@ const Game = () => {
   if (!currentMove) return <CircularProgress />;
 
   return (
-    <>
+    <div className="game-background">
       <Typography 
         variant="h1"
         color="primary"
@@ -69,11 +69,11 @@ const Game = () => {
           OnPlayerMove={handlePlayerMove}
         />
       </div>
-      <div className="game-info">
+      <div className="move-history">
         <MoveHistory moveHistory={moveHistory} players={players} />
       </div>
 
-    </>
+    </div>
   );
 };
 

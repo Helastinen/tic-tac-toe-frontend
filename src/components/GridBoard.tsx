@@ -29,7 +29,7 @@ const GridBoard = (props: GridBoardProps) => {
 
   const getClassName = (): string => {
     if (!isInteractiveGridBoardProps(props)) {
-      return "gridboard-move-history"
+      return "move-history-gridboard"
     }
     return "";
   }
