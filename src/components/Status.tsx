@@ -32,7 +32,7 @@ const Status = ({ winningValue, currentPlayer, players, grid, gameStarted, moveH
 
     return (
       <span data-testid="turn-status">
-        Turn <strong>{moveHistory.length}</strong>: You're up <strong>{getCurrentPlayerName()}</strong>.
+        <strong>Turn {moveHistory.length}:</strong> You're up <strong>{getCurrentPlayerName()}</strong>.
       </span>
     )
   };

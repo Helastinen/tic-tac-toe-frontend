@@ -49,7 +49,7 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
                   }}
               >
                 <div className="move-history-turn">
-                  Turn <strong>{i}</strong>:<br /> {i % 2 === 1 ? players?.playerOne : players?.playerTwo}
+                  <strong>Turn {i}:</strong><br /> {i % 2 === 1 ? players?.playerOne : players?.playerTwo}
                 </div>
                 <div key={i} className="small-grid">
                   <GridBoard mode="moveHistory" grid={moveHistory[i]} disabled />
