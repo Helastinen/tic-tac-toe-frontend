@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 
 import MoveHistory from "./MoveHistory";
 import { UI_TEXT } from "../constants/uiText";
-import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFourTurns } from "../constants/testing_mocks";
+import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFiveTurns } from "../constants/testing_mocks";
 
 describe("MoveHistory", () => {
   test("renders component", () => {
@@ -20,9 +20,10 @@ describe("MoveHistory", () => {
   });
 
   test("renders grid if more then 2 entries", () => {
-    render(<MoveHistory moveHistory={mockMoveHistoryAfterFourTurns} players={null}/>);
+    render(<MoveHistory moveHistory={mockMoveHistoryAfterFiveTurns} players={null}/>);
 
     expect(screen.queryByText(UI_TEXT.HISTORY.TITLE)).toBeInTheDocument();
-    expect(screen.getAllByTestId("game-grid")).toHaveLength(3);
+    // moveHistory grid does not show initial, empty grid or winning grid
+    expect(screen.getAllByTestId("game-grid")).toHaveLength(4);
   });
 });

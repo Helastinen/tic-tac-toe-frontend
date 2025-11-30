@@ -19,7 +19,7 @@ import { getGameStats, updateGameHistoryStats, updateTotalStats } from "../servi
 
 export const useGameEngine = () => {
   const [moveHistory, setMoveHistory] = useState<MoveHistoryType>([Array(9).fill(null)]);
-  const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(PlayerMark.O);
+  const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(PlayerMark.X);
   const [players, setPlayers] = useState<Players>({
     playerOne: UI_TEXT.PLAYER_FORM.PLAYER_ONE_LABEL,
     playerTwo: UI_TEXT.PLAYER_FORM.PLAYER_TWO_LABEL,
@@ -52,7 +52,7 @@ export const useGameEngine = () => {
 
   const handleStartGame = (players: Players) => {
     setWinningResult(null);
-    setCurrentPlayer(PlayerMark.O);
+    setCurrentPlayer(PlayerMark.X);
     setMoveHistory([Array(9).fill(null)]);
     setPlayers(players);
     setGameStarted(true);

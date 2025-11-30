@@ -23,7 +23,7 @@ describe("useGameEngine", () => {
     await waitFor(() => {
       expect(result.current).toMatchObject({
         moveHistory: mockEmptyMoveHistory,
-        currentPlayer: PlayerMark.O,
+        currentPlayer: PlayerMark.X,
         players: mockPlayers,
         gameStarted: false,
         winningResult: null,
@@ -40,7 +40,7 @@ describe("useGameEngine", () => {
     await waitFor(() => {
       expect(result.current).toMatchObject({
         moveHistory: mockEmptyMoveHistory,
-        currentPlayer: PlayerMark.O,
+        currentPlayer: PlayerMark.X,
         players: newMockPlayers,
         gameStarted: true,
         winningResult: null,

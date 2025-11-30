@@ -22,12 +22,13 @@ export const mockMoveHistoryAfterFirstTurn: MoveHistoryType = [
   [PlayerMark.X, ...mockEmptyGrid.slice(1)]
 ];
 
-export const mockMoveHistoryAfterFourTurns: MoveHistoryType = [
+export const mockMoveHistoryAfterFiveTurns: MoveHistoryType = [
   mockEmptyGrid,
   [PlayerMark.X, ...mockEmptyGrid.slice(1)],
   [PlayerMark.X, PlayerMark.O, ...mockEmptyGrid.slice(2)],
   [PlayerMark.X, PlayerMark.O, PlayerMark.X, ...mockEmptyGrid.slice(3)],
-  [PlayerMark.X, PlayerMark.O, PlayerMark.X, PlayerMark.O, ...mockEmptyGrid.slice(4)]
+  [PlayerMark.X, PlayerMark.O, PlayerMark.X, PlayerMark.O, ...mockEmptyGrid.slice(4)],
+  [PlayerMark.X, PlayerMark.O, PlayerMark.X, PlayerMark.O, PlayerMark.X, ...mockEmptyGrid.slice(5)]
 ];
 
 export const mockMoveHistoryAfterWin: MoveHistoryType = [

@@ -23,7 +23,7 @@ const GridBoard = (props: GridBoardProps) => {
     if (disabled || grid[i] || winningLine || !currentPlayer) return;
 
     const updatedGrid = [...grid];
-    updatedGrid[i] = togglePlayer(currentPlayer);
+    updatedGrid[i] = currentPlayer;
     OnPlayerMove?.(updatedGrid, currentPlayer);
   }
 

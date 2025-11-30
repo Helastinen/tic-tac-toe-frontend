@@ -4,7 +4,7 @@ import { isTieGame, togglePlayer } from '../utils/utils';
 
 const Status = ({ winningValue, currentPlayer, players, grid, gameStarted, moveHistory }: StatusProps) => {
   const getCurrentPlayerName = (): string | undefined => {
-    return togglePlayer(currentPlayer) === PlayerMark.X ? players?.playerOne : players?.playerTwo;
+    return currentPlayer === PlayerMark.X ? players?.playerOne : players?.playerTwo;
   };
 
   const getWinningPlayerName = (winner: Cell): string | undefined => {
@@ -32,7 +32,7 @@ const Status = ({ winningValue, currentPlayer, players, grid, gameStarted, moveH
 
     return (
       <span data-testid="turn-status">
-        <strong>Turn {moveHistory.length}:</strong> You're up <strong>{getCurrentPlayerName()}</strong>.
+        <strong>Turn {moveHistory.length}:</strong> You're up <strong>{getCurrentPlayerName()}</strong> ({currentPlayer}).
       </span>
     )
   };

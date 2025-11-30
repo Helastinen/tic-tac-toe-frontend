@@ -6,7 +6,7 @@ import { PlayerMark } from "../types/types";
 import { 
   mockEmptyGrid,
   mockEmptyMoveHistory,
-  mockMoveHistoryAfterFourTurns,
+  mockMoveHistoryAfterFiveTurns,
   mockMoveHistoryAfterWin,
   mockNonWinningGrid,
   mockPlayers,
@@ -65,7 +65,7 @@ describe("Status", () => {
         players={mockPlayers}
         grid={mockNonWinningGrid}
         gameStarted={true}
-        moveHistory={mockMoveHistoryAfterFourTurns}
+        moveHistory={mockMoveHistoryAfterFiveTurns}
       />
     );
 
@@ -77,16 +77,16 @@ describe("Status", () => {
     render(
       <Status 
         winningValue={null}
-        currentPlayer={PlayerMark.X}
+        currentPlayer={PlayerMark.O}
         players={mockPlayers}
         grid={mockNonWinningGrid}
         gameStarted={true}
-        moveHistory={mockMoveHistoryAfterFourTurns}
+        moveHistory={mockMoveHistoryAfterFiveTurns}
       />
     );
 
     expect(screen.getByTestId("turn-status")).toBeInTheDocument();
+    expect(screen.getByTestId("turn-status")).toHaveTextContent(String(mockMoveHistoryAfterFiveTurns.length));
     expect(screen.queryByText(mockPlayers.playerTwo)).toBeInTheDocument();
-    expect(screen.queryByText(mockMoveHistoryAfterFourTurns.length)).toBeInTheDocument();
   });
 });
