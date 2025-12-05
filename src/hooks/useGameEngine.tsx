@@ -83,8 +83,8 @@ export const useGameEngine = () => {
   ) => {
     // console.log("<Game> -> handleEndGame() triggered!");
     const updatedTotalStats = (calculateTotalStats(safeStats.totalStats, winValue, currentMove, aborted));
-
-    const winningMove = currentMove?.filter(square => square != null).length;
+    const playedMoves = currentMove?.filter(square => square != null).length ?? 0;
+    const winningMove: number | undefined = aborted ? undefined : playedMoves;
     const status = aborted ? GameStatus.aborted : winValue ? GameStatus.completed : GameStatus.pending;
     const winnerName = 
       winValue === PlayerMark.X
@@ -102,26 +102,21 @@ export const useGameEngine = () => {
       status,
     }
 
-    setGameStats(prev => ({
-      gameHistory: [...(prev?.gameHistory ?? []), gameResult],
-      totalStats: updatedTotalStats,
-    }));
     setGameStarted(false);
 
     try {
-      const updatedStats = await updateTotalStats(updatedTotalStats);
-      console.log("totalStats updated to server: ", updatedStats);
-    } catch (error) {
-      console.error("Failed to persist totalStats: ", error);
-      alert(`Failed to persist totalStats: ${error}`);
-    }
+      const persistedTotalStats = await updateTotalStats(updatedTotalStats);
+      const persistedGameResultStats = await updateGameHistoryStats(gameResult);
+      console.log("totalStats updated to server: ", persistedTotalStats);
+      console.log("gameHistory updated to server: ", persistedGameResultStats);
 
-    try {
-      const updatedStats = await updateGameHistoryStats(gameResult);
-      console.log("gameHistory updated to server: ", updatedStats);
+      setGameStats(prev => ({
+        gameHistory: [...(prev?.gameHistory ?? []), gameResult],
+        totalStats: updatedTotalStats,
+      }));
     } catch (error) {
-      console.error("Failed to persist gameHistory: ", error);
-      alert(`Failed to persist gameHistory: ${error}`);
+      console.error("Failed to persist stats: ", error);
+      alert(`Failed to persist stats: ${error}`);
     }
   };
 
