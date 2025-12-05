@@ -25,7 +25,7 @@ const Game = () => {
     fetchStats,
   } = useGameEngine();
 
-  console.log("----------NEW RENDER--------");;
+  //console.log("----------NEW RENDER--------");;
   // console.log("<Game> players: ", players);
   // console.log("<Game> moveHistory: ", moveHistory);
   // console.log("<Game> gameStats: ", gameStats);

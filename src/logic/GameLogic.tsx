@@ -7,7 +7,7 @@ import { isTieGame } from "../utils/utils";
  * @returns The winning result if found, otherwise null.
  */
 export const calculateWinningResult = (grid: GameBoard) => {
-  console.log(`calculateWinningResult () -> param grid: ${grid}`);
+  //console.log(`calculateWinningResult () -> param grid: ${grid}`);
   const winningLines: WinningLines = [
     [0, 1, 2],
     [0, 3, 6],
@@ -27,11 +27,11 @@ export const calculateWinningResult = (grid: GameBoard) => {
         cell: grid[a], 
         winningLine: winningLines[i]
       }
-      console.log("calculateWinningResult() -> winningResult: ", winningResult)
+      //console.log("calculateWinningResult() -> winningResult: ", winningResult)
       return winningResult;
     }
   }
-  console.log("No WinningResult yet");
+  //console.log("No WinningResult yet");
   return null;
 };
 

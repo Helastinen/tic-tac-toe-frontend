@@ -67,6 +67,6 @@ export const mockGameHistoryStats: GameHistoryStats[] = [
     winnerName: mockPlayers.playerOne,
     winningMark: PlayerMark.X,
     winningMove: 5,
-    status: GameStatus.completed
+    status: GameStatus.CompletedWinner
   }
 ];

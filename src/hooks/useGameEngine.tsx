@@ -68,8 +68,8 @@ export const useGameEngine = () => {
     setCurrentPlayer(togglePlayer(currentPlayer));
     setMoveHistory([...moveHistory, currentMove]);
     setWinningResult(result);
-    console.log("<Game> -> handlePlayerMove(): result", result);
-    console.log("<Game> -> handlePlayerMove(): winValue", winValue);
+    //console.log("<Game> -> handlePlayerMove(): result", result);
+    //console.log("<Game> -> handlePlayerMove(): winValue", winValue);
 
     if (result || tieGame) {
       handleEndGame(winValue, currentMove);
