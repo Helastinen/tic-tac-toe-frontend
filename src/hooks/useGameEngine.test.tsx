@@ -7,6 +7,7 @@ import { useGameEngine } from "./useGameEngine";
 import { GameBoard, TotalStats, PlayerMark, Players } from "../types/types";
 import { defaultGameStats } from "../utils/statsHelper";
 import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testing_mocks";
+import { CONFIG } from "../constants/config";
 
 vi.mock("axios");
 const mockedPutAxios = axios as unknown as { put: ReturnType<typeof vi.fn>};
@@ -86,12 +87,12 @@ describe("useGameEngine", () => {
     expect(result.current.gameStarted).toBe(false);
     expect(axios.put).toHaveBeenCalledTimes(1);
     expect(axios.put).toHaveBeenCalledWith(
-      expect.stringContaining("/totalStats"),
+      expect.stringContaining(`${CONFIG.API_BASE_URL}/${CONFIG.API_TOTALSTATS}`),
       expect.objectContaining(updatedMockTotalStats)
     );
     expect(axios.post).toHaveBeenCalledTimes(1);
     expect(axios.post).toHaveBeenCalledWith(
-      expect.stringContaining("/gameHistory"),
+      expect.stringContaining(`${CONFIG.API_BASE_URL}/${CONFIG.API_GAMEHISTORY}`),
       expect.objectContaining(mockGameHistoryStats[0])
     );
   });
