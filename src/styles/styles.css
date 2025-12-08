@@ -51,8 +51,6 @@ ul {
   margin: 0 auto;
 }
 
-
-
 /* MoveHistory */
 .move-history {
   margin: 0 3rem 0 3rem;
@@ -120,6 +118,7 @@ ul {
   justify-content: space-evenly;
   align-items: baseline;
   width: 50%;
+  margin-top: 1rem;
 }
 
 .player-form-player-one {
