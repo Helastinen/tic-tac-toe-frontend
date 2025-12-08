@@ -103,8 +103,8 @@ export const useGameEngine = () => {
     try {
       const persistedTotalStats = await updateTotalStats(updatedTotalStats);
       const persistedGameResultStats = await updateGameHistoryStats(gameResult);
-      console.log("totalStats updated to server: ", persistedTotalStats);
-      console.log("gameHistory updated to server: ", persistedGameResultStats);
+      //console.log("totalStats updated to server: ", persistedTotalStats);
+      //console.log("gameHistory updated to server: ", persistedGameResultStats);
 
       setGameStats(prev => ({
         gameHistory: [...(prev?.gameHistory ?? []), gameResult],
