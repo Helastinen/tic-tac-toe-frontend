@@ -138,3 +138,8 @@ export interface GameStatsDialogProps {
   onClose: () => void;
   gameStats: GameStats | null;
 };
+
+export interface ErrorBannerProps {
+  error: string | null;
+  clearError: () => void;
+}

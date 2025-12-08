@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 
 import MoveHistory from "./MoveHistory";
 import { UI_TEXT } from "../constants/uiText";
-import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFiveTurns } from "../constants/testing_mocks";
+import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFiveTurns } from "../constants/testingMocks";
 
 describe("MoveHistory", () => {
   test("renders component", () => {

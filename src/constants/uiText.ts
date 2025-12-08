@@ -1,4 +1,7 @@
 export const UI_TEXT = {
+  ERROR_BANNER: {
+    TITLE: "Error"
+  },
   GAME: {
     TITLE: "Tic-Tac-Toe",
     START: "Start Game",

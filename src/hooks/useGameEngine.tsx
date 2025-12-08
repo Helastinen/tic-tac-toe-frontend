@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { calculateTotalStats, calculateWinningResult } from "../logic/GameLogic";
 import { isTieGame, togglePlayer } from "../utils/utils";
@@ -29,7 +29,9 @@ export const useGameEngine = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameAborted, setGameAborted] = useState(false);
   const [gameStats, setGameStats] = useState<GameStats | null>(null);
-
+  const [error, setError] = useState<string | null>(null);
+  
+  const clearError = () => setError(null);
   const safeStats = getSafeStats(gameStats);
 
   const currentMove: GameBoard = moveHistory[moveHistory.length - 1];
@@ -40,9 +42,10 @@ export const useGameEngine = () => {
     try {
       const gameStats = await getGameStats();
       setGameStats(gameStats);
+      setError(null);
     } catch (error) {
-      console.error("Failed to fetch total stats: ", error);
-      alert(`Failed to fetch total stats: ${error}`);
+      console.error("Failed to fetch stats: ", error);
+      setError(`Failed to fetch stats: ${error}`);
     }
   };
 
@@ -110,9 +113,10 @@ export const useGameEngine = () => {
         gameHistory: [...(prev?.gameHistory ?? []), gameResult],
         totalStats: updatedTotalStats,
       }));
+      setError(null);
     } catch (error) {
       console.error("Failed to persist stats: ", error);
-      alert(`Failed to persist stats: ${error}`);
+      setError(`Failed to persist stats: ${error}`);
     }
   };
 
@@ -143,6 +147,8 @@ export const useGameEngine = () => {
     currentMove,
     winningValue,
     winningLine,
+    error,
+    clearError,
     handlePlayerMove,
     handleStartGame,
     handleEndGame,

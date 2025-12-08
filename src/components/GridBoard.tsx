@@ -2,7 +2,6 @@ import Grid from "@mui/material/Grid";
 
 import Square from "./Square";
 import { GameBoard, GridBoardProps, isInteractiveGridBoardProps, PlayerMark } from "../types/types";
-import { togglePlayer } from "../utils/utils";
 
 const GridBoard = (props: GridBoardProps) => {
   // console.log("<GridBoard> gridBoard: ", props.grid);
@@ -69,6 +68,6 @@ const GridBoard = (props: GridBoardProps) => {
     </Grid>
 
   )
-}
+};
 
 export default GridBoard;

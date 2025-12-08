@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import Game from "./Game";
 import { UI_TEXT } from "./constants/uiText";
 import axios from "axios";
-import { mockGameHistoryStats, mockTotalStats } from "./constants/testing_mocks";
+import { mockGameHistoryStats, mockTotalStats } from "./constants/testingMocks";
 
 vi.mock("axios");
 

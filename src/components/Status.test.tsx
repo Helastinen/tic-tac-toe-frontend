@@ -11,7 +11,7 @@ import {
   mockNonWinningGrid,
   mockPlayers,
   mockWinningGrid
-} from "../constants/testing_mocks";
+} from "../constants/testingMocks";
 import { isTieGame } from "../utils/utils";
 
 vi.mock("../utils/utils", () => ({

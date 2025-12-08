@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import GridBoard from "./components/GridBoard";
@@ -7,18 +6,22 @@ import MoveHistory from "./components/MoveHistory";
 import Status from "./components/Status";
 
 import { useGameEngine } from "./hooks/useGameEngine";
-import { UI_TEXT } from "./constants/uiText";
+import GameTitle from "./components/GameTitle";
+import ErrorBanner from "./components/ErrorBanner";
 
 const Game = () => {
   const {
     moveHistory,
     currentPlayer,
     players,
+    winningResult,
     winningValue,
     winningLine,
     gameStarted,
     gameStats,
     currentMove,
+    error,
+    clearError,
     handlePlayerMove,
     handleStartGame,
     setPlayers,
@@ -34,17 +37,8 @@ const Game = () => {
 
   return (
     <div className="game-background">
-      <Typography 
-        variant="h1"
-        color="primary"
-        sx={{ 
-          textAlign:"center",
-          margin:"1rem",
-          fontSize: "4rem"
-        }}
-      >
-        {UI_TEXT.GAME.TITLE}
-      </Typography>
+      <GameTitle />
+      {error && <ErrorBanner error={error} clearError={clearError} />}
       <PlayerForm 
         players={players}
         setPlayers={setPlayers}
@@ -53,7 +47,7 @@ const Game = () => {
         gameStats={gameStats}
         currentPlayer={currentPlayer}
         fetchStats={fetchStats}
-      ></PlayerForm>
+      />
       <Status
         winningValue={winningValue}
         currentPlayer={currentPlayer}
@@ -75,7 +69,6 @@ const Game = () => {
       <div className="move-history">
         <MoveHistory moveHistory={moveHistory} players={players} />
       </div>
-
     </div>
   );
 };

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useGameEngine } from "./useGameEngine";
 import { GameBoard, TotalStats, PlayerMark, Players } from "../types/types";
 import { defaultGameStats } from "../utils/statsHelper";
-import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testing_mocks";
+import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testingMocks";
 import { CONFIG } from "../constants/config";
 
 vi.mock("axios");

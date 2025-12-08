@@ -38,6 +38,13 @@ ul {
   min-height: 150px;
 }
 
+/* Gametitle */
+.game-title {
+  text-align: center;
+  margin: 1rem;
+  font-size: 4rem;
+}
+
 /* GameBoard */
 .board {
   width: 250px;

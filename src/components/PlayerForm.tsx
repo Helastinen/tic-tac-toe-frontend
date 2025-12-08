@@ -74,6 +74,6 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStarted, gameStats, 
       </Grid>
     </>
   )
-}
+};
 
 export default PlayerForm;
