@@ -19,7 +19,7 @@ const Status = ({ winningValue, currentPlayer, players, grid, gameStarted, moveH
     if (!isGameActiveOrEnded) return null;
     
     if (isTieGame (winningValue, grid)) {
-      return <span data-testid="tie-status">{UI_TEXT.STATUS.TIE}</span>
+      return <span data-testid="tie-status"><strong>{UI_TEXT.STATUS.TIE}!</strong></span>
     }
     
     if (winningValue) {

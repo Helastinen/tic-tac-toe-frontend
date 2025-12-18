@@ -34,7 +34,7 @@ const PlayerControls = ({
         disabled={errors.playerOne || errors.playerTwo}
         variant="contained"
         onClick={() => onStartGame(players)}
-        sx={{ margin: "1rem" }}
+        sx={{ margin: "0 0.5rem 1.5rem" }}
       >
         {gameStarted ? UI_TEXT.GAME.NEW : UI_TEXT.GAME.START}
       </Button>
@@ -42,7 +42,10 @@ const PlayerControls = ({
         variant="outlined"
         startIcon={<BarChartIcon />}
         onClick={handleStatsDialogOpen}
-        sx={{ backgroundColor: "white" }}
+        sx={{ 
+          margin: "0 0.5rem 1.5rem",
+          backgroundColor: "white"
+        }}
       >
         {UI_TEXT.GAME.STATS}
       </Button>

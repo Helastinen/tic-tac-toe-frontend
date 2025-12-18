@@ -7,14 +7,14 @@ const PlayerSetup = ({ errors, helperTexts, players, handleChange }: PlayerSetup
     <Typography 
       color="primary"
       variant="h6"
-      sx={{ textAlign:"center" }}
+      className="player-setup-title"
     >
       {UI_TEXT.PLAYER_FORM.ENTER_PLAYERS}
     </Typography>
     <Grid 
       container
       spacing={0}   
-      sx={{ justifyContent: "center", alignItems: "center" }}
+      className="player-setup-grid"
     >
       <TextField
         error={errors.playerOne}

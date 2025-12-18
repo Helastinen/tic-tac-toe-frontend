@@ -37,17 +37,17 @@ const GridBoard = (props: GridBoardProps) => {
     <Grid 
       container
       data-testid="game-grid"
-      spacing={2}
+      rowSpacing={2}
       className={getClassName()}
       sx={{ 
-        minWidth: 250,
+        minWidth: 'var(--board-width)',
         maxWidth: 300,
         margin: "0 auto",
       }}
     >
       {[0, 1, 2].map((row) => (
         <Grid size={{xs: 12}} key={row}> 
-          <Grid container spacing={2}>
+          <Grid container justifyContent="space-between">
             {[0, 1, 2].map((col) => {
               const i = row * 3 + col;
               return (

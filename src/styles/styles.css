@@ -1,3 +1,7 @@
+:root { 
+  --board-width: 240px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -14,6 +18,7 @@ body {
   background-image: url("../images/zen.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 
@@ -47,7 +52,7 @@ ul {
 
 /* GameBoard */
 .board {
-  width: 250px;
+  width: var(--board-width);
   margin: 0 auto;
 }
 
@@ -123,4 +128,13 @@ ul {
 
 .player-form-player-one {
   padding-right: 1rem;
+}
+
+.player-setup-title {
+  text-align: center;
+}
+
+.player-setup-grid {
+  justify-content: center;
+  align-items: center;
 }
