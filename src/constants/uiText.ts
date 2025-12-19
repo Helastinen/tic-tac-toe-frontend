@@ -19,8 +19,6 @@ export const UI_TEXT = {
   STATS: {
     TITLE: "Game Statistics",
     GAMES_PLAYED: "Total games played",
-    PLAYER_ONE_WINS: "Player One wins",
-    PLAYER_TWO_WINS: "Player Two wins",
     TIES: "Ties",
     ABORTED: "Aborted games",
     X_WINS: "Wins with X",

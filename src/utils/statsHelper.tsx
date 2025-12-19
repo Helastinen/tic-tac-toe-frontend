@@ -35,9 +35,6 @@ export const calculateAverageRoundWin = (gameHistory: GameHistoryStats[]): numbe
   return roundToDecimals(averageRoundWin, 1);
 };
 
-export const getPlayerMarkWins = (gameHistory: GameHistoryStats[], playerMark: PlayerMark) => 
-  gameHistory.filter(game => game.winningMark === playerMark).length;
-
 export const getStatPercentage = (stat: number, total: number) => {
   if (total === 0) return 0; 
   return roundToDecimals(stat / total * 100, 0);

@@ -11,7 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import GamesIcon from '@mui/icons-material/Games';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { calculateAverageRoundWin, getPlayerMarkWins, getSafeStats, getStatPercentage } from '../utils/statsHelper';
+import { calculateAverageRoundWin, getSafeStats, getStatPercentage } from '../utils/statsHelper';
 import { GameStatsDialogProps, PlayerMark, StatsListItem } from '../types/types';
 import { UI_TEXT } from '../constants/uiText';
 
@@ -23,20 +23,10 @@ const GameStatsDialog = ({open, onClose, gameStats }: GameStatsDialogProps) => {
 
   const stats: StatsListItem[] = [
     { name: UI_TEXT.STATS.GAMES_PLAYED, value: gamesPlayed },
-    { name: UI_TEXT.STATS.PLAYER_ONE_WINS, value: playerOneWins, percentage: getStatPercentage(playerOneWins, gamesPlayed) },
-    { name: UI_TEXT.STATS.PLAYER_TWO_WINS, value: playerTwoWins, percentage: getStatPercentage(playerTwoWins, gamesPlayed) },
+    { name: UI_TEXT.STATS.X_WINS, value: playerOneWins, percentage: getStatPercentage(playerOneWins, gamesPlayed) },
+    { name: UI_TEXT.STATS.O_WINS, value: playerTwoWins, percentage: getStatPercentage(playerTwoWins, gamesPlayed) },
     { name: UI_TEXT.STATS.TIES, value: ties, percentage: getStatPercentage(ties, gamesPlayed) },
     { name: UI_TEXT.STATS.ABORTED, value: aborted, percentage: getStatPercentage(aborted, gamesPlayed) },
-    { 
-      name: UI_TEXT.STATS.X_WINS,
-      value: getPlayerMarkWins(gameHistory, PlayerMark.X),
-      percentage: getStatPercentage(getPlayerMarkWins(gameHistory, PlayerMark.X), gamesPlayed)
-    },
-    { 
-      name: UI_TEXT.STATS.O_WINS,
-      value: getPlayerMarkWins(gameHistory, PlayerMark.O),
-      percentage: getStatPercentage(getPlayerMarkWins(gameHistory, PlayerMark.O), gamesPlayed)
-    },
     { name: UI_TEXT.STATS.AVERAGE_ROUND, value: calculateAverageRoundWin(gameHistory) ?? UI_TEXT.STATS.NOT_APPLICABLE },
   ];
 
