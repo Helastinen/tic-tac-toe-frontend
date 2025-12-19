@@ -1,21 +1,23 @@
 import Grid from "@mui/material/Grid";
 
 import Square from "./Square";
-import { GameBoard, GridBoardProps, isInteractiveGridBoardProps, PlayerMark } from "../types/types";
+import { GameBoard, GridBoardProps, isInteractiveGridBoardProps } from "../types/types";
 
 const GridBoard = (props: GridBoardProps) => {
   // console.log("<GridBoard> gridBoard: ", props.grid);
   const { grid, disabled } = props;
 
-  let currentPlayer: PlayerMark | undefined;
-  let OnPlayerMove: ((currentMove: GameBoard, currentPlayer: PlayerMark) => void) | undefined;
-  let winningLine: number[] | undefined;
+  const { currentPlayer, OnPlayerMove, winningLine } = isInteractiveGridBoardProps(props)
+    ? props
+    : { 
+      currentPlayer: undefined,
+      OnPlayerMove: undefined,
+      winningLine: undefined
+    }
 
-  if (isInteractiveGridBoardProps(props)) {
-    currentPlayer = props.currentPlayer;
-    OnPlayerMove = props.OnPlayerMove;
-    winningLine = props.winningLine;
-  }
+  const className = !isInteractiveGridBoardProps(props)
+  ? "move-history-gridboard"
+  : "";
 
   const handleClick = (i: number) => {
     // do nothing if square has already value or game has ended
@@ -26,48 +28,32 @@ const GridBoard = (props: GridBoardProps) => {
     OnPlayerMove?.(updatedGrid, currentPlayer);
   }
 
-  const getClassName = (): string => {
-    if (!isInteractiveGridBoardProps(props)) {
-      return "move-history-gridboard"
-    }
-    return "";
-  }
-
-  return (
+  return ( 
     <Grid 
       container
       data-testid="game-grid"
-      rowSpacing={2}
-      className={getClassName()}
+      className={className}
       sx={{ 
-        minWidth: 'var(--board-width)',
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: 2,
+        minWidth: "var(--board-width)",
         maxWidth: 300,
-        margin: "0 auto",
+        margin: "0 auto"
       }}
-    >
-      {[0, 1, 2].map((row) => (
-        <Grid size={{xs: 12}} key={row}> 
-          <Grid container justifyContent="space-between">
-            {[0, 1, 2].map((col) => {
-              const i = row * 3 + col;
-              return (
-                <Grid size={{xs: 4}} key={i}>
-                  <Square
-                    disabled={disabled}
-                    onSquareClick={() => handleClick(i)}
-                    index={i}
-                    value={props.grid[i]}
-                    winningLine={winningLine}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Grid>
+    > 
+      {grid.map((value, i) => (
+        <Square 
+          key={i}
+          disabled={disabled}
+          onSquareClick={() => handleClick(i)}
+          index={i}
+          value={value}
+          winningLine={winningLine}
+        /> 
       ))}
     </Grid>
-
-  )
+  );
 };
 
 export default GridBoard;
