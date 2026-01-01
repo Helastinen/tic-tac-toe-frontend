@@ -2,8 +2,8 @@ import { describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 
 import GridBoard from "./GridBoard";
-import { GameBoard, PlayerMark, WinningLine } from "../types/types";
-import { mockEmptyGrid, mockWinningGrid } from "../constants/testingMocks";
+import { GameBoard, PlayerMark, WinningLine } from "../../types/types";
+import { mockEmptyGrid, mockWinningGrid } from "../../constants/testingMocks";
 
 const mockMove = vi.fn();
 

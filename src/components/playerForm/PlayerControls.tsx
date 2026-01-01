@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Button, Grid } from "@mui/material";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
-import GameStatsDialog from "./GameStatsDialog";
-import { UI_TEXT } from "../constants/uiText";
-import { PlayerControlsProps } from "../types/types";
+import GameStatsDialog from "../GameStatsDialog";
+import { UI_TEXT } from "../../constants/uiText";
+import { PlayerControlsProps } from "../../types/types";
 
 const PlayerControls = ({
   errors,

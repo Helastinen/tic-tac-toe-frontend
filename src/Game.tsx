@@ -1,8 +1,8 @@
 import CircularProgress from "@mui/material/CircularProgress";
 
-import GridBoard from "./components/GridBoard";
-import PlayerForm from "./components/PlayerForm";
-import MoveHistory from "./components/MoveHistory";
+import GridBoard from "./components/grid/GridBoard";
+import PlayerForm from "./components/playerForm/PlayerForm";
+import MoveHistory from "./components/grid/MoveHistory";
 import Status from "./components/Status";
 
 import { useGameEngine } from "./hooks/useGameEngine";

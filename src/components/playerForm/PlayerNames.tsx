@@ -1,4 +1,4 @@
-import { PlayerMark, PlayerNamesProps } from "../types/types";
+import { PlayerMark, PlayerNamesProps } from "../../types/types";
 
 import StarIcon from "@mui/icons-material/Star";
 

@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Grid";
 
 import GridBoard from "./GridBoard";
-import { MoveHistoryProps } from "../types/types";
+import { MoveHistoryProps } from "../../types/types";
 import Typography from "@mui/material/Typography";
-import { UI_TEXT } from "../constants/uiText";
+import { UI_TEXT } from "../../constants/uiText";
 
 const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
   // show history only if there have been at least two moves

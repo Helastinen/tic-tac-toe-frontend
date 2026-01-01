@@ -1,7 +1,7 @@
 import type React from "react";
 
 import Grid from "@mui/material/Grid";
-import { PlayerFormProps, Players } from "../types/types";
+import { PlayerFormProps, Players } from "../../types/types";
 
 import { useState } from "react";
 
