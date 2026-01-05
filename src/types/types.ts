@@ -114,7 +114,6 @@ export interface PlayerFormProps {
   players: Players;
   setPlayers: React.Dispatch<React.SetStateAction<Players>>;
   onStartGame: (players: Players) => void;
-  gameStarted: boolean;
   gameStats: GameStats | null;
   currentPlayer: PlayerMark;
   fetchStats: () => Promise<void>;
@@ -135,9 +134,9 @@ export interface PlayerNamesProps {
 export interface PlayerControlsProps {
   errors: Record<string, boolean>;
   players: Players;
-  gameStarted: boolean;
   gameStats: GameStats | null;
   onStartGame: (players: Players) => void;
+  onEditPlayers: () => void;
   fetchStats: () => Promise<void>;
 };
 

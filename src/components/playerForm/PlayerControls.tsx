@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Button, Grid } from "@mui/material";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import PersonIcon from "@mui/icons-material/Person";
 
 import GameStatsDialog from "../GameStatsDialog";
 import { UI_TEXT } from "../../constants/uiText";
@@ -10,9 +11,9 @@ import { PlayerControlsProps } from "../../types/types";
 const PlayerControls = ({
   errors,
   players,
-  gameStarted,
   gameStats,
   onStartGame,
+  onEditPlayers,
   fetchStats
 }: PlayerControlsProps) => {
   const [openStatsDialog, setOpenStatsDialog] = useState(false);
@@ -37,7 +38,15 @@ const PlayerControls = ({
         onClick={() => onStartGame(players)}
         sx={{ margin: "1rem 0.5rem 1.5rem" }}
       >
-        {gameStarted ? UI_TEXT.GAME.NEW : UI_TEXT.GAME.START}
+        {UI_TEXT.GAME.NEW}
+      </Button>
+      <Button
+        variant="outlined"
+        startIcon={<PersonIcon />}
+        onClick={() => onEditPlayers()}
+        sx={{ margin: "1rem 0.5rem 1.5rem" }}
+      >
+        {UI_TEXT.GAME.EDIT_PLAYERS}
       </Button>
       <Button
         variant="outlined"

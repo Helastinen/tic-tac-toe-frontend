@@ -4,8 +4,8 @@ export const UI_TEXT = {
   },
   GAME: {
     TITLE: "Tic-Tac-Toe",
-    START: "Start Game",
     NEW: "New game",
+    EDIT_PLAYERS: "Edit Players",
     STATS: "Stats"
   },
   HISTORY: {

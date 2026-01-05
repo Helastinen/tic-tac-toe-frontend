@@ -9,7 +9,8 @@ import PlayerSetup from "./PlayerSetup";
 import PlayerNames from "./PlayerNames";
 import PlayerControls from "./PlayerControls";
 
-const PlayerForm = ({ players: _players, setPlayers, onStartGame, gameStarted, gameStats, currentPlayer, fetchStats }: PlayerFormProps) => {
+const PlayerForm = ({ players: _players, setPlayers, onStartGame, gameStats, currentPlayer, fetchStats }: PlayerFormProps) => {
+  const [isEditingPlayers, setIsEditingPlayers] = useState(true);
   const [errors, setErrors] = useState<Record<string, boolean>>({
     playerOne: false,
     playerTwo: false,
@@ -19,11 +20,15 @@ const PlayerForm = ({ players: _players, setPlayers, onStartGame, gameStarted, g
     playerTwo: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleChangeNames = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // console.log("<PlayerForm> e: ", e);
     const { name, value } = e.target;
     validate(name, value);
     setPlayers(prev => ({ ...prev, [name]: value }) as Players);
+  };
+
+  const handleEditPlayers = () => {
+    setIsEditingPlayers(!isEditingPlayers);
   };
 
   const validate = (name: string, input: string) => {
@@ -56,21 +61,24 @@ const PlayerForm = ({ players: _players, setPlayers, onStartGame, gameStarted, g
         spacing={0}
         sx={{ justifyContent: "space-evenly", alignItems: "center" }}
       >
-        {!gameStarted &&
+        {isEditingPlayers &&
           <PlayerSetup
             errors={errors}
             helperTexts={helperTexts}
             players={_players}
-            handleChange={handleChange}
+            handleChange={handleChangeNames}
           />
         }
-        {gameStarted && <PlayerNames currentPlayer= {currentPlayer} players={_players} />}
+        {!isEditingPlayers && <PlayerNames currentPlayer= {currentPlayer} players={_players} />}
         <PlayerControls
           errors={errors}
           players={_players}
-          gameStarted={gameStarted}
           gameStats={gameStats}
-          onStartGame={onStartGame}
+          onStartGame={(players) => {
+            onStartGame(players);
+            setIsEditingPlayers(false);
+          }}
+          onEditPlayers={handleEditPlayers}
           fetchStats={fetchStats}
         />
       </Grid>

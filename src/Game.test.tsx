@@ -37,7 +37,7 @@ describe("Game", () => {
       const gameTitle = screen.getByText(UI_TEXT.GAME.TITLE);
       const playerOne = screen.getByLabelText(UI_TEXT.PLAYER_FORM.PLAYER_ONE_LABEL);
       const playerTwo = screen.getByLabelText(UI_TEXT.PLAYER_FORM.PLAYER_TWO_LABEL);
-      const startGameButton = screen.getByText(UI_TEXT.GAME.START);
+      const startGameButton = screen.getByText(UI_TEXT.GAME.NEW);
       const statsButton = screen.getByText(UI_TEXT.GAME.STATS);
       const grid = screen.getByTestId("game-grid");
 

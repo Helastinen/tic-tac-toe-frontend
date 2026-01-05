@@ -22,8 +22,8 @@ const Game = () => {
     error,
     invalidMove,
     clearError,
-    handlePlayerMove,
     handleStartGame,
+    handlePlayerMove,
     setPlayers,
     fetchStats,
   } = useGameEngine();
@@ -43,7 +43,6 @@ const Game = () => {
         players={players}
         setPlayers={setPlayers}
         onStartGame={(players) => handleStartGame(players)}
-        gameStarted={gameStarted}
         gameStats={gameStats}
         currentPlayer={currentPlayer}
         fetchStats={fetchStats}
