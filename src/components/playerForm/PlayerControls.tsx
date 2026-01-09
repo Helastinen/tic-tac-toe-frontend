@@ -49,12 +49,12 @@ const PlayerControls = ({
         {UI_TEXT.GAME.NEW}
       </Button>
       <Button
-        variant="outlined"
+        variant={isEditingPlayers ? "contained" : "outlined"}
         startIcon={<PersonIcon />}
         onClick={() => onEditPlayers()}
         sx={{
           margin: "1rem 0.5rem 0.5rem",
-          backgroundColor: "white"
+          backgroundColor: isEditingPlayers ? "primary.main" : "white"
         }}
       >
         {isEditingPlayers ? UI_TEXT.GAME.SAVE_PLAYERS : UI_TEXT.GAME.EDIT_PLAYERS}
