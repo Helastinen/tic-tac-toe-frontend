@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { calculateTotalStats, calculateWinningResult } from "../logic/GameLogic";
+import { calculateWinningResult } from "../logic/GameLogic";
 import { isTieGame, togglePlayer } from "../utils/utils";
-import { getSafeStats } from "../utils/statsHelper";
 
 import {
   Cell,
@@ -33,7 +32,6 @@ export const useGameEngine = () => {
   const [invalidMove, setInvalidMove] = useState<boolean>(false);
 
   const clearError = () => setError(null);
-  const safeStats = getSafeStats(gameStats);
 
   const currentBoard: GameBoard = moveHistory[moveHistory.length - 1];
   const winningValue: Cell | undefined = winningResult?.cell;
@@ -97,8 +95,6 @@ export const useGameEngine = () => {
     board: GameBoard = [],
     aborted = false,
   ) => {
-    const updatedTotalStats = (calculateTotalStats(safeStats.totalStats, winValue, board, aborted));
-
     // calculate gameResult
     const playedMoves = board?.filter(square => square !== null).length ?? 0;
     const status = getGameStatus(aborted, winValue);
@@ -118,12 +114,9 @@ export const useGameEngine = () => {
 
     try {
       await updateGameHistoryStats(gameResult);
+      const updatedStats = await getGameStats();
 
-      setGameStats(prev => ({
-        gameHistory: [...(prev?.gameHistory ?? []), gameResult],
-        // Todo should totalstats be requested from BE and then added to state?
-        totalStats: updatedTotalStats,
-      }));
+      setGameStats(updatedStats);
       setError(null);
     } catch (error) {
       console.error("Failed to persist stats: ", error);
