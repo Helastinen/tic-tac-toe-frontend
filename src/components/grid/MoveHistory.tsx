@@ -19,7 +19,7 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
   };
 
   return (
-    <>
+    <div className="move-history">
       <Typography
         variant="h2"
         color="info"
@@ -72,7 +72,7 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
           }
         })}
       </Grid>
-    </>
+    </div>
   );
 };
 

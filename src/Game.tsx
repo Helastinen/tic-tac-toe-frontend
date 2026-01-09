@@ -8,7 +8,7 @@ import Status from "./components/Status";
 import { useGameEngine } from "./hooks/useGameEngine";
 import GameTitle from "./components/GameTitle";
 import ErrorBanner from "./components/ErrorBanner";
-import { Divider } from "@mui/material";
+import SectionDivider from "./components/SectionDivider";
 
 const Game = () => {
   const {
@@ -48,7 +48,7 @@ const Game = () => {
         currentPlayer={currentPlayer}
         fetchStats={fetchStats}
       />
-      <Divider variant="middle" sx={{ margin: "1.5rem 1rem 2rem 1rem", border: "1px solid", borderColor: "divider" }}/>
+      <SectionDivider mt={1.5} mb={2} />
       <Status
         winningValue={winningValue}
         currentPlayer={currentPlayer}
@@ -57,21 +57,17 @@ const Game = () => {
         gameStarted={gameStarted}
         moveHistory={moveHistory}
       />
-      <div className="board">
-        <GridBoard
-          disabled={!gameStarted}
-          mode="interactive"
-          winningLine={winningLine}
-          currentPlayer={currentPlayer}
-          grid={currentBoard}
-          OnPlayerMove={handlePlayerMove}
-          invalidMove={invalidMove}
-        />
-      </div>
-      <Divider variant="middle" sx={{ margin: "2rem 1rem 1rem 1rem", border: "1px solid", borderColor: "divider" }}/>
-      <div className="move-history">
-        <MoveHistory moveHistory={moveHistory} players={players} />
-      </div>
+      <GridBoard
+        disabled={!gameStarted}
+        mode="interactive"
+        winningLine={winningLine}
+        currentPlayer={currentPlayer}
+        grid={currentBoard}
+        OnPlayerMove={handlePlayerMove}
+        invalidMove={invalidMove}
+      />
+      <SectionDivider mt={2} mb={2} />
+      <MoveHistory moveHistory={moveHistory} players={players} />
     </div>
   );
 };
