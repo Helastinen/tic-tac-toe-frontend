@@ -1,3 +1,8 @@
+# This project
+This project was created to deepen my understanding of React while producing a portfolio‑ready application that demonstrates my technical abilities.
+
+© Antti Hellsten 2026.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -18,6 +23,3 @@ If you are developing a production application, we recommend using TypeScript wi
 - add basic unit tests -> ongoing
 
 ### Backend
-- add typescript
-
-

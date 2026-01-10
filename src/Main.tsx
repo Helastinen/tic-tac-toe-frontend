@@ -30,6 +30,12 @@ if (rootElement) {
           }}
         >
           <Game />
+          <div
+            style={{
+              padding: "0.5rem 0.5rem 0 0",
+              textAlign: "right",
+              color: "#2e2e2eff"
+            }}>© Antti Hellsten 2026</div>
         </Container>
       </ThemeProvider>
     </StrictMode>

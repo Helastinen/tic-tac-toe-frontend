@@ -19,7 +19,7 @@ const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => 
   const { gameHistory, totalStats } = getSafeStats(gameStats);
   const { playerOneWins, playerTwoWins, ties, aborted } = totalStats;
   const gamesPlayed = playerOneWins + playerTwoWins + ties + aborted;
-  console.log("FE -> GameStatsDialog -> { gameHistory, totalStats }: ", { gameHistory, totalStats });
+  // console.log("FE -> GameStatsDialog -> { gameHistory, totalStats }: ", { gameHistory, totalStats });
 
   const stats: StatsListItem[] = [
     { name: UI_TEXT.STATS.GAMES_PLAYED, value: gamesPlayed },
