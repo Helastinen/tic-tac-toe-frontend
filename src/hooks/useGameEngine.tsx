@@ -16,7 +16,7 @@ import {
 import { UI_TEXT } from "../constants/uiText";
 import { getGameStats, updateGameHistoryStats } from "../services/statsService";
 
-export const useGameEngine = () => {
+const useGameEngine = () => {
   const [moveHistory, setMoveHistory] = useState<MoveHistoryType>([Array(9).fill(null)]);
   const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(PlayerMark.X);
   const [players, setPlayers] = useState<Players>({
@@ -161,3 +161,5 @@ export const useGameEngine = () => {
     fetchStats,
   };
 };
+
+export default useGameEngine;

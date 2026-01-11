@@ -9,19 +9,48 @@
 
 body {
   font-family: sans-serif;
-  margin: 20px;
+  margin: 0;
   padding: 0;
-  background-image: url("../images/zen.jpg");
-  background-size: cover;
+  min-height: 100vh;
+  background-image: 
+    linear-gradient(to bottom, transparent 90%, white 100%),
+    url("../images/game_background.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-position: top center;
+  background-color: white;
+}
+
+/* Small screens: fill the whole screen */
+@media (max-width: 799px) { 
+  body {
+    background-size: 
+      100% 100%,/* gradient */
+      cover; /* image */
+  }
+}
+
+/* Medium screens: prevent image from becoming too tall */
+@media (min-width: 800px) and (max-width: 1000px) {
+  body {
+    background-size: 
+      100% 100%,
+      auto 100%; /* image height matches viewport */ 
+    }
+  }
+
+/* Large screens: centered with moderate whitespace */
+@media (min-width: 1001px) {
+  body { 
+    background-size: 
+      100% 100%,
+      min(1200px, 90%) auto; /* image width controlled */
+  }
 }
 
 p {
   margin: 10px auto;
   text-align: center;
 }
-
 
 ul {
   display: flex;
@@ -55,6 +84,18 @@ ul {
 .board {
   width: var(--board-width);
   margin: 0 auto;
+}
+
+.copyright {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+  text-align: right;
+  padding: 0 1rem 0.5rem 0;
+  /*position: absolute;
+  bottom: 10px;
+  right: 20px;
+  z-index: 10;
+  pointer-events: none;*/
 }
 
 /* -------------------------------------------------------

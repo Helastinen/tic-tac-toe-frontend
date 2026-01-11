@@ -3,7 +3,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import axios from "axios";
 
-import { useGameEngine } from "./useGameEngine";
+import useGameEngine from "./useGameEngine";
 import { GameBoard, PlayerMark, Players } from "../types/types";
 import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testingMocks";
 import { CONFIG } from "../constants/config";

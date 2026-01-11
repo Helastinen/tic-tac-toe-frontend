@@ -24,18 +24,9 @@ if (rootElement) {
       <ThemeProvider theme={theme}>
         <Container
           maxWidth={false}
-          sx={{
-            width: { xs: "100%", lg: "60%" },
-            maxWidth: "1200px"
-          }}
+          sx={{ maxWidth: "1200px" }}
         >
           <Game />
-          <div
-            style={{
-              padding: "0.5rem 0.5rem 0 0",
-              textAlign: "right",
-              color: "#2e2e2eff"
-            }}>© Antti Hellsten 2026</div>
         </Container>
       </ThemeProvider>
     </StrictMode>

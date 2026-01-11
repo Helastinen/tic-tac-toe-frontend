@@ -7,7 +7,8 @@ export const UI_TEXT = {
     NEW: "New game",
     EDIT_PLAYERS: "Edit Players",
     SAVE_PLAYERS: "Save Players",
-    STATS: "Stats"
+    STATS: "Stats",
+    COPYRIGHT: "© Antti Hellsten 2026"
   },
   HISTORY: {
     TITLE: "Move history"
