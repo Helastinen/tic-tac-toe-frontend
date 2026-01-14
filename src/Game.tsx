@@ -68,7 +68,7 @@ const Game = () => {
           OnPlayerMove={handlePlayerMove}
           invalidMove={invalidMove}
         />
-        <SectionDivider mt={2} mb={2} />
+        <SectionDivider mt={2} mb={1} />
         <MoveHistory moveHistory={moveHistory} players={players} />
         <Copyright />
       </div>
