@@ -16,5 +16,6 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './testSetup.js', 
-  }
-})
+  },
+  esbuild: { legalComments: "none" } // removes ALL JS comments in production
+});

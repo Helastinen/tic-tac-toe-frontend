@@ -1,25 +1,26 @@
-# This project
-This project was created to deepen my understanding of React while producing a portfolio‑ready application that demonstrates my technical abilities.
+# Tic‑Tac‑Toe Frontend
+A modern React application built to deepen my understanding of component‑based UI development, state management, and frontend architecture. This project also serves as a portfolio‑ready demonstration of my technical abilities and coding style.
 
 © Antti Hellsten 2026.
 
-# React + Vite
+# Getting Started
+## Install dependencies
+`npm install`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Run the development server
+Starts the app with hot reload for rapid iteration.
+`npm run dev`
 
-Currently, two official plugins are available:
+The app will be available at:
+`http://localhost:5173`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run unit tests
+`npm test`
 
-## Expanding the ESLint configuration
+To include test coverage use `npm run test:cov`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Build for production
+Creates an optimized production build inside the `dist/` folder.
+`npm run build`
 
-
-## Todo list
-### FE
-- add 1 player mode, computer opponent. -> big effort
-- add basic unit tests -> ongoing
-
-### Backend
+This output can be deployed to any static hosting provider or served by your backend.
