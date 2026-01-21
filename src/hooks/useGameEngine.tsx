@@ -64,7 +64,6 @@ const useGameEngine = () => {
 
   const handlePlayerMove = (index: number) => {
     const updatedBoard = [...currentBoard];
-    // console.log("[useGameLogic] -> handlePlayerMove() -> updatedBoard: ", updatedBoard);
 
     // check if illegal move (meaning square already has value, game has ended)
     if ( updatedBoard[index] !== null || winningLine || !gameStarted ) {

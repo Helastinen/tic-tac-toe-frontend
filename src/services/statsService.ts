@@ -8,11 +8,6 @@ export const getGameStats = async (): Promise<GameStats> => {
     axios.get<TotalStats>(`${CONFIG.API_BASE_URL}/${CONFIG.API_TOTALSTATS}`),
   ]);
 
-  /* console.log("FE -> getGameStats(): ", {
-    gameHistory: gameHistoryRes.data,
-    totalStats: totalStatsRes.data
-  });*/
-
   return {
     gameHistory: gameHistoryRes.data,
     totalStats: totalStatsRes.data

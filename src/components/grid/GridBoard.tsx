@@ -4,7 +4,6 @@ import Square from "./Square";
 import { GridBoardProps, isInteractiveGridBoardProps } from "../../types/types";
 
 const GridBoard = (props: GridBoardProps) => {
-  // console.log("<GridBoard> gridBoard: ", props.grid);
   const { grid, disabled, invalidMove, latestMove } = props;
 
   const { OnPlayerMove, winningLine } = isInteractiveGridBoardProps(props)

@@ -28,7 +28,6 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStats, currentPlayer
     const { name, value } = e.target;
     validate(name, value);
     setDraftPlayers(prev => ({ ...prev, [name]: value }) as Players);
-    //setPlayers(prev => ({ ...prev, [name]: value }) as Players);
   };
 
   const handleEditPlayers = () => {
