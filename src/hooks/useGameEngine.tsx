@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import { calculateWinningResult } from "../logic/GameLogic";
 import { isTieGame, togglePlayer } from "../utils/utils";
-
 import {
   Cell,
   GameBoard,
