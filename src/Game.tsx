@@ -9,7 +9,8 @@ import useGameEngine from "./hooks/useGameEngine";
 import GameTitle from "./components/GameTitle";
 import ErrorBanner from "./components/ErrorBanner";
 import SectionDivider from "./components/SectionDivider";
-import Copyright from "./components/copyright";
+import Copyright from "./components/Copyright";
+import { GridBoardType } from "./types/types";
 
 const Game = () => {
   const {
@@ -55,7 +56,7 @@ const Game = () => {
       />
       <GridBoard
         disabled={!gameStarted}
-        mode="interactive"
+        mode={GridBoardType.Interactive}
         winningLine={winningLine}
         currentPlayer={currentPlayer}
         grid={currentBoard}

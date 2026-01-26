@@ -224,3 +224,7 @@ ul {
   justify-content: center;
   align-items: center;
 }
+
+.player-setup-name-errors {
+  white-space: pre-line;
+}

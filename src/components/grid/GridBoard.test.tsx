@@ -2,14 +2,14 @@ import { describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 
 import GridBoard from "./GridBoard";
-import { GameBoard, PlayerMark, WinningLine } from "../../types/types";
+import { GameBoard, GridBoardType, PlayerMark, WinningLine } from "../../types/types";
 import { mockEmptyGrid, mockWinningGrid } from "../../constants/testingMocks";
 
 const mockMove = vi.fn();
 
 const createGridBoard = ({
   disabled = false,
-  mode = "interactive",
+  mode = GridBoardType.Interactive,
   winningLine = undefined,
   currentPlayer = PlayerMark.X,
   grid = mockEmptyGrid,
@@ -20,13 +20,13 @@ const createGridBoard = ({
   currentPlayer?: PlayerMark;
   OnPlayerMove?: (index: number) => void;
   winningLine?: WinningLine | undefined;
-  mode?: "interactive" | "moveHistory";
+  mode?: GridBoardType.Interactive | GridBoardType.MoveHistory;
 } = {} ) => {
-  if (mode === "interactive") {
+  if (mode === GridBoardType.Interactive) {
     return (
       <GridBoard
         disabled={disabled}
-        mode="interactive"
+        mode={GridBoardType.Interactive}
         winningLine={winningLine}
         currentPlayer={currentPlayer}
         grid={grid}
@@ -37,8 +37,9 @@ const createGridBoard = ({
 
   return ( <GridBoard
     disabled={true}
-    mode="moveHistory"
+    mode={GridBoardType.MoveHistory}
     grid={grid}
+    latestMove={0}
   />
   );
 };
@@ -105,7 +106,7 @@ describe("GridBoard", () => {
 
   describe("MoveHistory GridBoard", () => {
     test("has no interaction", () => {
-      const mockGridBoard = createGridBoard({ mode: "moveHistory", disabled: true });
+      const mockGridBoard = createGridBoard({ mode: GridBoardType.MoveHistory, disabled: true });
       render(mockGridBoard);
 
       const buttons = screen.getAllByRole("button");

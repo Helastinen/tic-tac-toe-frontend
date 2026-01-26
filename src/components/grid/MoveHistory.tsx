@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 
 import GridBoard from "./GridBoard";
-import { MoveHistoryProps, MoveHistoryType } from "../../types/types";
+import { GridBoardType, MoveHistoryProps, MoveHistoryType } from "../../types/types";
 import Typography from "@mui/material/Typography";
 import { UI_TEXT } from "../../constants/uiText";
 
@@ -61,7 +61,7 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
                 </div>
                 <div key={i} className="move-history-small-grid">
                   <GridBoard
-                    mode="moveHistory"
+                    mode={GridBoardType.MoveHistory}
                     grid={moveHistory[i]}
                     disabled
                     latestMove={changedIndex(moveHistory, i)}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { calculateWinningResult } from "../logic/GameLogic";
+import { calculateWinningResult } from "../logic/gameLogic";
 import { isTieGame, togglePlayer } from "../utils/utils";
 import {
   Cell,

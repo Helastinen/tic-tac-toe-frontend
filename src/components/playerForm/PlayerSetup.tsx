@@ -12,6 +12,11 @@ const PlayerSetup = ({ errors, helperTexts, players, handleChange }: PlayerSetup
       <TextField
         error={errors.playerOne}
         helperText={helperTexts.playerOne}
+        slotProps= {{
+          formHelperText: {
+            className: errors.playerOne ? "player-setup-name-errors" : ""
+          }
+        }}
         id="playerOne"
         name="playerOne"
         label={players?.playerOne ?? UI_TEXT.PLAYER_FORM.PLAYER_ONE_LABEL}
@@ -25,6 +30,11 @@ const PlayerSetup = ({ errors, helperTexts, players, handleChange }: PlayerSetup
       <TextField
         error={errors.playerTwo}
         helperText={helperTexts.playerTwo}
+        slotProps= {{
+          formHelperText: {
+            className: errors.playerTwo ? "player-setup-name-errors" : ""
+          }
+        }}
         id="playerTwo"
         name="playerTwo"
         label={players?.playerTwo ?? UI_TEXT.PLAYER_FORM.PLAYER_TWO_LABEL}

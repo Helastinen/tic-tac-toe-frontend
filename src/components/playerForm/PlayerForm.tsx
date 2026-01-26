@@ -10,24 +10,28 @@ import PlayerNames from "./PlayerNames";
 import PlayerControls from "./PlayerControls";
 import { UI_TEXT } from "../../constants/uiText";
 import { Typography } from "@mui/material";
+import { validatePlayerName } from "../../utils/validation";
 
 const PlayerForm = ({ players, setPlayers, onStartGame, gameStats, currentPlayer, fetchStats }: PlayerFormProps) => {
   const [isEditingPlayers, setIsEditingPlayers] = useState(true);
   const [draftPlayers, setDraftPlayers] = useState(players);
-  const [errors, setErrors] = useState<Record<string, boolean>>({
+  const [errors, setErrors] = useState<Record<keyof Players, boolean>>({
     playerOne: false,
     playerTwo: false,
   });
-  const [helperTexts, setHelperTexts] = useState<Record<string, string>>({
+  const [helperTexts, setHelperTexts] = useState<Record<keyof Players, string>>({
     playerOne: "",
     playerTwo: "",
   });
 
   const handleChangeNames = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    console.log("<PlayerForm> -> handleChangeNames(e): ", e);
+    console.log("<PlayerForm> -> handleChangeNames(e.target): ", e.target);
     const { name, value } = e.target;
-    validate(name, value);
-    setDraftPlayers(prev => ({ ...prev, [name]: value }) as Players);
+    validateNameField(name as keyof Players, value);
+    setDraftPlayers(prev => ({
+      ...prev,
+      [name]: value
+    }) as Players);
   };
 
   const handleEditPlayers = () => {
@@ -46,27 +50,11 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStats, currentPlayer
     setIsEditingPlayers(!isEditingPlayers);
   };
 
-  const validate = (name: string, input: string) => {
-    const trimmedInput = input.trim();
+  const validateNameField = (field: keyof Players, value: string) => {
+    const { error, message } = validatePlayerName(value);
 
-    let error = false;
-    let text = "";
-
-    if (trimmedInput === "") {
-      error = true;
-      text = "This field is required";
-    }
-    else if (trimmedInput.length > 20) {
-      error = true;
-      text = "Maximum 20 characters";
-    }
-    else if (trimmedInput.length < 3) {
-      error = true;
-      text = "Minimum 3 characters";
-    }
-
-    setErrors({ ...errors, [name]: error });
-    setHelperTexts({ ...helperTexts, [name]: text });
+    setErrors(prev => ({ ...prev, [field]: error }));
+    setHelperTexts(prev => ({ ...prev, [field]: message }));
   };
 
   return (

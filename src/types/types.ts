@@ -11,6 +11,11 @@ export enum GameStatus {
   CompletedTie = "completed_with_tie"
 };
 
+export enum GridBoardType {
+  Interactive = "interactive",
+  MoveHistory = "moveHistory"
+};
+
 export type Nullable<T> = T | null;
 export type Optional<T> = T | undefined;
 
@@ -71,7 +76,7 @@ export interface StatusProps {
 export interface SquareProps {
   winningLine: WinningLine | undefined;
   index: number;
-  latestMove?: boolean;
+  isLatestMove: boolean;
   value: Nullable<PlayerMark>;
   onSquareClick: () => void;
   disabled?: boolean;
@@ -79,10 +84,9 @@ export interface SquareProps {
 };
 
 export interface InteractiveGridBoardProps {
-  mode: "interactive";
+  mode: GridBoardType.Interactive;
   grid: GameBoard;
   currentPlayer: PlayerMark;
-  latestMove?: boolean;
   OnPlayerMove: (index: number) => void;
   winningLine?: WinningLine | undefined;
   disabled?: boolean;
@@ -90,7 +94,7 @@ export interface InteractiveGridBoardProps {
 };
 
 export interface MoveHistoryGridBoardProps {
-  mode: "moveHistory";
+  mode: GridBoardType.MoveHistory;
   grid: GameBoard;
   latestMove: number;
   disabled?: true;
@@ -102,7 +106,7 @@ export type GridBoardProps = InteractiveGridBoardProps | MoveHistoryGridBoardPro
 export function isInteractiveGridBoardProps(
   props: GridBoardProps
 ): props is InteractiveGridBoardProps {
-  return props.mode === "interactive";
+  return props.mode === GridBoardType.Interactive;
 };
 
 export interface MoveHistoryProps {

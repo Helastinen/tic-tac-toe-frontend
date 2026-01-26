@@ -1,17 +1,23 @@
 import Grid from "@mui/material/Grid";
 
 import Square from "./Square";
-import { GridBoardProps, isInteractiveGridBoardProps } from "../../types/types";
+import { GridBoardProps, isInteractiveGridBoardProps, WinningLine } from "../../types/types";
 
 const GridBoard = (props: GridBoardProps) => {
-  const { grid, disabled, invalidMove, latestMove } = props;
+  // extract shared props
+  const { grid, disabled, invalidMove } = props;
 
-  const { OnPlayerMove, winningLine } = isInteractiveGridBoardProps(props)
-    ? props
-    : {
-      OnPlayerMove: undefined,
-      winningLine: undefined,
-    };
+  // normalize branch-specific props
+  let OnPlayerMove: ((index: number) => void) | undefined;
+  let winningLine: WinningLine | undefined;
+  let latestMove: number | undefined;
+
+  if (isInteractiveGridBoardProps(props)) {
+    OnPlayerMove = props.OnPlayerMove;
+    winningLine = props.winningLine;
+  } else {
+    latestMove = props.latestMove;
+  }
 
   const className = !isInteractiveGridBoardProps(props)
     ? "move-history-gridboard"
@@ -38,7 +44,7 @@ const GridBoard = (props: GridBoardProps) => {
             disabled={disabled}
             index={i}
             invalidMove={invalidMove}
-            latestMove={latestMove === i}
+            isLatestMove={latestMove === i}
             onSquareClick={() => OnPlayerMove?.(i)}
             value={value}
             winningLine={winningLine}

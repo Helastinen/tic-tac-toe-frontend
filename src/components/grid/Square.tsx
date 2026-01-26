@@ -2,7 +2,7 @@ import React from "react";
 import { Nullable, PlayerMark, SquareProps, WinningLine } from "../../types/types";
 
 const Square = ({
-  onSquareClick, index, value, winningLine, disabled, invalidMove, latestMove
+  onSquareClick, index, value, winningLine, disabled, invalidMove, isLatestMove
 }: SquareProps) => {
   const getSquareBehavior = () => {
     const classes = ["square"];
@@ -30,7 +30,7 @@ const Square = ({
 
     if (invalidMove) { classes.push("square-invalid"); }
 
-    if (latestMove) { classes.push("square-latest-move"); }
+    if (isLatestMove) { classes.push("square-latest-move"); }
 
     return classes.join(" ");
   };
