@@ -2,16 +2,19 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react({
       babel: {
-        plugins: [
-          ["transform-remove-console", { exclude: ["error"] }] // prevents babel from re-adding console.logs
-        ]
+        plugins: mode === "production" 
+          ? [["transform-remove-console", { exclude: ["error"] }]] 
+          : []
       }
     })
   ],
+  esbuild: mode === "production" 
+    ? { pure: ["console.log"], legalComments: "none" } // removes all console logs and JS comments in production
+    : {},
   server: {
     proxy: {
       '/api': {
@@ -25,6 +28,4 @@ export default defineConfig({
     globals: true,
     setupFiles: './testSetup.js', 
   },
-  esbuild: { legalComments: "none" }, // removes all JS comments in production
-  pure: ["console.log"] // removes all console.logs
-});
+}));
