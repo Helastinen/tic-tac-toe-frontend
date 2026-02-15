@@ -1,89 +1,41 @@
-import { useState } from "react";
-
-import { calculateWinningResult } from "../logic/gameLogic";
-import { isTieGame, togglePlayer } from "../utils/utils";
+import { usePlayers } from "./usePlayers";
+import { useStats } from "./useStats";
+import { useGameState } from "./useGameState";
 import {
   Cell,
   GameBoard,
-  MoveHistoryType,
-  PlayerMark,
-  Players,
-  WinningResult,
   GameStatus,
-  GameStats,
+  Players,
 } from "../types/types";
-import { UI_TEXT } from "../constants/uiText";
-import { getGameStats, updateGameHistoryStats } from "../services/statsService";
 
 const useGameEngine = () => {
-  const [moveHistory, setMoveHistory] = useState<MoveHistoryType>([Array(9).fill(null)]);
-  const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(PlayerMark.X);
-  const [players, setPlayers] = useState<Players>({
-    playerOne: UI_TEXT.PLAYER_FORM.PLAYER_ONE_LABEL,
-    playerTwo: UI_TEXT.PLAYER_FORM.PLAYER_TWO_LABEL,
-  });
+  const { players, setPlayers, getWinnerName } = usePlayers();
+  const { gameStats, error, clearError, fetchStats, saveGameResult } = useStats();
+  const {
+    moveHistory,
+    currentPlayer,
+    winningResult,
+    gameStarted,
+    invalidMove,
+    currentBoard,
+    winningValue,
+    winningLine,
+    startGame,
+    playerMove
+  } = useGameState();
 
-  const [winningResult, setWinningResult] = useState<WinningResult>(null);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [, setGameAborted] = useState(false);
-  const [gameStats, setGameStats] = useState<GameStats | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [invalidMove, setInvalidMove] = useState<boolean>(false);
-
-  const clearError = () => setError(null);
-
-  const currentBoard: GameBoard = moveHistory[moveHistory.length - 1];
-  const winningValue: Cell | undefined = winningResult?.cell;
-  const winningLine = winningResult?.winningLine;
-
-  const fetchStats = async (): Promise<void> => {
-    try {
-      const gameStats = await getGameStats();
-      setGameStats(gameStats);
-      setError(null);
-    } catch (error) {
-      console.error("Failed to fetch stats: ", error);
-      setError(`Failed to fetch stats: ${String(error)}`);
-    }
-  };
-
-  const handleStartGame = (players: Players) => {
-    // aborted game = user starts new game during existing game
-    if (gameStarted) {
-      setGameAborted(true);
-      void handleEndGame(undefined, [], true);
-    };
-
-    setWinningResult(null);
-    setCurrentPlayer(PlayerMark.X);
-    setMoveHistory([Array(9).fill(null)]);
-    setPlayers(players);
-    setGameStarted(true);
+  const handleStartGame = (playersInForm: Players) => {
+    setPlayers(playersInForm);
+    startGame();
   };
 
   const handlePlayerMove = (index: number) => {
-    const updatedBoard = [...currentBoard];
+    const result = playerMove(index);
+    if (!result) return;
 
-    // check if illegal move (meaning square already has value, game has ended)
-    if ( updatedBoard[index] !== null || winningLine || !gameStarted ) {
-      setInvalidMove(true);
-      setTimeout(() => setInvalidMove(false), 500);
-      return;
-    }
+    const { result: winResult, winValue, tieGame, updatedBoard } = result;
 
-    updatedBoard[index] = currentPlayer;
-
-    const result = calculateWinningResult(updatedBoard);
-    const winValue: Cell | undefined = result?.cell;
-    const tieGame = isTieGame(winValue, updatedBoard);
-
-    setCurrentPlayer(togglePlayer(currentPlayer));
-    setMoveHistory([...moveHistory, updatedBoard]);
-    setWinningResult(result);
-    console.log("<Game> -> handlePlayerMove(): result", result);
-    console.log("<Game> -> handlePlayerMove(): winValue", winValue);
-
-    if (result || tieGame) {
+    if (winResult || tieGame) {
       void handleEndGame(winValue, updatedBoard);
     }
   };
@@ -97,8 +49,7 @@ const useGameEngine = () => {
     const playedMoves = board?.filter(square => square !== null).length ?? 0;
     const status = getGameStatus(aborted, winValue);
     const winningMove = getWinningMove(aborted, status, playedMoves);
-    const winnerName = getWinnerName(players, winValue);
-
+    const winnerName = getWinnerName(winValue);
     const gameResult = {
       playerOne: players?.playerOne,
       playerTwo: players?.playerTwo,
@@ -108,18 +59,7 @@ const useGameEngine = () => {
       status,
     };
 
-    setGameStarted(false);
-
-    try {
-      await updateGameHistoryStats(gameResult);
-      const updatedStats = await getGameStats();
-
-      setGameStats(updatedStats);
-      setError(null);
-    } catch (error) {
-      console.error("Failed to persist stats: ", error);
-      setError(`Failed to persist stats: ${String(error)}`);
-    }
+    await saveGameResult(gameResult);
   };
 
   const getGameStatus = (aborted: boolean, winValue?: Cell): GameStatus => {
@@ -128,15 +68,13 @@ const useGameEngine = () => {
     return GameStatus.CompletedTie;
   };
 
-  const getWinningMove = (aborted: boolean, status: GameStatus, playedMoves: number): number | undefined => {
+  const getWinningMove = (
+    aborted: boolean,
+    status: GameStatus,
+    playedMoves: number
+  ): number | undefined => {
     if (aborted || status === GameStatus.CompletedTie) return undefined;
     return playedMoves;
-  };
-
-  const getWinnerName = (players: Players, winValue?: Cell): string | undefined => {
-    if (winValue === PlayerMark.X) return players?.playerOne;
-    if (winValue === PlayerMark.O) return players?.playerTwo;
-    return undefined;
   };
 
   return {
