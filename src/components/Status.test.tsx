@@ -1,8 +1,8 @@
 import { describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import Status from "./Status";
-import { PlayerMark } from "../types/types";
+import Status from "./Status.js";
+import { PlayerMark } from "../types/types.js";
 import {
   mockEmptyGrid,
   mockEmptyMoveHistory,
@@ -11,8 +11,8 @@ import {
   mockNonWinningGrid,
   mockPlayers,
   mockWinningGrid
-} from "../constants/testingMocks";
-import { isTieGame } from "../utils/utils";
+} from "../constants/testingMocks.js";
+import { isTieGame } from "../utils/utils.js";
 
 vi.mock("../utils/utils", () => ({
   isTieGame: vi.fn(),

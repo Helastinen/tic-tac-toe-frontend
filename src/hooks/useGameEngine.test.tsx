@@ -3,10 +3,10 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import axios from "axios";
 
-import useGameEngine from "./useGameEngine";
-import { GameBoard, PlayerMark, Players } from "../types/types";
-import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testingMocks";
-import { CONFIG } from "../constants/config";
+import useGameEngine from "./useGameEngine.js";
+import { GameBoard, PlayerMark, Players } from "../types/types.js";
+import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testingMocks.js";
+import { CONFIG } from "../constants/config.js";
 
 vi.mock("axios");
 

@@ -38,6 +38,11 @@ export default defineConfig([
       ...reactHooks.configs.recommended.rules,
       "react/react-in-jsx-scope": "off",
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+  },
   },
 
   // TypeScript-specific rules

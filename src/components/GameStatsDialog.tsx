@@ -11,9 +11,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import GamesIcon from "@mui/icons-material/Games";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { calculateAverageRoundWin, getSafeStats, getStatPercentage } from "../utils/statsHelper";
-import { GameStatsDialogProps, StatsListItem } from "../types/types";
-import { UI_TEXT } from "../constants/uiText";
+import { calculateAverageRoundWin, getSafeStats, getStatPercentage } from "../utils/statsHelper.js";
+import { GameStatsDialogProps, StatsListItem } from "../types/types.js";
+import { UI_TEXT } from "../constants/uiText.js";
 
 const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => {
   const { gameHistory, totalStats } = getSafeStats(gameStats);

@@ -4,9 +4,9 @@ import { Button, Grid } from "@mui/material";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PersonIcon from "@mui/icons-material/Person";
 
-import GameStatsDialog from "../GameStatsDialog";
-import { UI_TEXT } from "../../constants/uiText";
-import { PlayerControlsProps } from "../../types/types";
+import GameStatsDialog from "../GameStatsDialog.js";
+import { UI_TEXT } from "../../constants/uiText.js";
+import { PlayerControlsProps } from "../../types/types.js";
 
 const PlayerControls = ({
   errors,

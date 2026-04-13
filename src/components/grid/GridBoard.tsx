@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 
-import Square from "./Square";
-import { GridBoardProps, isInteractiveGridBoardProps, WinningLine } from "../../types/types";
+import Square from "./Square.js";
+import { GridBoardProps, isInteractiveGridBoardProps, WinningLine } from "../../types/types.js";
 
 const GridBoard = (props: GridBoardProps) => {
   // extract shared props

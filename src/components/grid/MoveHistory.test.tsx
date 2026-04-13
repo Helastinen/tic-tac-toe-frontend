@@ -1,9 +1,9 @@
 import { describe, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import MoveHistory from "./MoveHistory";
-import { UI_TEXT } from "../../constants/uiText";
-import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFiveTurns } from "../../constants/testingMocks";
+import MoveHistory from "./MoveHistory.js";
+import { UI_TEXT } from "../../constants/uiText.js";
+import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFiveTurns } from "../../constants/testingMocks.js";
 
 describe("MoveHistory", () => {
   test("renders component", () => {

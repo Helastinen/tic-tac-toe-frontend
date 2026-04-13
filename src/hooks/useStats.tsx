@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { getGameStats, updateGameHistoryStats } from "../services/statsService";
-import { GameHistoryStats, GameStats } from "../types/types";
+import { getGameStats, updateGameHistoryStats } from "../services/statsService.js";
+import { GameHistoryStats, GameStats } from "../types/types.js";
 
 export const useStats = () => {
   const [gameStats, setGameStats] = useState<GameStats | null>(null);

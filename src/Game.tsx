@@ -1,16 +1,16 @@
 import CircularProgress from "@mui/material/CircularProgress";
 
-import GridBoard from "./components/grid/GridBoard";
-import PlayerForm from "./components/playerForm/PlayerForm";
-import MoveHistory from "./components/grid/MoveHistory";
-import Status from "./components/Status";
+import GridBoard from "./components/grid/GridBoard.js";
+import PlayerForm from "./components/playerForm/PlayerForm.js";
+import MoveHistory from "./components/grid/MoveHistory.js";
+import Status from "./components/Status.js";
 
-import useGameEngine from "./hooks/useGameEngine";
-import GameTitle from "./components/GameTitle";
-import ErrorBanner from "./components/ErrorBanner";
-import SectionDivider from "./components/SectionDivider";
-import Copyright from "./components/Copyright";
-import { GridBoardType } from "./types/types";
+import useGameEngine from "./hooks/useGameEngine.js";
+import GameTitle from "./components/GameTitle.js";
+import ErrorBanner from "./components/ErrorBanner.js";
+import SectionDivider from "./components/SectionDivider.js";
+import Copyright from "./components/Copyright.js";
+import { GridBoardType } from "./types/types.js";
 
 const Game = () => {
   const {

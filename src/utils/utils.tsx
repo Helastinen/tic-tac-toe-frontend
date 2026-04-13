@@ -1,4 +1,4 @@
-import { Cell, GameBoard, PlayerMark } from "../types/types";
+import { Cell, GameBoard, PlayerMark } from "../types/types.js";
 
 export const isTieGame = (winningValue: Cell | undefined, grid: GameBoard) => !winningValue && grid.every(item => item !== null);
 

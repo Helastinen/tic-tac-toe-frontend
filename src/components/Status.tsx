@@ -1,6 +1,6 @@
-import { UI_TEXT } from "../constants/uiText";
-import { Cell, StatusProps, PlayerMark } from "../types/types";
-import { isTieGame } from "../utils/utils";
+import { UI_TEXT } from "../constants/uiText.js";
+import { Cell, StatusProps, PlayerMark } from "../types/types.js";
+import { isTieGame } from "../utils/utils.js";
 
 const Status = ({ winningValue, currentPlayer, players, grid, gameStarted, moveHistory }: StatusProps) => {
   const getCurrentPlayerName = (): string | undefined => {

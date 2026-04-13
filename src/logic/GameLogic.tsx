@@ -1,4 +1,4 @@
-import { GameBoard,  WinningLines, WinningResult } from "../types/types";
+import { GameBoard,  WinningLines, WinningResult } from "../types/types.js";
 
 /**
  * Determines if the current grid contains a winning line.

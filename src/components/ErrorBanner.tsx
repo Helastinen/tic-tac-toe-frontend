@@ -2,8 +2,8 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Snackbar from "@mui/material/Snackbar";
 
-import { ErrorBannerProps } from "../types/types";
-import { UI_TEXT } from "../constants/uiText";
+import { ErrorBannerProps } from "../types/types.js";
+import { UI_TEXT } from "../constants/uiText.js";
 
 const ErrorBanner = ({ error, clearError }: ErrorBannerProps) => {
   if (!error) return null;

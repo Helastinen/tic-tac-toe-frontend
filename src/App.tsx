@@ -4,7 +4,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-import Game from "./Game";
+import Game from "./Game.js";
 import Container from "@mui/material/Container";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material";
 

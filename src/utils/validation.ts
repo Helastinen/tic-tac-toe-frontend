@@ -1,4 +1,4 @@
-import { allowedChars } from "../constants/regex";
+import { allowedChars } from "../constants/regex.js";
 
 export interface ValidationResult {
   error: boolean;

@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { UI_TEXT } from "../constants/uiText";
+import { UI_TEXT } from "../constants/uiText.js";
 
 const GameTitle = () => {
   return (

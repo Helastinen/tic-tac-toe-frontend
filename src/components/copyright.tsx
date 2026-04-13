@@ -1,4 +1,4 @@
-import { UI_TEXT } from "../constants/uiText";
+import { UI_TEXT } from "../constants/uiText.js";
 
 const Copyright = () => {
   return (

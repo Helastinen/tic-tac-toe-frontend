@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { calculateWinningResult } from "../logic/gameLogic";
-import { isTieGame, togglePlayer } from "../utils/utils";
+import { calculateWinningResult } from "../logic/gameLogic.js";
+import { isTieGame, togglePlayer } from "../utils/utils.js";
 
 import {
   Cell,
@@ -9,7 +9,7 @@ import {
   MoveHistoryType,
   PlayerMark,
   WinningResult
-} from "../types/types";
+} from "../types/types.js";
 
 export const useGameState = () => {
   const [moveHistory, setMoveHistory] = useState<MoveHistoryType>([Array(9).fill(null)]);

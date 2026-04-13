@@ -1,10 +1,10 @@
 import { describe, expect, test, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 
-import Game from "./Game";
-import { UI_TEXT } from "./constants/uiText";
+import Game from "./Game.js";
+import { UI_TEXT } from "./constants/uiText.js";
 import axios from "axios";
-import { mockGameHistoryStats, mockTotalStats } from "./constants/testingMocks";
+import { mockGameHistoryStats, mockTotalStats } from "./constants/testingMocks.js";
 
 vi.mock("axios");
 

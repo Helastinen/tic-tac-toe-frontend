@@ -1,6 +1,6 @@
 import axios from "axios";
-import { CONFIG } from "../constants/config";
-import { GameHistoryStats, GameStats, TotalStats } from "../types/types";
+import { CONFIG } from "../constants/config.js";
+import { GameHistoryStats, GameStats, TotalStats } from "../types/types.js";
 
 export const getGameStats = async (): Promise<GameStats> => {
   const [gameHistoryRes, totalStatsRes] = await Promise.all([

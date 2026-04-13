@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",               // ✅ Enables JSX support for React 17+
-    "module": "ESNext",               // ✅ Ensures modern module resolution
+    "module": "Node16",               // ✅ Ensures modern module resolution
     "target": "ESNext",               // ✅ Supports modern JS features
     "lib": ["DOM", "ESNext"],         // ✅ Includes DOM types for browser APIs
-    "moduleResolution": "Node",       // ✅ Resolves modules like Node.js
+    "moduleResolution": "Node16",       // ✅ Resolves modules like Node.js
     "allowJs": true,                  // Optional: allows JS files in TS project
     "esModuleInterop": true,          // Optional: improves compatibility with CommonJS
     "skipLibCheck": true,             // Optional: skips type checking in node_modules

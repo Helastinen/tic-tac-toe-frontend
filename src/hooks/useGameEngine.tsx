@@ -1,12 +1,12 @@
-import { usePlayers } from "./usePlayers";
-import { useStats } from "./useStats";
-import { useGameState } from "./useGameState";
+import { usePlayers } from "./usePlayers.js";
+import { useStats } from "./useStats.js";
+import { useGameState } from "./useGameState.js";
 import {
   Cell,
   GameBoard,
   GameStatus,
   Players,
-} from "../types/types";
+} from "../types/types.js";
 
 const useGameEngine = () => {
   const { players, setPlayers, getWinnerName } = usePlayers();

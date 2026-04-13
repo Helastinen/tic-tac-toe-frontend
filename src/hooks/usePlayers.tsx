@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Cell, PlayerMark, Players } from "../types/types";
-import { UI_TEXT } from "../constants/uiText";
+import { Cell, PlayerMark, Players } from "../types/types.js";
+import { UI_TEXT } from "../constants/uiText.js";
 
 export const usePlayers = () => {
   const [players, setPlayers] = useState<Players>({

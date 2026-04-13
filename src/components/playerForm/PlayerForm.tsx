@@ -1,16 +1,16 @@
 import type React from "react";
-
-import Grid from "@mui/material/Grid";
-import { PlayerFormProps, Players } from "../../types/types";
-
 import { useState } from "react";
 
-import PlayerSetup from "./PlayerSetup";
-import PlayerNames from "./PlayerNames";
-import PlayerControls from "./PlayerControls";
-import { UI_TEXT } from "../../constants/uiText";
+import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import { validatePlayerName } from "../../utils/validation";
+
+import { PlayerFormProps, Players } from "../../types/types.js";
+import PlayerSetup from "./PlayerSetup.js";
+import PlayerNames from "./PlayerNames.js";
+import PlayerControls from "./PlayerControls.js";
+import { UI_TEXT } from "../../constants/uiText.js";
+
+import { validatePlayerName } from "../../utils/validation.js";
 
 const PlayerForm = ({ players, setPlayers, onStartGame, gameStats, currentPlayer, fetchStats }: PlayerFormProps) => {
   const [isEditingPlayers, setIsEditingPlayers] = useState(true);

@@ -1,6 +1,6 @@
 import { Grid, TextField } from "@mui/material";
-import { UI_TEXT } from "../../constants/uiText";
-import { PlayerSetupProps } from "../../types/types";
+import { UI_TEXT } from "../../constants/uiText.js";
+import { PlayerSetupProps } from "../../types/types.js";
 
 const PlayerSetup = ({ errors, helperTexts, players, handleChange }: PlayerSetupProps) => (
   <Grid size={{ xs: 12 }}>
