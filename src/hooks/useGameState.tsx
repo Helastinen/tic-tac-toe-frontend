@@ -15,7 +15,6 @@ export const useGameState = () => {
   const [moveHistory, setMoveHistory] = useState<MoveHistoryType>([Array(9).fill(null)]);
   const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(PlayerMark.X);
   const [winningResult, setWinningResult] = useState<WinningResult>(null);
-  // const [, setGameAborted] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [invalidMove, setInvalidMove] = useState<boolean>(false);
 
@@ -49,8 +48,8 @@ export const useGameState = () => {
     setCurrentPlayer(togglePlayer(currentPlayer));
     setMoveHistory([...moveHistory, updatedBoard]);
     setWinningResult(result);
-    console.log("<Game> -> handlePlayerMove(): result", result);
-    console.log("<Game> -> handlePlayerMove(): winValue", winValue);
+    // console.log("<Game> -> handlePlayerMove(): result", result);
+    // console.log("<Game> -> handlePlayerMove(): winValue", winValue);
 
     return { result, winValue, tieGame, updatedBoard };
   };

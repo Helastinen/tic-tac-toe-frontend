@@ -1,4 +1,11 @@
-import { GameBoard,  WinningLines, WinningResult } from "../types/types.js";
+import {
+  Cell,
+  GameBoard,
+  GameStatus,
+  Players,
+  WinningLines,
+  WinningResult
+} from "../types/types.js";
 
 /**
  * Determines if the current grid contains a winning line.
@@ -30,4 +37,51 @@ export const calculateWinningResult = (grid: GameBoard) => {
   }
 
   return null;
+};
+
+/**
+ * Builds the final game result object based on the board state and outcome.
+ * @param winValue - The winning player's mark ("X", "O"), or undefined if the game ended in a tie.
+ * @param board - The final game board as an array of 9 cells.
+ * @param aborted - Whether the game was aborted before completion.
+ * @param getWinnerName - A function that resolves the winner's display name based on the winning mark.
+ * @param players - The player names used during the game.
+ * @returns An object describing the completed game's outcome.
+ */
+export const calculateGameResults = (
+  winValue: Cell | undefined = undefined,
+  board: GameBoard,
+  aborted = false,
+  getWinnerName: (winValue?: Cell) => string | undefined,
+  players: Players,
+) => {
+  const playedMoves = board?.filter(square => square !== null).length ?? 0;
+  const status = getGameStatus(aborted, winValue);
+  const winningMove = getWinningMove(aborted, status, playedMoves);
+  const winnerName = getWinnerName(winValue);
+  const gameResult = {
+    playerOne: players?.playerOne,
+    playerTwo: players?.playerTwo,
+    winnerName,
+    winningMark: winValue,
+    winningMove,
+    status,
+  };
+
+  return gameResult;
+};
+
+const getGameStatus = (aborted: boolean, winValue?: Cell): GameStatus => {
+  if (aborted) return GameStatus.Aborted;
+  if (winValue) return GameStatus.CompletedWinner;
+  return GameStatus.CompletedTie;
+};
+
+const getWinningMove = (
+  aborted: boolean,
+  status: GameStatus,
+  playedMoves: number
+): number | undefined => {
+  if (aborted || status === GameStatus.CompletedTie) return undefined;
+  return playedMoves;
 };

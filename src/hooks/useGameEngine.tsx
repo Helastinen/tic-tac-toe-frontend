@@ -4,9 +4,9 @@ import { useGameState } from "./useGameState.js";
 import {
   Cell,
   GameBoard,
-  GameStatus,
   Players,
 } from "../types/types.js";
+import { calculateGameResults } from "../logic/gameLogic.js";
 
 const useGameEngine = () => {
   const { players, setPlayers, getWinnerName } = usePlayers();
@@ -43,38 +43,17 @@ const useGameEngine = () => {
   const handleEndGame = async (
     winValue: Cell | undefined = undefined,
     board: GameBoard = [],
-    aborted = false,
+    aborted = false
   ) => {
-    // calculate gameResult
-    const playedMoves = board?.filter(square => square !== null).length ?? 0;
-    const status = getGameStatus(aborted, winValue);
-    const winningMove = getWinningMove(aborted, status, playedMoves);
-    const winnerName = getWinnerName(winValue);
-    const gameResult = {
-      playerOne: players?.playerOne,
-      playerTwo: players?.playerTwo,
-      winnerName,
-      winningMark: winValue,
-      winningMove,
-      status,
-    };
+    const gameResult = calculateGameResults(
+      winValue,
+      board,
+      aborted,
+      getWinnerName,
+      players
+    );
 
     await saveGameResult(gameResult);
-  };
-
-  const getGameStatus = (aborted: boolean, winValue?: Cell): GameStatus => {
-    if (aborted) return GameStatus.Aborted;
-    if (winValue) return GameStatus.CompletedWinner;
-    return GameStatus.CompletedTie;
-  };
-
-  const getWinningMove = (
-    aborted: boolean,
-    status: GameStatus,
-    playedMoves: number
-  ): number | undefined => {
-    if (aborted || status === GameStatus.CompletedTie) return undefined;
-    return playedMoves;
   };
 
   return {
