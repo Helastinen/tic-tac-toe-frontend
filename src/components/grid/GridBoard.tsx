@@ -13,6 +13,7 @@ const GridBoard = (props: GridBoardProps) => {
   let latestMove: number | undefined;
 
   if (isInteractiveGridBoardProps(props)) {
+    console.log("<Gridboard> -> props: ", props);
     OnPlayerMove = props.OnPlayerMove;
     winningLine = props.winningLine;
   } else {

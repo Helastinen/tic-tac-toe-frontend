@@ -7,6 +7,12 @@ import {
   WinningResult
 } from "../types/types.js";
 
+export const applyMove = ( board: GameBoard,  index: number,  player: Cell ): GameBoard => {
+  const updatedBoard = [...board];
+  updatedBoard[index] = player;
+  return updatedBoard;
+};
+
 /**
  * Determines if the current grid contains a winning line.
  * @param grid - The current game board as an array of 9 cells.

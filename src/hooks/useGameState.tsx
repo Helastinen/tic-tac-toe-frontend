@@ -1,8 +1,4 @@
 import { useState } from "react";
-
-import { calculateWinningResult } from "../logic/gameLogic.js";
-import { isTieGame, togglePlayer } from "../utils/utils.js";
-
 import {
   Cell,
   GameBoard,
@@ -29,29 +25,19 @@ export const useGameState = () => {
     setGameStarted(true);
   };
 
-  const playerMove = (index: number) => {
-    const updatedBoard = [...currentBoard];
+  const playerMove = (index: number): GameBoard | null => {
+    const boardCopy = [...currentBoard];
+    // Illegal move means a square already has a value or the game has already ended
+    const illegalMove = boardCopy[index] !== null || winningLine || !gameStarted;
 
-    // illegal move means a square already has a value, or game has already ended
-    if ( updatedBoard[index] !== null || winningLine || !gameStarted ) {
+    if (illegalMove) {
       setInvalidMove(true);
       setTimeout(() => setInvalidMove(false), 500);
-      return;
+      console.log("<useGameState> -> playerMove(): illegalMove", illegalMove);
+      return null;
     }
 
-    updatedBoard[index] = currentPlayer;
-
-    const result = calculateWinningResult(updatedBoard);
-    const winValue: Cell | undefined = result?.cell;
-    const tieGame = isTieGame(winValue, updatedBoard);
-
-    setCurrentPlayer(togglePlayer(currentPlayer));
-    setMoveHistory([...moveHistory, updatedBoard]);
-    setWinningResult(result);
-    // console.log("<Game> -> handlePlayerMove(): result", result);
-    // console.log("<Game> -> handlePlayerMove(): winValue", winValue);
-
-    return { result, winValue, tieGame, updatedBoard };
+    return boardCopy;
   };
 
   return {
@@ -67,6 +53,10 @@ export const useGameState = () => {
     winningLine,
     // actions
     startGame,
-    playerMove
+    playerMove,
+    setCurrentPlayer,
+    setMoveHistory,
+    setWinningResult,
+    setGameStarted
   };
 };

@@ -6,7 +6,12 @@ import {
   GameBoard,
   Players,
 } from "../types/types.js";
-import { calculateGameResults } from "../logic/gameLogic.js";
+import {
+  applyMove,
+  calculateGameResults,
+  calculateWinningResult
+} from "../logic/gameLogic.js";
+import { isTieGame, togglePlayer } from "../utils/utils.js";
 
 const useGameEngine = () => {
   const { players, setPlayers, getWinnerName } = usePlayers();
@@ -21,7 +26,11 @@ const useGameEngine = () => {
     winningValue,
     winningLine,
     startGame,
-    playerMove
+    playerMove,
+    setCurrentPlayer,
+    setMoveHistory,
+    setWinningResult,
+    setGameStarted
   } = useGameState();
 
   const handleStartGame = (playersInForm: Players) => {
@@ -30,12 +39,27 @@ const useGameEngine = () => {
   };
 
   const handlePlayerMove = (index: number) => {
-    const result = playerMove(index);
-    if (!result) return;
+    const boardBeforeMove = playerMove(index);
+    // disregard illegal moves
+    if (!boardBeforeMove) return;
 
-    const { result: winResult, winValue, tieGame, updatedBoard } = result;
+    const updatedBoard = applyMove(boardBeforeMove, index, currentPlayer);
 
-    if (winResult || tieGame) {
+    // calculate results
+    const result = calculateWinningResult(updatedBoard);
+    const winValue: Cell | undefined = result?.cell;
+    const tieGame = isTieGame(winValue, updatedBoard);
+
+    console.log("<useGameEngine> -> handlePlayerMove(): result", result);
+    console.log("<useGameEngine> -> handlePlayerMove(): winValue", winValue);
+    console.log("<useGameEngine> -> handlePlayerMove(): tieGame", tieGame);
+
+    // update state
+    setCurrentPlayer(togglePlayer(currentPlayer));
+    setMoveHistory([...moveHistory, updatedBoard]);
+    setWinningResult(result);
+
+    if (result || tieGame) {
       void handleEndGame(winValue, updatedBoard);
     }
   };
@@ -54,6 +78,8 @@ const useGameEngine = () => {
     );
 
     await saveGameResult(gameResult);
+
+    setGameStarted(false);
   };
 
   return {
