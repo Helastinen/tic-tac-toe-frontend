@@ -22,23 +22,12 @@ body {
 
 /* Small screens: fill the whole screen
  prevent scaling of bg image */
-@media (max-width: 799px) { 
+@media (max-width: 1000px) { 
   body {
     background-size: 
       100% 100%,/* gradient */
       cover; /* image */
     background-attachment: fixed; 
-  }
-}
-
-/* Medium screens: prevent image from becoming too tall,
- prevent scaling of bg image */
-@media (min-width: 800px) and (max-width: 1000px) {
-  body {
-    background-size: 
-      100% 100%,
-      auto 100%; /* image height matches viewport */ 
-    background-attachment: fixed;
   }
 }
 
