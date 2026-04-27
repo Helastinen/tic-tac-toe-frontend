@@ -9,6 +9,7 @@ import {
 
 export const useGameState = () => {
   const [moveHistory, setMoveHistory] = useState<MoveHistoryType>([Array(9).fill(null)]);
+  const [isSinglePlayerGame, setIsSinglePlayerGame] = useState<boolean>(true);
   const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(PlayerMark.X);
   const [winningResult, setWinningResult] = useState<WinningResult>(null);
   const [gameStarted, setGameStarted] = useState(false);
@@ -33,7 +34,7 @@ export const useGameState = () => {
     if (illegalMove) {
       setInvalidMove(true);
       setTimeout(() => setInvalidMove(false), 500);
-      console.log("<useGameState> -> playerMove(): illegalMove", illegalMove);
+      // console.log("<useGameState> -> playerMove(): illegalMove", illegalMove);
       return null;
     }
 
@@ -43,6 +44,7 @@ export const useGameState = () => {
   return {
     // state
     moveHistory,
+    isSinglePlayerGame,
     currentPlayer,
     winningResult,
     gameStarted,
@@ -52,11 +54,12 @@ export const useGameState = () => {
     winningValue,
     winningLine,
     // actions
+    setMoveHistory,
+    setIsSinglePlayerGame,
+    setCurrentPlayer,
+    setWinningResult,
+    setGameStarted,
     startGame,
     playerMove,
-    setCurrentPlayer,
-    setMoveHistory,
-    setWinningResult,
-    setGameStarted
   };
 };

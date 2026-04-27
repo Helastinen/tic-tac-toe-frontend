@@ -7,6 +7,14 @@ import {
   WinningResult
 } from "../types/types.js";
 
+/**
+ * Applies a player's move to the board by returning a new board
+ * with the specified index updated to the given player mark.
+ * @param {GameBoard} board - The current game board state.
+ * @param {number} index - The board position where the move is applied.
+ * @param {Cell} player - The player mark to place at the given index.
+ * @returns {GameBoard} A new board array with the updated move applied.
+ */
 export const applyMove = ( board: GameBoard,  index: number,  player: Cell ): GameBoard => {
   const updatedBoard = [...board];
   updatedBoard[index] = player;

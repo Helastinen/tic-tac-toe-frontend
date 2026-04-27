@@ -25,7 +25,7 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStats, currentPlayer
   });
 
   const handleChangeNames = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    console.log("<PlayerForm> -> handleChangeNames(e.target): ", e.target);
+    // console.log("<PlayerForm> -> handleChangeNames(e.target): ", e.target);
     const { name, value } = e.target;
     validateNameField(name as keyof Players, value);
     setDraftPlayers(prev => ({
@@ -35,8 +35,8 @@ const PlayerForm = ({ players, setPlayers, onStartGame, gameStats, currentPlayer
   };
 
   const handleEditPlayers = () => {
-    console.log("<PlayerForm> -> handleEditPlayers() triggered");
-    console.log("<PlayerForm> -> handleEditPlayers() -> draftPlayers: ", draftPlayers);
+    // console.log("<PlayerForm> -> handleEditPlayers() triggered");
+    // console.log("<PlayerForm> -> handleEditPlayers() -> draftPlayers: ", draftPlayers);
 
     if (!isEditingPlayers) {
       // user enters edit mode and (re)loads committed names

@@ -48,7 +48,7 @@ describe("useGameEngine", () => {
     });
   });
 
-  test("handlePlayerMove updates grid and toggles player", async () => {
+  test("handleHumanMove updates grid and toggles player", async () => {
     const { result } = renderHook(() => useGameEngine());
     const currentBoard: GameBoard = [
       PlayerMark.X, null, null,
@@ -56,7 +56,7 @@ describe("useGameEngine", () => {
       null, null, null
     ];
     act(() => result.current.handleStartGame(mockPlayers));
-    act(() => result.current.handlePlayerMove(0));
+    act(() => result.current.handleHumanMove(0));
 
     await waitFor(() => {
       expect(result.current).toMatchObject({

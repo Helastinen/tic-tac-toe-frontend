@@ -26,7 +26,7 @@ const Game = () => {
     invalidMove,
     clearError,
     handleStartGame,
-    handlePlayerMove,
+    handleHumanMove,
     setPlayers,
     fetchStats,
   } = useGameEngine();
@@ -60,7 +60,7 @@ const Game = () => {
         winningLine={winningLine}
         currentPlayer={currentPlayer}
         grid={currentBoard}
-        OnPlayerMove={handlePlayerMove}
+        OnPlayerMove={handleHumanMove}
         invalidMove={invalidMove}
       />
       <SectionDivider mt={2} mb={1} />
