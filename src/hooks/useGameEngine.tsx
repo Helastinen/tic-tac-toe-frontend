@@ -5,7 +5,6 @@ import {
   Cell,
   GameBoard,
   PlayerMark,
-  Players,
 } from "../types/types.js";
 import {
   applyMove,
@@ -32,16 +31,17 @@ const useGameEngine = () => {
     startGame,
     playerMove,
     setCurrentPlayer,
+    setIsSinglePlayerGame,
     setMoveHistory,
     setWinningResult,
     setGameStarted
   } = useGameState();
   const { getComputerMove } = useComputerPlayer();
 
-  const handleStartGame = (playersInForm: Players) => {
-    setPlayers(playersInForm);
-    startGame();
-  };
+  const isComputerTurn = isSinglePlayerGame && currentPlayer === COMPUTERMARK;
+  console.log("<useGameEngine> -> isComputerTurn: ", isComputerTurn);
+
+  const handleStartGame = () => startGame();
 
   const handleHumanMove = (index: number) => {
     console.log("<useGameEngine> -> handleHumanMove() triggered with index: ", index);
@@ -60,6 +60,9 @@ const useGameEngine = () => {
   };
 
   const processMove = (board: GameBoard, index: number, player: PlayerMark) => {
+    console.log("<useGameEngine> -> processMove() -> board: ", board);
+    console.log("<useGameEngine> -> processMove() -> index: ", index);
+    console.log("<useGameEngine> -> processMove() -> player: ", player);
     const updatedBoard = applyMove(board, index, player);
 
     // calculate results
@@ -72,6 +75,8 @@ const useGameEngine = () => {
     // console.log("<useGameEngine> -> handlePlayerMove() -> tieGame: ", tieGame);
 
     const nextPlayer: PlayerMark = togglePlayer(player);
+    const IsNextPlayerComputer = isSinglePlayerGame && nextPlayer === COMPUTERMARK;
+    console.log("<useGameEngine> -> processMove() -> nextPlayer: ", nextPlayer);
 
     // update state
     setCurrentPlayer(nextPlayer);
@@ -84,8 +89,9 @@ const useGameEngine = () => {
       return;
     }
 
-    if (isSinglePlayerGame && nextPlayer === COMPUTERMARK) {
+    if (IsNextPlayerComputer) {
       console.log("<useGameEngine> -> processMove() -> computer move triggered, nextPlayer: ", nextPlayer);
+
       const delay = randomInteger(
         COMPUTER_THINKING_TIME_MIN_SEC,
         COMPUTER_THINKING_TIME_MAX_SEC
@@ -113,8 +119,14 @@ const useGameEngine = () => {
     setGameStarted(false);
   };
 
+  const setIsSinglePlayer = (singlePlayer: boolean) => {
+    setIsSinglePlayerGame(singlePlayer);
+  };
+
   return {
     moveHistory,
+    isSinglePlayerGame,
+    isComputerTurn,
     currentPlayer,
     players,
     winningResult,
@@ -131,6 +143,7 @@ const useGameEngine = () => {
     handleEndGame,
     setPlayers,
     fetchStats,
+    setIsSinglePlayer,
   };
 };
 

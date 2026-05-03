@@ -1,14 +1,30 @@
-import { Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import { UI_TEXT } from "../../constants/uiText.js";
 import { PlayerSetupProps } from "../../types/types.js";
 
-const PlayerSetup = ({ errors, helperTexts, players, handleChange }: PlayerSetupProps) => (
+const PlayerSetup = ({
+  players,
+  isSinglePlayerGame,
+  errors,
+  helperTexts,
+  onStartGame,
+  handleChange
+}: PlayerSetupProps) => (
   <Grid size={{ xs: 12 }}>
     <Grid
       container
       spacing={0}
       className="player-setup-grid"
     >
+      <Grid size={12}>
+        <Typography
+          color="primary"
+          variant="h6"
+          className="player-setup-title"
+        >
+          {isSinglePlayerGame ? UI_TEXT.PLAYER_FORM.ENTER_PLAYER :  UI_TEXT.PLAYER_FORM.ENTER_PLAYERS}
+        </Typography>
+      </Grid>
       <TextField
         error={errors.playerOne}
         helperText={helperTexts.playerOne}
@@ -27,7 +43,8 @@ const PlayerSetup = ({ errors, helperTexts, players, handleChange }: PlayerSetup
         }}
         onChange={handleChange}
       />
-      <TextField
+
+      {!isSinglePlayerGame && <TextField
         error={errors.playerTwo}
         helperText={helperTexts.playerTwo}
         slotProps= {{
@@ -44,7 +61,23 @@ const PlayerSetup = ({ errors, helperTexts, players, handleChange }: PlayerSetup
           backgroundColor: "white"
         }}
         onChange={handleChange}
-      />
+      />}
+
+      <Button
+        disabled={errors.playerOne || errors.playerTwo}
+        variant="contained"
+        onClick={onStartGame}
+        sx={{
+          margin: "1rem 0.5rem 0.5rem",
+          "&.Mui-disabled": {
+            backgroundColor: "#bdbdbd",
+            color: "gray",
+            opacity: 1
+          }
+        }}
+      >
+        {UI_TEXT.GAME.START}
+      </Button>
     </Grid>
   </Grid>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 
-// Enums
+//* Enums
 export enum PlayerMark {
   X = "X",
   O = "O"
@@ -19,7 +19,7 @@ export enum GridBoardType {
 export type Nullable<T> = T | null;
 export type Optional<T> = T | undefined;
 
-// Grid
+//* Grid
 export type Cell = Nullable<PlayerMark>;
 export type GameBoard = Cell[];
 export type MoveHistoryType = Cell[][];
@@ -35,7 +35,7 @@ export type Players = null | {
   playerTwo: string;
 };
 
-// Stats
+//* Stats
 export interface TotalStats {
   playerOneWins: number;
   playerTwoWins: number;
@@ -63,11 +63,12 @@ export interface StatsListItem {
   percentage?: number;
 }
 
-// Components
+//* Components
 export interface StatusProps {
   winningValue: Cell | undefined;
   currentPlayer: PlayerMark;
   players: Players;
+  isSinglePlayerGame: boolean;
   grid: GameBoard;
   gameStarted: boolean;
   moveHistory: MoveHistoryType;
@@ -116,33 +117,44 @@ export interface MoveHistoryProps {
 
 export interface PlayerFormProps {
   players: Players;
-  setPlayers: React.Dispatch<React.SetStateAction<Players>>;
-  onStartGame: (players: Players) => void;
   gameStats: GameStats | null;
-  currentPlayer: PlayerMark;
+  isSinglePlayerGame: boolean;
+  setPlayers: React.Dispatch<React.SetStateAction<Players>>;
+  setIsSinglePlayer: (singlePlayer: boolean) => void;
+  onStartGame: () => void;
   fetchStats: () => Promise<void>;
 };
 
 export interface PlayerSetupProps {
   players: Players;
+  isSinglePlayerGame: boolean;
   errors: Record<string, boolean>;
   helperTexts: Record<string, string>;
+  onStartGame: () => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
 export interface PlayerNamesProps {
-  currentPlayer: PlayerMark;
   players: Players;
+  currentPlayer: PlayerMark;
+  isSinglePlayerGame: boolean;
 };
+
+export interface PlayerRowProps {
+  name: string | undefined;
+  isCurrent: boolean;
+  isComputer: boolean;
+}
 
 export interface PlayerControlsProps {
   errors: Record<string, boolean>;
   players: Players;
   gameStats: GameStats | null;
   isEditingPlayers: boolean;
-  onStartGame: (players: Players) => void;
+  // onStartGame: (players: Players) => void;
   onEditPlayers: () => void;
   fetchStats: () => Promise<void>;
+  setIsSinglePlayer: (singlePlayer: boolean) => void;
 };
 
 export interface GameStatsDialogProps {

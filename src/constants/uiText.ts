@@ -4,9 +4,12 @@ export const UI_TEXT = {
   },
   GAME: {
     TITLE: "Tic-Tac-Toe",
-    NEW: "New game",
+    START: "Start game",
     EDIT_PLAYERS: "Edit Players",
     SAVE_PLAYERS: "Save Players",
+    SINGLE_PLAYER: "Solo",
+    TWO_PLAYERS: "Two Players",
+    COMPUTER_NAME: "Computer",
     STATS: "Stats",
     COPYRIGHT: "© Antti Hellsten 2026"
   },
@@ -16,6 +19,7 @@ export const UI_TEXT = {
   PLAYER_FORM: {
     PLAYER_ONE_LABEL: "Player One (X)",
     PLAYER_TWO_LABEL: "Player Two (O)",
+    ENTER_PLAYER: "Enter player",
     ENTER_PLAYERS: "Enter players",
     PLAYERS: "Players"
   },
@@ -31,5 +35,7 @@ export const UI_TEXT = {
   },
   STATUS: {
     TIE: "Tie game",
+    COMPUTER_TURN: "Computer is thinking...",
+    HUMAN_TURN: "You're up"
   }
 };

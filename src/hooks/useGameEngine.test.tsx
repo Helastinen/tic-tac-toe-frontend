@@ -4,7 +4,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import axios from "axios";
 
 import useGameEngine from "./useGameEngine.js";
-import { GameBoard, PlayerMark, Players } from "../types/types.js";
+import { GameBoard, PlayerMark } from "../types/types.js";
 import { mockEmptyGrid, mockEmptyMoveHistory, mockTotalStats, mockPlayers, mockGameHistoryStats } from "../constants/testingMocks.js";
 import { CONFIG } from "../constants/config.js";
 
@@ -31,23 +31,6 @@ describe("useGameEngine", () => {
     });
   });
 
-  test("handleStartGame resets state and sets players", async () => {
-    const { result } = renderHook(() => useGameEngine());
-    const newMockPlayers: Players = { playerOne: "new Player1", playerTwo: "new PlayerTwo" };
-
-    act(() => result.current.handleStartGame(newMockPlayers));
-
-    await waitFor(() => {
-      expect(result.current).toMatchObject({
-        moveHistory: mockEmptyMoveHistory,
-        currentPlayer: PlayerMark.X,
-        players: newMockPlayers,
-        gameStarted: true,
-        winningResult: null,
-      });
-    });
-  });
-
   test("handleHumanMove updates grid and toggles player", async () => {
     const { result } = renderHook(() => useGameEngine());
     const currentBoard: GameBoard = [
@@ -55,7 +38,7 @@ describe("useGameEngine", () => {
       null, null, null,
       null, null, null
     ];
-    act(() => result.current.handleStartGame(mockPlayers));
+    act(() => result.current.handleStartGame());
     act(() => result.current.handleHumanMove(0));
 
     await waitFor(() => {

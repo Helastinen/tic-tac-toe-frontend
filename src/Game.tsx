@@ -15,6 +15,8 @@ import { GridBoardType } from "./types/types.js";
 const Game = () => {
   const {
     moveHistory,
+    isSinglePlayerGame,
+    isComputerTurn,
     currentPlayer,
     players,
     winningValue,
@@ -29,6 +31,7 @@ const Game = () => {
     handleHumanMove,
     setPlayers,
     fetchStats,
+    setIsSinglePlayer,
   } = useGameEngine();
 
   if (!currentBoard) return <CircularProgress />;
@@ -39,10 +42,11 @@ const Game = () => {
       {error && <ErrorBanner error={error} clearError={clearError} />}
       <PlayerForm
         players={players}
-        setPlayers={setPlayers}
-        onStartGame={(players) => handleStartGame(players)}
         gameStats={gameStats}
-        currentPlayer={currentPlayer}
+        isSinglePlayerGame={isSinglePlayerGame}
+        setPlayers={setPlayers}
+        setIsSinglePlayer={setIsSinglePlayer}
+        onStartGame={handleStartGame}
         fetchStats={fetchStats}
       />
       <SectionDivider mt={1.5} mb={2} />
@@ -50,12 +54,13 @@ const Game = () => {
         winningValue={winningValue}
         currentPlayer={currentPlayer}
         players={players}
+        isSinglePlayerGame={isSinglePlayerGame}
         grid={currentBoard}
         gameStarted={gameStarted}
         moveHistory={moveHistory}
       />
       <GridBoard
-        disabled={!gameStarted}
+        disabled={!gameStarted || isComputerTurn}
         mode={GridBoardType.Interactive}
         winningLine={winningLine}
         currentPlayer={currentPlayer}

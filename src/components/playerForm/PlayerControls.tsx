@@ -1,21 +1,20 @@
 import { useState } from "react";
 
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PersonIcon from "@mui/icons-material/Person";
+import MonitorIcon from "@mui/icons-material/Monitor";
+import GroupIcon from "@mui/icons-material/Group";
 
 import GameStatsDialog from "../GameStatsDialog.js";
 import { UI_TEXT } from "../../constants/uiText.js";
 import { PlayerControlsProps } from "../../types/types.js";
 
 const PlayerControls = ({
-  errors,
-  players,
   gameStats,
-  isEditingPlayers,
-  onStartGame,
   onEditPlayers,
-  fetchStats
+  fetchStats,
+  setIsSinglePlayer
 }: PlayerControlsProps) => {
   const [openStatsDialog, setOpenStatsDialog] = useState(false);
 
@@ -34,9 +33,17 @@ const PlayerControls = ({
       alignItems="center"
     >
       <Button
-        disabled={errors.playerOne || errors.playerTwo ||  isEditingPlayers}
         variant="contained"
-        onClick={() => onStartGame(players)}
+        endIcon={
+          <Box display="flex" alignItems="center">
+            <PersonIcon fontSize="small" />
+            <MonitorIcon fontSize="small" />
+          </Box>
+        }
+        onClick={() => {
+          onEditPlayers();
+          setIsSinglePlayer(true);
+        }}
         sx={{
           margin: "1rem 0.5rem 0.5rem",
           "&.Mui-disabled": {
@@ -46,22 +53,31 @@ const PlayerControls = ({
           }
         }}
       >
-        {UI_TEXT.GAME.NEW}
+        {UI_TEXT.GAME.SINGLE_PLAYER}
       </Button>
+
       <Button
-        variant={isEditingPlayers ? "contained" : "outlined"}
-        startIcon={<PersonIcon />}
-        onClick={() => onEditPlayers()}
+        variant="contained"
+        endIcon={<GroupIcon />}
+        onClick={() => {
+          onEditPlayers();
+          setIsSinglePlayer(false);
+        }}
         sx={{
           margin: "1rem 0.5rem 0.5rem",
-          backgroundColor: isEditingPlayers ? "primary.main" : "white"
+          "&.Mui-disabled": {
+            backgroundColor: "#bdbdbd",
+            color: "gray",
+            opacity: 1
+          }
         }}
       >
-        {isEditingPlayers ? UI_TEXT.GAME.SAVE_PLAYERS : UI_TEXT.GAME.EDIT_PLAYERS}
+        {UI_TEXT.GAME.TWO_PLAYERS}
       </Button>
+
       <Button
         variant="outlined"
-        startIcon={<BarChartIcon />}
+        endIcon={<BarChartIcon />}
         onClick={handleStatsDialogOpen}
         sx={{
           margin: "1rem 0.5rem 0.5rem",
@@ -70,6 +86,7 @@ const PlayerControls = ({
       >
         {UI_TEXT.GAME.STATS}
       </Button>
+
       <GameStatsDialog
         open={openStatsDialog}
         onClose={handleStatsDialogClose}
