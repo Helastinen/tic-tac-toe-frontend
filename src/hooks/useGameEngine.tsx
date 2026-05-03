@@ -60,19 +60,20 @@ const useGameEngine = () => {
   };
 
   const processMove = (board: GameBoard, index: number, player: PlayerMark) => {
-    console.log("<useGameEngine> -> processMove() -> board: ", board);
-    console.log("<useGameEngine> -> processMove() -> index: ", index);
-    console.log("<useGameEngine> -> processMove() -> player: ", player);
+    //console.log("<useGameEngine> -> processMove() -> board: ", board);
+    //console.log("<useGameEngine> -> processMove() -> index: ", index);
+    //console.log("<useGameEngine> -> processMove() -> player: ", player);
     const updatedBoard = applyMove(board, index, player);
+    console.log("<useGameEngine> -> processMove() -> updatedBoard: ", updatedBoard);
 
     // calculate results
     const result = calculateWinningResult(updatedBoard);
     const winValue: Cell | undefined = result?.cell;
     const tieGame = isTieGame(winValue, updatedBoard);
 
-    // console.log("<useGameEngine> -> handlePlayerMove() -> result: ", result);
-    // console.log("<useGameEngine> -> handlePlayerMove() -> winValue: ", winValue);
-    // console.log("<useGameEngine> -> handlePlayerMove() -> tieGame: ", tieGame);
+    // console.log("<useGameEngine> -> processMove() -> result: ", result);
+    // console.log("<useGameEngine> -> processMove() -> winValue: ", winValue);
+    // console.log("<useGameEngine> -> processMove() -> tieGame: ", tieGame);
 
     const nextPlayer: PlayerMark = togglePlayer(player);
     const IsNextPlayerComputer = isSinglePlayerGame && nextPlayer === COMPUTERMARK;
@@ -80,7 +81,8 @@ const useGameEngine = () => {
 
     // update state
     setCurrentPlayer(nextPlayer);
-    setMoveHistory([...moveHistory, updatedBoard]);
+    console.log("<useGameEngine> -> processMove() -> moveHistory: ", moveHistory);
+    setMoveHistory(prev => [...prev, updatedBoard]);
     setWinningResult(result);
 
     if (result || tieGame) {
