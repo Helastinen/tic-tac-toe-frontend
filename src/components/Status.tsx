@@ -3,6 +3,7 @@ import MonitorIcon from "@mui/icons-material/Monitor";
 import { UI_TEXT } from "../constants/uiText.js";
 import { Cell, StatusProps, PlayerMark } from "../types/types.js";
 import { isTieGame } from "../utils/utils.js";
+import { COMPUTERMARK } from "../constants/config.js";
 
 const Status = ({
   winningValue,
@@ -18,6 +19,10 @@ const Status = ({
   };
 
   const getWinningPlayerName = (winner: Cell): string | undefined => {
+    if (isSinglePlayerGame && winner === COMPUTERMARK) {
+      return UI_TEXT.STATUS.COMPUTER;
+    }
+
     return (
       winner === PlayerMark.X
         ? players?.playerOne
