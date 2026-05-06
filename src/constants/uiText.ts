@@ -35,8 +35,8 @@ export const UI_TEXT = {
   },
   STATUS: {
     TIE: "Tie game",
-    COMPUTER: "Computer",
-    COMPUTER_TURN: "Computer is thinking...",
+    COMPUTER_NAME: "Computer",
+    COMPUTER_TURN: "Computer is thinking",
     HUMAN_TURN: "You're up"
   }
 };

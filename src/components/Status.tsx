@@ -20,7 +20,7 @@ const Status = ({
 
   const getWinningPlayerName = (winner: Cell): string | undefined => {
     if (isSinglePlayerGame && winner === COMPUTERMARK) {
-      return UI_TEXT.STATUS.COMPUTER;
+      return UI_TEXT.STATUS.COMPUTER_NAME;
     }
 
     return (
@@ -56,7 +56,10 @@ const Status = ({
         <strong>Turn {moveHistory.length}:</strong>&nbsp;
         {isSinglePlayerGame && currentPlayer === PlayerMark.O
           ? <>
-            {UI_TEXT.STATUS.COMPUTER_TURN} <MonitorIcon />
+            <span className="thinking">
+              {UI_TEXT.STATUS.COMPUTER_TURN}
+            </span>
+            <MonitorIcon />
           </>
           : <>
             {UI_TEXT.STATUS.HUMAN_TURN} <strong>{getCurrentPlayerName()}</strong> ({currentPlayer}).
