@@ -14,6 +14,7 @@ import {
 import { isTieGame, randomInteger, togglePlayer } from "../utils/utils.js";
 import { useComputerPlayer } from "./useComputerPlayer.js";
 import { COMPUTER_THINKING_TIME_MAX_SEC, COMPUTER_THINKING_TIME_MIN_SEC, COMPUTERMARK } from "../constants/config.js";
+import { useRef } from "react";
 
 const useGameEngine = () => {
   const { players, setPlayers, getWinnerName } = usePlayers();
@@ -30,6 +31,7 @@ const useGameEngine = () => {
     winningLine,
     startGame,
     playerMove,
+    resetGameState,
     setCurrentPlayer,
     setIsSinglePlayerGame,
     setMoveHistory,
@@ -38,8 +40,9 @@ const useGameEngine = () => {
   } = useGameState();
   const { getComputerMove } = useComputerPlayer();
 
+  const computerMoveTimeout = useRef<number |null>(null);
   const isComputerTurn = isSinglePlayerGame && currentPlayer === COMPUTERMARK;
-  console.log("<useGameEngine> -> isComputerTurn: ", isComputerTurn);
+  //console.log("<useGameEngine> -> isComputerTurn: ", isComputerTurn);
 
   const handleStartGame = () => startGame();
 
@@ -99,7 +102,9 @@ const useGameEngine = () => {
         COMPUTER_THINKING_TIME_MAX_SEC
       ) * 1000;
 
-      setTimeout(() => handleComputerMove(updatedBoard), delay);
+      computerMoveTimeout.current = window.setTimeout(() => {
+        handleComputerMove(updatedBoard);
+      }, delay);
     };
   };
 
@@ -108,6 +113,10 @@ const useGameEngine = () => {
     board: GameBoard = [],
     aborted = false
   ) => {
+    //console.log("<useGameEngine> -> handleEndGame() -> triggered");
+    //console.log("<useGameEngine> -> handleEndGame() ->winValue: ", winValue);
+    //console.log("<useGameEngine> -> handleEndGame() -> board: ", board);
+    //console.log("<useGameEngine> -> handleEndGame() -> aborted: ", aborted);
     const gameResult = calculateGameResults(
       winValue,
       board,
@@ -119,6 +128,17 @@ const useGameEngine = () => {
     await saveGameResult(gameResult);
 
     setGameStarted(false);
+  };
+
+  const handleAbortGame = (board: GameBoard) => {
+    // Cancel pending computer move
+    if (computerMoveTimeout.current !== null) {
+      clearTimeout(computerMoveTimeout.current);
+      computerMoveTimeout.current = null;
+    }
+
+    handleEndGame(undefined, board, true);
+    resetGameState();
   };
 
   const setIsSinglePlayer = (singlePlayer: boolean) => {
@@ -143,6 +163,7 @@ const useGameEngine = () => {
     handleStartGame,
     handleHumanMove,
     handleEndGame,
+    handleAbortGame,
     setPlayers,
     fetchStats,
     setIsSinglePlayer,

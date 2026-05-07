@@ -28,6 +28,7 @@ const Game = () => {
     invalidMove,
     clearError,
     handleStartGame,
+    handleAbortGame,
     handleHumanMove,
     setPlayers,
     fetchStats,
@@ -42,11 +43,14 @@ const Game = () => {
       {error && <ErrorBanner error={error} clearError={clearError} />}
       <PlayerForm
         players={players}
+        board={currentBoard}
         gameStats={gameStats}
         isSinglePlayerGame={isSinglePlayerGame}
         setPlayers={setPlayers}
         setIsSinglePlayer={setIsSinglePlayer}
+        gameStarted={gameStarted}
         onStartGame={handleStartGame}
+        onAbortGame={handleAbortGame}
         fetchStats={fetchStats}
       />
       <SectionDivider mt={1.5} mb={2} />

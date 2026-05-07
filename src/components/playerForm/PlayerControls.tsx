@@ -11,10 +11,13 @@ import { UI_TEXT } from "../../constants/uiText.js";
 import { PlayerControlsProps } from "../../types/types.js";
 
 const PlayerControls = ({
+  board,
   gameStats,
   onEditPlayers,
+  onAbortGame,
+  gameStarted,
   fetchStats,
-  setIsSinglePlayer
+  setIsSinglePlayer,
 }: PlayerControlsProps) => {
   const [openStatsDialog, setOpenStatsDialog] = useState(false);
 
@@ -41,6 +44,9 @@ const PlayerControls = ({
           </Box>
         }
         onClick={() => {
+          if (gameStarted) {
+            onAbortGame(board);
+          }
           onEditPlayers();
           setIsSinglePlayer(true);
         }}
@@ -60,6 +66,9 @@ const PlayerControls = ({
         variant="contained"
         endIcon={<GroupIcon />}
         onClick={() => {
+          if (gameStarted) {
+            onAbortGame(board);
+          }
           onEditPlayers();
           setIsSinglePlayer(false);
         }}

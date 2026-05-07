@@ -12,11 +12,14 @@ import { UI_TEXT } from "../../constants/uiText.js";
 
 const PlayerForm = ({
   players,
+  board,
   gameStats,
   isSinglePlayerGame,
   setPlayers,
   setIsSinglePlayer,
+  gameStarted,
   onStartGame,
+  onAbortGame,
   fetchStats
 }: PlayerFormProps) => {
   const [isEditingPlayers, setIsEditingPlayers] = useState(false);
@@ -81,11 +84,12 @@ const PlayerForm = ({
       >
         <Grid size={12}>
           <PlayerControls
-            errors={errors}
-            players={draftPlayers}
+            board={board}
             gameStats={gameStats}
             isEditingPlayers={isEditingPlayers}
             onEditPlayers={handleEditPlayers}
+            onAbortGame={onAbortGame}
+            gameStarted={gameStarted}
             fetchStats={fetchStats}
             setIsSinglePlayer={setIsSinglePlayer}
           />

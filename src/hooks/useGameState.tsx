@@ -41,6 +41,13 @@ export const useGameState = () => {
     return boardCopy;
   };
 
+  const resetGameState = () => {
+    setWinningResult(null);
+    setCurrentPlayer(PlayerMark.X);
+    setMoveHistory([Array(9).fill(null)]);
+    setGameStarted(false);
+  };
+
   return {
     // state
     moveHistory,
@@ -61,5 +68,6 @@ export const useGameState = () => {
     setGameStarted,
     startGame,
     playerMove,
+    resetGameState
   };
 };

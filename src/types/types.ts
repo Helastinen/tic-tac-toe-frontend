@@ -63,7 +63,7 @@ export interface StatsListItem {
   percentage?: number;
 }
 
-//* Components
+//* COMPONENTS *//
 export interface StatusProps {
   winningValue: Cell | undefined;
   currentPlayer: PlayerMark;
@@ -84,6 +84,7 @@ export interface SquareProps {
   invalidMove?: boolean;
 };
 
+//* Grid
 export interface InteractiveGridBoardProps {
   mode: GridBoardType.Interactive;
   grid: GameBoard;
@@ -115,13 +116,17 @@ export interface MoveHistoryProps {
   players: Players;
 };
 
+//* Player form
 export interface PlayerFormProps {
   players: Players;
+  board: GameBoard;
   gameStats: GameStats | null;
   isSinglePlayerGame: boolean;
   setPlayers: React.Dispatch<React.SetStateAction<Players>>;
   setIsSinglePlayer: (singlePlayer: boolean) => void;
   onStartGame: () => void;
+  onAbortGame: (board: GameBoard) => void;
+  gameStarted: boolean;
   fetchStats: () => Promise<void>;
 };
 
@@ -147,12 +152,12 @@ export interface PlayerRowProps {
 }
 
 export interface PlayerControlsProps {
-  errors: Record<string, boolean>;
-  players: Players;
+  board: GameBoard;
   gameStats: GameStats | null;
   isEditingPlayers: boolean;
-  // onStartGame: (players: Players) => void;
   onEditPlayers: () => void;
+  onAbortGame: (board: GameBoard) => void;
+  gameStarted: boolean;
   fetchStats: () => Promise<void>;
   setIsSinglePlayer: (singlePlayer: boolean) => void;
 };
