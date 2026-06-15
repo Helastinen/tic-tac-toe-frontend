@@ -56,10 +56,10 @@ const Status = ({
         <strong>Turn {moveHistory.length}:</strong>&nbsp;
         {isSinglePlayerGame && currentPlayer === PlayerMark.O
           ? <>
-            <span className="thinking">
-              {UI_TEXT.STATUS.COMPUTER_TURN}
+            <span className="computer-thinking">
+              <MonitorIcon className="computer-thinking-icon"/>
+              &nbsp;{UI_TEXT.STATUS.COMPUTER_TURN}
             </span>
-            <MonitorIcon />
           </>
           : <>
             {UI_TEXT.STATUS.HUMAN_TURN} <strong>{getCurrentPlayerName()}</strong> ({currentPlayer}).

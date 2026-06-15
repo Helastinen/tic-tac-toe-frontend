@@ -221,7 +221,11 @@ ul {
   100% { content: "." }
 }
 
-.thinking:after {
+.computer-thinking-icon {
+  vertical-align: bottom;
+}
+
+.computer-thinking:after {
   content: ".";
   animation: dots 1.2s steps(3, end) infinite;
 }
