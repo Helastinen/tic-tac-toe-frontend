@@ -34,7 +34,7 @@ const PlayerForm = ({
   });
 
   const handleChangeNames = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    console.log("<PlayerForm> -> handleChangeNames(e.target): ", e.target);
+    //console.log("<PlayerForm> -> handleChangeNames(e.target): ", e.target);
 
     const { name, value } = e.target;
     validateNameField(name as keyof Players, value);
@@ -42,6 +42,7 @@ const PlayerForm = ({
     if (isSinglePlayerGame) {
       setDraftPlayers(prev => ({
         ...prev,
+        [name]: value,
         playerTwo: UI_TEXT.GAME.COMPUTER_NAME
       }) as Players);
     } else {
