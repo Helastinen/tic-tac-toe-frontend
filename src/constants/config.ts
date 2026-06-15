@@ -7,5 +7,5 @@ export const CONFIG = {
 };
 export const BOARDSIZE = 9;
 export const COMPUTERMARK: PlayerMark = PlayerMark.O;
-export const COMPUTER_THINKING_TIME_MAX_SEC = 3;
-export const COMPUTER_THINKING_TIME_MIN_SEC = 1;
+export const COMPUTER_THINKING_TIME_MAX_SEC = 2;
+export const COMPUTER_THINKING_TIME_MIN_SEC = 0.5;

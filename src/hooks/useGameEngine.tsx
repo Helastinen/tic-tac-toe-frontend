@@ -97,14 +97,14 @@ const useGameEngine = () => {
     if (IsNextPlayerComputer) {
       console.log("<useGameEngine> -> processMove() -> computer move triggered, nextPlayer: ", nextPlayer);
 
-      const delay = randomInteger(
+      const ComputerThinkingDelay = randomInteger(
         COMPUTER_THINKING_TIME_MIN_SEC,
         COMPUTER_THINKING_TIME_MAX_SEC
       ) * 1000;
 
       computerMoveTimeout.current = window.setTimeout(() => {
         handleComputerMove(updatedBoard);
-      }, delay);
+      }, ComputerThinkingDelay);
     };
   };
 

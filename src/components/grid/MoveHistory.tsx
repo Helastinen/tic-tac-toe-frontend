@@ -21,7 +21,7 @@ const MoveHistory = ({ moveHistory, players } : MoveHistoryProps) => {
   return (
     <div className="move-history">
       <Typography
-        variant="h2"
+        variant="h3"
         color="info"
         sx={{
           textAlign:"center",
