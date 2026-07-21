@@ -87,6 +87,28 @@ export interface StatsListItem {
   percentage?: number;
 }
 
+export interface GameStatsDialogProps {
+  open: boolean;
+  onClose: () => void;
+  gameStats: GameStats | null;
+};
+
+export interface CustomTabPanelProps {
+  children: React.ReactNode;
+  value: number;
+  index: number;
+};
+
+export interface GameStatsTabPanelProps {
+  allGameStats: StatsListItem[];
+  soloGameStats: StatsListItem[];
+  twoPlayerGameStats: StatsListItem[];
+}
+
+export interface GameStatsTabContentProps {
+  statType: StatsListItem[];
+}
+
 //* COMPONENTS *//
 export interface StatusProps {
   winningValue: Cell | undefined;
@@ -186,12 +208,7 @@ export interface PlayerControlsProps {
   setIsSinglePlayer: (singlePlayer: boolean) => void;
 };
 
-export interface GameStatsDialogProps {
-  open: boolean;
-  onClose: () => void;
-  gameStats: GameStats | null;
-};
-
+//* Other
 export interface ErrorBannerProps {
   error: string | null;
   clearError: () => void;

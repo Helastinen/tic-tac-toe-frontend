@@ -1,25 +1,23 @@
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import GamesIcon from "@mui/icons-material/Games";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { calculateAverageRoundWin, getSafeStats, getStatPercentage } from "../utils/statsHelper.js";
-import { GameStatsDialogProps, StatsListItem } from "../types/types.js";
-import { UI_TEXT } from "../constants/uiText.js";
+import { calculateAverageRoundWin, getSafeStats, getStatPercentage } from "../../utils/statsHelper.js";
+import { GameStatsDialogProps, StatsListItem } from "../../types/types.js";
+import { UI_TEXT } from "../../constants/uiText.js";
+
+import GameStatsTabPanel from "./GameStatsTabPanel.js";
 
 const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => {
   const { gameHistory, totalStats } = getSafeStats(gameStats);
   console.log("gameHistory: ", gameHistory);
   console.log("totalStats: ", totalStats);
   const { allGames, soloGames, twoPlayerGames } = totalStats;
+
   const {
     totalGames,
     wins: allGameWins,
@@ -99,61 +97,11 @@ const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => 
             <CircularProgress />
           </div>
           :
-          <>
-            {UI_TEXT.STATS.TITLES.ALL_GAMES}
-            <List sx={{ margin: "0rem 0.5rem", paddingTop: "0" }}>
-              {allGameStats.map(stat => {
-                return (
-                  <ListItem key={stat.name}>
-                    <ListItemIcon sx={{ minWidth: "2rem" }}>
-                      <GamesIcon color="primary" fontSize="small" aria-hidden="true" />
-                    </ListItemIcon>
-                    {stat.name}:&nbsp;
-                    <strong>{stat.value}</strong>.
-                    {stat.percentage !== undefined &&
-                      <>&nbsp;({stat.percentage}%)</>
-                    }
-                  </ListItem>
-                );
-              })}
-            </List>
-
-            {UI_TEXT.STATS.TITLES.SOLO_GAMES}
-            <List sx={{ margin: "0rem 0.5rem", paddingTop: "0" }}>
-              {soloGameStats.map(stat => {
-                return (
-                  <ListItem key={stat.name}>
-                    <ListItemIcon sx={{ minWidth: "2rem" }}>
-                      <GamesIcon color="primary" fontSize="small" aria-hidden="true" />
-                    </ListItemIcon>
-                    {stat.name}:&nbsp;
-                    <strong>{stat.value}</strong>.
-                    {stat.percentage !== undefined &&
-                      <>&nbsp;({stat.percentage}%)</>
-                    }
-                  </ListItem>
-                );
-              })}
-            </List>
-
-            {UI_TEXT.STATS.TITLES.TWO_PLAYER_GAMES}
-            <List sx={{ margin: "0rem 0.5rem", paddingTop: "0" }}>
-              {twoPlayerGameStats.map(stat => {
-                return (
-                  <ListItem key={stat.name}>
-                    <ListItemIcon sx={{ minWidth: "2rem" }}>
-                      <GamesIcon color="primary" fontSize="small" aria-hidden="true" />
-                    </ListItemIcon>
-                    {stat.name}:&nbsp;
-                    <strong>{stat.value}</strong>.
-                    {stat.percentage !== undefined &&
-                      <>&nbsp;({stat.percentage}%)</>
-                    }
-                  </ListItem>
-                );
-              })}
-            </List>
-          </>
+          <GameStatsTabPanel
+            allGameStats={allGameStats}
+            soloGameStats={soloGameStats}
+            twoPlayerGameStats={twoPlayerGameStats}
+          />
         }
       </DialogContent>
     </Dialog>

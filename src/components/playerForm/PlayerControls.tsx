@@ -6,7 +6,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import MonitorIcon from "@mui/icons-material/Monitor";
 import GroupIcon from "@mui/icons-material/Group";
 
-import GameStatsDialog from "../GameStatsDialog.js";
+import GameStatsDialog from "../stats/GameStatsDialog.js";
 import { UI_TEXT } from "../../constants/uiText.js";
 import { PlayerControlsProps } from "../../types/types.js";
 
