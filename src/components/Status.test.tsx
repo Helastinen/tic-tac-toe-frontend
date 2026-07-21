@@ -12,11 +12,12 @@ import {
   mockPlayers,
   mockWinningGrid
 } from "../constants/testingMocks.js";
-import { isTieGame } from "../utils/utils.js";
+import { isComputerVictory, isTieGame } from "../utils/utils.js";
 
 vi.mock("../utils/utils", () => ({
   isTieGame: vi.fn(),
   togglePlayer: vi.fn(),
+  isComputerVictory: vi.fn(),
 }));
 
 
@@ -31,6 +32,7 @@ describe("Status", () => {
         winningValue={undefined}
         currentPlayer={PlayerMark.X}
         players={null}
+        isSinglePlayerGame={false}
         grid={mockEmptyGrid}
         gameStarted={true}
         moveHistory={mockEmptyMoveHistory}
@@ -41,11 +43,13 @@ describe("Status", () => {
   });
 
   test("shows winning player and win status when winningValue set", () => {
+    vi.mocked(isComputerVictory).mockReturnValue(false);
     render(
       <Status
         winningValue={PlayerMark.X}
         currentPlayer={PlayerMark.O}
         players={mockPlayers}
+        isSinglePlayerGame={false}
         grid={mockWinningGrid}
         gameStarted={true}
         moveHistory={mockMoveHistoryAfterWin}
@@ -63,6 +67,7 @@ describe("Status", () => {
         winningValue={null}
         currentPlayer={PlayerMark.X}
         players={mockPlayers}
+        isSinglePlayerGame={false}
         grid={mockNonWinningGrid}
         gameStarted={true}
         moveHistory={mockMoveHistoryAfterFiveTurns}
@@ -79,6 +84,7 @@ describe("Status", () => {
         winningValue={null}
         currentPlayer={PlayerMark.O}
         players={mockPlayers}
+        isSinglePlayerGame={false}
         grid={mockNonWinningGrid}
         gameStarted={true}
         moveHistory={mockMoveHistoryAfterFiveTurns}

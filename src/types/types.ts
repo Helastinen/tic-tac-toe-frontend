@@ -36,12 +36,34 @@ export type Players = null | {
 };
 
 //* Stats
-export interface TotalStats {
+export interface AllGameStats {
+  totalGames: number;
+  wins: number;
+  ties: number;
+  aborted: number;
+}
+
+export interface SoloGameStats {
+  totalSoloGames: number;
+  humanWins: number;
+  computerWins: number;
+  ties: number;
+  aborted: number;
+}
+
+export interface TwoPlayerGameStats {
+  totalTwoPlayerGames: number;
   playerOneWins: number;
   playerTwoWins: number;
   ties: number;
   aborted: number;
-};
+}
+
+export interface TotalStats {
+  allGames: AllGameStats;
+  soloGames: SoloGameStats;
+  twoPlayerGames: TwoPlayerGameStats;
+}
 
 export interface GameHistoryStats {
   playerOne: string | undefined;
@@ -50,6 +72,8 @@ export interface GameHistoryStats {
   winnerName?: string;
   winningMark?: Cell
   winningMove?: number;
+  isSinglePlayerGame: boolean;
+  computerWon?: boolean;
 };
 
 export interface GameStats {

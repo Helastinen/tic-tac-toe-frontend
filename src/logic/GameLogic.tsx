@@ -6,6 +6,7 @@ import {
   WinningLines,
   WinningResult
 } from "../types/types.js";
+import { isComputerVictory } from "../utils/utils.js";
 
 /**
  * Applies a player's move to the board by returning a new board
@@ -55,11 +56,12 @@ export const calculateWinningResult = (grid: GameBoard) => {
 
 /**
  * Builds the final game result object based on the board state and outcome.
- * @param winValue - The winning player's mark ("X", "O"), or undefined if the game ended in a tie.
+ * @param winValue - The winning player's mark ("X", "O") or undefined, if the game ended in a tie.
  * @param board - The final game board as an array of 9 cells.
  * @param aborted - Whether the game was aborted before completion.
  * @param getWinnerName - A function that resolves the winner's display name based on the winning mark.
  * @param players - The player names used during the game.
+ * @isSinglePlayerGame - Was the game played against the computer
  * @returns An object describing the completed game's outcome.
  */
 export const calculateGameResults = (
@@ -68,11 +70,17 @@ export const calculateGameResults = (
   aborted = false,
   getWinnerName: (winValue?: Cell) => string | undefined,
   players: Players,
+  isSinglePlayerGame: boolean
 ) => {
   const playedMoves = board?.filter(square => square !== null).length ?? 0;
   const status = getGameStatus(aborted, winValue);
   const winningMove = getWinningMove(aborted, status, playedMoves);
   const winnerName = getWinnerName(winValue);
+
+  const computerWon = isSinglePlayerGame
+    ? isComputerVictory(isSinglePlayerGame, winValue)
+    : undefined;
+
   const gameResult = {
     playerOne: players?.playerOne,
     playerTwo: players?.playerTwo,
@@ -80,6 +88,8 @@ export const calculateGameResults = (
     winningMark: winValue,
     winningMove,
     status,
+    isSinglePlayerGame,
+    computerWon
   };
 
   return gameResult;

@@ -54,10 +54,26 @@ export const mockPlayers = {
 };
 
 export const mockTotalStats: TotalStats = {
-  playerOneWins: 3,
-  playerTwoWins: 2,
-  ties: 1,
-  aborted: 4
+  allGames: {
+    totalGames: 25,
+    wins: 15,
+    ties: 5,
+    aborted: 5
+  },
+  soloGames: {
+    totalSoloGames: 2,
+    humanWins: 1,
+    computerWins: 0,
+    ties: 1,
+    aborted: 0
+  },
+  twoPlayerGames: {
+    totalTwoPlayerGames: 7,
+    playerOneWins: 4,
+    playerTwoWins: 1,
+    ties: 0,
+    aborted: 2
+  }
 };
 
 export const mockGameHistoryStats: GameHistoryStats[] = [
@@ -67,6 +83,7 @@ export const mockGameHistoryStats: GameHistoryStats[] = [
     winnerName: mockPlayers.playerOne,
     winningMark: PlayerMark.X,
     winningMove: 5,
-    status: GameStatus.CompletedWinner
+    status: GameStatus.CompletedWinner,
+    isSinglePlayerGame: false
   }
 ];

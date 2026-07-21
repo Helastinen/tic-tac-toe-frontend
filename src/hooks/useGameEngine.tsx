@@ -122,7 +122,8 @@ const useGameEngine = () => {
       board,
       aborted,
       getWinnerName,
-      players
+      players,
+      isSinglePlayerGame,
     );
 
     await saveGameResult(gameResult);

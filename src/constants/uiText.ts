@@ -24,10 +24,18 @@ export const UI_TEXT = {
     PLAYERS: "Players"
   },
   STATS: {
-    TITLE: "Game Statistics",
-    GAMES_PLAYED: "Total games played",
+    TITLES: {
+      MAIN_TITLE: "Game Statistics",
+      ALL_GAMES: "All games",
+      SOLO_GAMES: "Solo games",
+      TWO_PLAYER_GAMES: "Two player games"
+    },
+    GAMES_PLAYED: "Games played",
+    WINS: "Wins",
     TIES: "Ties",
     ABORTED: "Aborted games",
+    HUMAN_WINS: "Human wins",
+    COMPUTER_WINS: "Computer wins",
     X_WINS: "Wins with X",
     O_WINS: "Wins with O",
     AVERAGE_ROUND: "Average round when a game was won",

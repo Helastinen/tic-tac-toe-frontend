@@ -52,7 +52,7 @@ describe("useGameEngine", () => {
     });
   });
 
-  test("handleEndGame updates stats and ends game", async () => {
+  test("handleEndGame updates stats and ends game in two player game", async () => {
     const { result } = renderHook(() => useGameEngine());
     const board: GameBoard = [
       PlayerMark.X, PlayerMark.X, PlayerMark.X,
@@ -62,6 +62,8 @@ describe("useGameEngine", () => {
 
     mockedAxios.post.mockResolvedValue({});
 
+    // singlePlayer is set to true by default
+    act(() => result.current.setIsSinglePlayer(false));
     await act(() => result.current.handleEndGame(PlayerMark.X, board));
 
     expect(result.current.gameStarted).toBe(false);

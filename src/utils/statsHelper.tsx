@@ -3,10 +3,26 @@ import { GameHistoryStats, GameStats, GameStatus } from "../types/types.js";
 export const defaultGameStats: GameStats = {
   gameHistory: [],
   totalStats: {
-    playerOneWins: 0,
-    playerTwoWins: 0,
-    ties: 0,
-    aborted: 0,
+    allGames: {
+      totalGames: 0,
+      wins: 0,
+      ties: 0,
+      aborted: 0
+    },
+    soloGames: {
+      totalSoloGames: 0,
+      humanWins: 0,
+      computerWins: 0,
+      ties: 0,
+      aborted: 0,
+    },
+    twoPlayerGames: {
+      totalTwoPlayerGames: 0,
+      playerOneWins: 0,
+      playerTwoWins: 0,
+      ties: 0,
+      aborted: 0,
+    }
   }
 };
 
