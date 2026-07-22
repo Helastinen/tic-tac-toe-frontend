@@ -6,8 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { calculateAverageRoundWin, getSafeStats, getStatPercentage } from "../../utils/statsHelper.js";
-import { GameStatsDialogProps, StatsListItem } from "../../types/types.js";
+import { buildStats, getSafeStats } from "../../utils/statsHelper.js";
+import { GameStatsDialogProps } from "../../types/types.js";
 import { UI_TEXT } from "../../constants/uiText.js";
 
 import GameStatsTabPanel from "./GameStatsTabPanel.js";
@@ -16,54 +16,7 @@ const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => 
   const { gameHistory, totalStats } = getSafeStats(gameStats);
   console.log("gameHistory: ", gameHistory);
   console.log("totalStats: ", totalStats);
-  const { allGames, soloGames, twoPlayerGames } = totalStats;
-
-  const {
-    totalGames,
-    wins: allGameWins,
-    ties: allGameTies,
-    aborted: allGameAborted,
-  } = allGames;
-
-  const {
-    totalSoloGames,
-    humanWins,
-    computerWins,
-    ties: soloTies,
-    aborted: soloAborted,
-  } = soloGames;
-
-  const {
-    totalTwoPlayerGames,
-    playerOneWins,
-    playerTwoWins,
-    ties: twoPlayerTies,
-    aborted: twoPlayerAborted,
-  } = twoPlayerGames;
-
-  const allGameStats: StatsListItem[] = [
-    { name: UI_TEXT.STATS.GAMES_PLAYED, value: totalGames },
-    { name: UI_TEXT.STATS.WINS, value: allGameWins, percentage: getStatPercentage(allGameWins, totalGames) },
-    { name: UI_TEXT.STATS.TIES, value: allGameTies, percentage: getStatPercentage(allGameTies, totalGames) },
-    { name: UI_TEXT.STATS.ABORTED, value: allGameAborted, percentage: getStatPercentage(allGameAborted, totalGames) },
-    { name: UI_TEXT.STATS.AVERAGE_ROUND, value: calculateAverageRoundWin(gameHistory) ?? UI_TEXT.STATS.NOT_APPLICABLE },
-  ];
-
-  const soloGameStats: StatsListItem[] = [
-    { name: UI_TEXT.STATS.GAMES_PLAYED, value: totalSoloGames },
-    { name: UI_TEXT.STATS.HUMAN_WINS, value: humanWins, percentage: getStatPercentage(humanWins, totalSoloGames) },
-    { name: UI_TEXT.STATS.COMPUTER_WINS, value: computerWins, percentage: getStatPercentage(computerWins, totalSoloGames) },
-    { name: UI_TEXT.STATS.TIES, value: soloTies, percentage: getStatPercentage(soloTies, totalSoloGames) },
-    { name: UI_TEXT.STATS.ABORTED, value: soloAborted, percentage: getStatPercentage(soloAborted, totalSoloGames) },
-  ];
-
-  const twoPlayerGameStats: StatsListItem[] = [
-    { name: UI_TEXT.STATS.GAMES_PLAYED, value: totalTwoPlayerGames },
-    { name: UI_TEXT.STATS.X_WINS, value: playerOneWins, percentage: getStatPercentage(playerOneWins, totalTwoPlayerGames) },
-    { name: UI_TEXT.STATS.O_WINS, value: playerTwoWins, percentage: getStatPercentage(playerTwoWins, totalTwoPlayerGames) },
-    { name: UI_TEXT.STATS.TIES, value: twoPlayerTies, percentage: getStatPercentage(twoPlayerTies, totalTwoPlayerGames) },
-    { name: UI_TEXT.STATS.ABORTED, value: twoPlayerAborted, percentage: getStatPercentage(twoPlayerAborted, totalTwoPlayerGames) },
-  ];
+  const { allGameStats, soloGameStats, twoPlayerGameStats } = buildStats(totalStats, gameHistory);
 
   return (
     <Dialog
