@@ -9,8 +9,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { buildStats, getSafeStats } from "../../utils/statsHelper.js";
 import { GameStatsDialogProps } from "../../types/types.js";
 import { UI_TEXT } from "../../constants/uiText.js";
+import GameStatsTabs from "./GameStatsTabs.js";
 
-import GameStatsTabPanel from "./GameStatsTabPanel.js";
 
 const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => {
   const { gameHistory, totalStats } = getSafeStats(gameStats);
@@ -50,7 +50,7 @@ const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => 
             <CircularProgress />
           </div>
           :
-          <GameStatsTabPanel
+          <GameStatsTabs
             allGameStats={allGameStats}
             soloGameStats={soloGameStats}
             twoPlayerGameStats={twoPlayerGameStats}

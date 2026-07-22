@@ -1,11 +1,11 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import { UI_TEXT } from "../../constants/uiText.js";
-import { GameStatsTabPanelProps } from "../../types/types.js";
-import CustomTabPanel from "./CustomTabPanel.js";
-import GameStatsTabContent from "./GameStatsTabContent.js";
+import { GameStatsTabsProps } from "../../types/types.js";
+import StatsTabPanel from "./StatsTabPanel.js";
+import GameStatsList from "./GameStatsList.js";
 
-const GameStatsTabPanel = ({ allGameStats, soloGameStats, twoPlayerGameStats }: GameStatsTabPanelProps) => {
+const GameStatsTabs = ({ allGameStats, soloGameStats, twoPlayerGameStats }: GameStatsTabsProps) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (_: unknown, newValue: number) => {
@@ -35,17 +35,17 @@ const GameStatsTabPanel = ({ allGameStats, soloGameStats, twoPlayerGameStats }: 
           </Tab>
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
-        <GameStatsTabContent statType={allGameStats} />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <GameStatsTabContent statType={soloGameStats} />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        <GameStatsTabContent statType={twoPlayerGameStats} />
-      </CustomTabPanel>
+      <StatsTabPanel value={value} index={0}>
+        <GameStatsList statType={allGameStats} />
+      </StatsTabPanel>
+      <StatsTabPanel value={value} index={1}>
+        <GameStatsList statType={soloGameStats} />
+      </StatsTabPanel>
+      <StatsTabPanel value={value} index={2}>
+        <GameStatsList statType={twoPlayerGameStats} />
+      </StatsTabPanel>
     </Box>
   );
 };
 
-export default GameStatsTabPanel;
+export default GameStatsTabs;

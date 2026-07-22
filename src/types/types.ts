@@ -93,19 +93,19 @@ export interface GameStatsDialogProps {
   gameStats: GameStats | null;
 };
 
-export interface CustomTabPanelProps {
+export interface StatsTabPanelProps {
   children: React.ReactNode;
   value: number;
   index: number;
 };
 
-export interface GameStatsTabPanelProps {
+export interface GameStatsTabsProps {
   allGameStats: StatsListItem[];
   soloGameStats: StatsListItem[];
   twoPlayerGameStats: StatsListItem[];
 }
 
-export interface GameStatsTabContentProps {
+export interface GameStatsListProps {
   statType: StatsListItem[];
 }
 

@@ -1,6 +1,6 @@
-import { CustomTabPanelProps } from "../../types/types.js";
+import { StatsTabPanelProps } from "../../types/types.js";
 
-const CustomTabPanel = ({ children, value, index }: CustomTabPanelProps) => {
+const StatsTabPanel = ({ children, value, index }: StatsTabPanelProps) => {
   return (
     <div
       id={`tabpanel-${index}`}
@@ -13,4 +13,4 @@ const CustomTabPanel = ({ children, value, index }: CustomTabPanelProps) => {
   );
 };
 
-export default CustomTabPanel;
+export default StatsTabPanel;

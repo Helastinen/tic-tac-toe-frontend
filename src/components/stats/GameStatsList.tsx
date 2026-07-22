@@ -3,9 +3,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import GamesIcon from "@mui/icons-material/Games";
 
-import { GameStatsTabContentProps } from "../../types/types.js";
+import { GameStatsListProps } from "../../types/types.js";
 
-const GameStatsTabContent = ({ statType }: GameStatsTabContentProps) => {
+const GameStatsList = ({ statType }: GameStatsListProps) => {
 
   return (
     <List sx={{ margin: "1rem 0.5rem", paddingTop: "0" }}>
@@ -27,4 +27,4 @@ const GameStatsTabContent = ({ statType }: GameStatsTabContentProps) => {
   );
 };
 
-export default GameStatsTabContent;
+export default GameStatsList;
