@@ -74,7 +74,7 @@ export const calculateGameResults = (
 ) => {
   const playedMoves = board?.filter(square => square !== null).length ?? 0;
   const status = getGameStatus(aborted, winValue);
-  const winningMove = getWinningMove(aborted, status, playedMoves);
+  const gameLengthInMoves = getGameLengthInMoves(aborted, playedMoves);
   const winnerName = getWinnerName(winValue);
 
   const computerWon = isSinglePlayerGame
@@ -86,7 +86,7 @@ export const calculateGameResults = (
     playerTwo: players?.playerTwo,
     winnerName,
     winningMark: winValue,
-    winningMove,
+    gameLengthInMoves,
     status,
     isSinglePlayerGame,
     computerWon
@@ -101,11 +101,6 @@ const getGameStatus = (aborted: boolean, winValue?: Cell): GameStatus => {
   return GameStatus.CompletedTie;
 };
 
-const getWinningMove = (
-  aborted: boolean,
-  status: GameStatus,
-  playedMoves: number
-): number | undefined => {
-  if (aborted || status === GameStatus.CompletedTie) return undefined;
-  return playedMoves;
+const getGameLengthInMoves = (aborted: boolean, playedMoves: number): number | undefined => {
+  return aborted ? undefined : playedMoves;
 };

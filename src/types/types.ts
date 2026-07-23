@@ -16,6 +16,12 @@ export enum GridBoardType {
   MoveHistory = "moveHistory"
 };
 
+export enum Difficulty {
+  easy = "easy",
+  medium = "medium",
+  hard = "hardcore"
+}
+
 export type Nullable<T> = T | null;
 export type Optional<T> = T | undefined;
 
@@ -74,7 +80,7 @@ export interface GameHistoryStats {
   status: GameStatus;
   winnerName?: string;
   winningMark?: Cell
-  winningMove?: number;
+  gameLengthInMoves?: number;
   isSinglePlayerGame: boolean;
   computerWon?: boolean;
 };
