@@ -1,5 +1,5 @@
 import { UI_TEXT } from "../constants/uiText.js";
-import { GameHistoryStats, GameStats, GameStatus, StatsListItem, TotalStats } from "../types/types.js";
+import { GameStats, StatsListItem, TotalStats } from "../types/types.js";
 
 export const defaultGameStats: GameStats = {
   gameHistory: [],
@@ -8,7 +8,8 @@ export const defaultGameStats: GameStats = {
       totalGames: 0,
       wins: 0,
       ties: 0,
-      aborted: 0
+      aborted: 0,
+      averageGameLength: 0
     },
     soloGames: {
       totalSoloGames: 0,
@@ -16,6 +17,7 @@ export const defaultGameStats: GameStats = {
       computerWins: 0,
       ties: 0,
       aborted: 0,
+      averageGameLength: 0
     },
     twoPlayerGames: {
       totalTwoPlayerGames: 0,
@@ -23,6 +25,7 @@ export const defaultGameStats: GameStats = {
       playerTwoWins: 0,
       ties: 0,
       aborted: 0,
+      averageGameLength: 0
     }
   }
 };
@@ -34,7 +37,7 @@ export const getSafeStats = (gameStats: GameStats | null): GameStats => {
   };
 };
 
-export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats[]) => {
+export const buildStats = (totalStats: TotalStats) => {
   const { allGames, soloGames, twoPlayerGames } = totalStats;
 
   const {
@@ -42,6 +45,7 @@ export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats
     wins: allGameWins,
     ties: allGameTies,
     aborted: allGameAborted,
+    averageGameLength: avgAllGamesLength
   } = allGames;
 
   const {
@@ -50,6 +54,7 @@ export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats
     computerWins,
     ties: soloTies,
     aborted: soloAborted,
+    averageGameLength: avgSoloGamesLength
   } = soloGames;
 
   const {
@@ -58,6 +63,7 @@ export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats
     playerTwoWins,
     ties: twoPlayerTies,
     aborted: twoPlayerAborted,
+    averageGameLength: avgTwoPlayerGamesLength
   } = twoPlayerGames;
 
   const allGameStats: StatsListItem[] = [
@@ -65,7 +71,7 @@ export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats
     { name: UI_TEXT.STATS.WINS, value: allGameWins, percentage: getStatPercentage(allGameWins, totalGames) },
     { name: UI_TEXT.STATS.TIES, value: allGameTies, percentage: getStatPercentage(allGameTies, totalGames) },
     { name: UI_TEXT.STATS.ABORTED, value: allGameAborted, percentage: getStatPercentage(allGameAborted, totalGames) },
-    { name: UI_TEXT.STATS.AVERAGE_ROUND, value: calculateAverageRoundWin(gameHistory) ?? UI_TEXT.STATS.NOT_APPLICABLE },
+    { name: UI_TEXT.STATS.AVERAGE_ROUND, value: avgAllGamesLength ?? UI_TEXT.STATS.NOT_APPLICABLE },
   ];
 
   const soloGameStats: StatsListItem[] = [
@@ -74,6 +80,7 @@ export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats
     { name: UI_TEXT.STATS.COMPUTER_WINS, value: computerWins, percentage: getStatPercentage(computerWins, totalSoloGames) },
     { name: UI_TEXT.STATS.TIES, value: soloTies, percentage: getStatPercentage(soloTies, totalSoloGames) },
     { name: UI_TEXT.STATS.ABORTED, value: soloAborted, percentage: getStatPercentage(soloAborted, totalSoloGames) },
+    { name: UI_TEXT.STATS.AVERAGE_ROUND, value: avgSoloGamesLength ?? UI_TEXT.STATS.NOT_APPLICABLE },
   ];
 
   const twoPlayerGameStats: StatsListItem[] = [
@@ -82,6 +89,7 @@ export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats
     { name: UI_TEXT.STATS.O_WINS, value: playerTwoWins, percentage: getStatPercentage(playerTwoWins, totalTwoPlayerGames) },
     { name: UI_TEXT.STATS.TIES, value: twoPlayerTies, percentage: getStatPercentage(twoPlayerTies, totalTwoPlayerGames) },
     { name: UI_TEXT.STATS.ABORTED, value: twoPlayerAborted, percentage: getStatPercentage(twoPlayerAborted, totalTwoPlayerGames) },
+    { name: UI_TEXT.STATS.AVERAGE_ROUND, value: avgTwoPlayerGamesLength ?? UI_TEXT.STATS.NOT_APPLICABLE },
   ];
 
   return {
@@ -89,23 +97,6 @@ export const buildStats = (totalStats: TotalStats, gameHistory: GameHistoryStats
     soloGameStats,
     twoPlayerGameStats
   };
-};
-
-export const calculateAverageRoundWin = (gameHistory: GameHistoryStats[]): number | null => {
-  if (!gameHistory?.length) return null;
-
-  const completedGamesWithWinningMove = gameHistory.filter(
-    game => game.status === GameStatus.CompletedWinner && game.winningMove
-  );
-
-  if (completedGamesWithWinningMove.length === 0) return null;
-
-  const averageRoundWin = completedGamesWithWinningMove.reduce((sum, game) =>
-    sum + (game.winningMove ?? 0), 0) /
-    completedGamesWithWinningMove.length;
-
-  // round up to nearest two decimals
-  return roundToDecimals(averageRoundWin, 1);
 };
 
 export const getStatPercentage = (stat: number, total: number) => {

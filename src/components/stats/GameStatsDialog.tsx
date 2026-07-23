@@ -16,7 +16,7 @@ const GameStatsDialog = ({ open, onClose, gameStats }: GameStatsDialogProps) => 
   const { gameHistory, totalStats } = getSafeStats(gameStats);
   console.log("gameHistory: ", gameHistory);
   console.log("totalStats: ", totalStats);
-  const { allGameStats, soloGameStats, twoPlayerGameStats } = buildStats(totalStats, gameHistory);
+  const { allGameStats, soloGameStats, twoPlayerGameStats } = buildStats(totalStats);
 
   return (
     <Dialog
