@@ -3,14 +3,14 @@ import { useState } from "react";
 
 import Grid from "@mui/material/Grid";
 
-import { PlayerFormProps, Players } from "../../types/types.js";
-import PlayerSetup from "./PlayerSetup.js";
-import PlayerControls from "./PlayerControls.js";
+import { PlayerSetupPanelProps, Players } from "../../types/types.js";
+import PlayerNameFields from "./PlayerNameFields.js";
 
 import { validatePlayerName } from "../../utils/validation.js";
 import { UI_TEXT } from "../../constants/uiText.js";
+import GameModeControls from "./GameModeControls.js";
 
-const PlayerForm = ({
+const PlayerSetupPanel = ({
   players,
   board,
   gameStats,
@@ -21,7 +21,7 @@ const PlayerForm = ({
   onStartGame,
   onAbortGame,
   fetchStats
-}: PlayerFormProps) => {
+}: PlayerSetupPanelProps) => {
   const [isEditingPlayers, setIsEditingPlayers] = useState(false);
   const [draftPlayers, setDraftPlayers] = useState(players);
   const [errors, setErrors] = useState<Record<keyof Players, boolean>>({
@@ -34,7 +34,7 @@ const PlayerForm = ({
   });
 
   const handleChangeNames = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    //console.log("<PlayerForm> -> handleChangeNames(e.target): ", e.target);
+    //console.log("<PlayerSetupPanel> -> handleChangeNames(e.target): ", e.target);
 
     const { name, value } = e.target;
     validateNameField(name as keyof Players, value);
@@ -54,8 +54,8 @@ const PlayerForm = ({
   };
 
   const handleEditPlayers = () => {
-    console.log("<PlayerForm> -> handleEditPlayers() triggered");
-    console.log("<PlayerForm> -> handleEditPlayers() -> draftPlayers: ", draftPlayers);
+    console.log("<PlayerSetupPanel> -> handleEditPlayers() triggered");
+    console.log("<PlayerSetupPanel> -> handleEditPlayers() -> draftPlayers: ", draftPlayers);
 
     if (!isEditingPlayers) {
       // user enters edit mode and (re)loads committed names
@@ -84,7 +84,7 @@ const PlayerForm = ({
         sx={{ justifyContent: "space-evenly", alignItems: "center" }}
       >
         <Grid size={12}>
-          <PlayerControls
+          <GameModeControls
             board={board}
             gameStats={gameStats}
             isEditingPlayers={isEditingPlayers}
@@ -98,7 +98,7 @@ const PlayerForm = ({
 
         {isEditingPlayers && (
           <Grid size={12}>
-            <PlayerSetup
+            <PlayerNameFields
               players={draftPlayers}
               isSinglePlayerGame={isSinglePlayerGame}
               errors={errors}
@@ -117,4 +117,4 @@ const PlayerForm = ({
   );
 };
 
-export default PlayerForm;
+export default PlayerSetupPanel;

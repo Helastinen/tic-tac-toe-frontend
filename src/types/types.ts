@@ -172,7 +172,7 @@ export interface MoveHistoryProps {
 };
 
 //* Player form
-export interface PlayerFormProps {
+export interface PlayerSetupPanelProps {
   players: Players;
   board: GameBoard;
   gameStats: GameStats | null;
@@ -185,7 +185,7 @@ export interface PlayerFormProps {
   fetchStats: () => Promise<void>;
 };
 
-export interface PlayerSetupProps {
+export interface PlayerNameFieldsProps {
   players: Players;
   isSinglePlayerGame: boolean;
   errors: Record<string, boolean>;
@@ -194,19 +194,19 @@ export interface PlayerSetupProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
-export interface PlayerNamesProps {
+export interface PlayerNameDisplayProps {
   players: Players;
   currentPlayer: PlayerMark;
   isSinglePlayerGame: boolean;
 };
 
-export interface PlayerRowProps {
+export interface PlayerNameRowProps {
   name: string | undefined;
   isCurrent: boolean;
   isComputer: boolean;
 }
 
-export interface PlayerControlsProps {
+export interface GameModeControlsProps {
   board: GameBoard;
   gameStats: GameStats | null;
   isEditingPlayers: boolean;

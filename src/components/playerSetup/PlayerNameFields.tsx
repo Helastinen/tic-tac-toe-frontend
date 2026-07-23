@@ -1,15 +1,15 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { UI_TEXT } from "../../constants/uiText.js";
-import { PlayerSetupProps } from "../../types/types.js";
+import { PlayerNameFieldsProps } from "../../types/types.js";
 
-const PlayerSetup = ({
+const PlayerNameFields = ({
   players,
   isSinglePlayerGame,
   errors,
   helperTexts,
   onStartGame,
   handleChange
-}: PlayerSetupProps) => (
+}: PlayerNameFieldsProps) => (
   <Grid size={{ xs: 12 }}>
     <Grid
       container
@@ -82,4 +82,4 @@ const PlayerSetup = ({
   </Grid>
 );
 
-export default PlayerSetup;
+export default PlayerNameFields;

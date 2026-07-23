@@ -1,7 +1,7 @@
 import CircularProgress from "@mui/material/CircularProgress";
 
 import GridBoard from "./components/grid/GridBoard.js";
-import PlayerForm from "./components/playerForm/PlayerForm.js";
+import PlayerSetupPanel from "./components/playerSetup/PlayerSetupPanel.js";
 import MoveHistory from "./components/grid/MoveHistory.js";
 import Status from "./components/Status.js";
 
@@ -41,7 +41,7 @@ const Game = () => {
     <div className="game-background">
       <GameTitle />
       {error && <ErrorBanner error={error} clearError={clearError} />}
-      <PlayerForm
+      <PlayerSetupPanel
         players={players}
         board={currentBoard}
         gameStats={gameStats}

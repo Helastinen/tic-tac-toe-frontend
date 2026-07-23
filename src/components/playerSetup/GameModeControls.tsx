@@ -8,9 +8,9 @@ import GroupIcon from "@mui/icons-material/Group";
 
 import GameStatsDialog from "../stats/GameStatsDialog.js";
 import { UI_TEXT } from "../../constants/uiText.js";
-import { PlayerControlsProps } from "../../types/types.js";
+import { GameModeControlsProps } from "../../types/types.js";
 
-const PlayerControls = ({
+const GameModeControls = ({
   board,
   gameStats,
   onEditPlayers,
@@ -18,7 +18,7 @@ const PlayerControls = ({
   gameStarted,
   fetchStats,
   setIsSinglePlayer,
-}: PlayerControlsProps) => {
+}: GameModeControlsProps) => {
   const [openStatsDialog, setOpenStatsDialog] = useState(false);
 
   const handleStatsDialogOpen = () => {
@@ -106,4 +106,4 @@ const PlayerControls = ({
   );
 };
 
-export default PlayerControls;
+export default GameModeControls;
