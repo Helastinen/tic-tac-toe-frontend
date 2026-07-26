@@ -179,6 +179,8 @@ export interface PlayerSetupPanelProps {
   isSinglePlayerGame: boolean;
   setPlayers: React.Dispatch<React.SetStateAction<Players>>;
   setIsSinglePlayer: (singlePlayer: boolean) => void;
+  difficulty: Difficulty;
+  setDifficulty: (difficulty: Difficulty) => void;
   onStartGame: () => void;
   onAbortGame: (board: GameBoard) => void;
   gameStarted: boolean;
@@ -190,6 +192,8 @@ export interface PlayerNameFieldsProps {
   isSinglePlayerGame: boolean;
   errors: Record<string, boolean>;
   helperTexts: Record<string, string>;
+  difficulty: Difficulty;
+  setDifficulty: (difficulty: Difficulty) => void;
   onStartGame: () => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
@@ -214,6 +218,11 @@ export interface GameModeControlsProps {
   gameStarted: boolean;
   fetchStats: () => Promise<void>;
   setIsSinglePlayer: (singlePlayer: boolean) => void;
+};
+
+export interface DifficultySelectorProps {
+  difficulty: Difficulty;
+  setDifficulty: (difficulty: Difficulty) => void;
 };
 
 //* Other

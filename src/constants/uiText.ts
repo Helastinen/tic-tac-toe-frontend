@@ -21,7 +21,8 @@ export const UI_TEXT = {
     PLAYER_TWO_LABEL: "Player Two (O)",
     ENTER_PLAYER: "Enter player",
     ENTER_PLAYERS: "Enter players",
-    PLAYERS: "Players"
+    PLAYERS: "Players",
+    DIFFICULTY_LEVEL: "Difficulty level"
   },
   STATS: {
     TITLES: {

@@ -3,6 +3,7 @@ import { useStats } from "./useStats.js";
 import { useGameState } from "./useGameState.js";
 import {
   Cell,
+  Difficulty,
   GameBoard,
   PlayerMark,
 } from "../types/types.js";
@@ -14,9 +15,12 @@ import {
 import { isTieGame, randomInteger, togglePlayer } from "../utils/utils.js";
 import { useComputerPlayer } from "./useComputerPlayer.js";
 import { COMPUTER_THINKING_TIME_MAX_SEC, COMPUTER_THINKING_TIME_MIN_SEC, COMPUTERMARK } from "../constants/config.js";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const useGameEngine = () => {
+  const [difficulty, setDifficulty] = useState(Difficulty.easy);
+  console.log("<UseGameEngine> -> difficulty level is: ", difficulty);
+
   const { players, setPlayers, getWinnerName } = usePlayers();
   const { gameStats, error, clearError, fetchStats, saveGameResult } = useStats();
   const {
@@ -42,7 +46,6 @@ const useGameEngine = () => {
 
   const computerMoveTimeout = useRef<number |null>(null);
   const isComputerTurn = isSinglePlayerGame && currentPlayer === COMPUTERMARK;
-  //console.log("<useGameEngine> -> isComputerTurn: ", isComputerTurn);
 
   const handleStartGame = () => startGame();
 
@@ -58,7 +61,7 @@ const useGameEngine = () => {
 
   const handleComputerMove = (board: GameBoard) => {
     console.log("<useGameEngine> -> handleComputerMove() triggered with board: ", board);
-    const index: number = getComputerMove(board);
+    const index: number = getComputerMove(board, difficulty);
     processMove(board, index, COMPUTERMARK);
   };
 
@@ -152,6 +155,7 @@ const useGameEngine = () => {
     isComputerTurn,
     currentPlayer,
     players,
+    difficulty,
     winningResult,
     gameStarted,
     gameStats,
@@ -168,6 +172,7 @@ const useGameEngine = () => {
     setPlayers,
     fetchStats,
     setIsSinglePlayer,
+    setDifficulty
   };
 };
 

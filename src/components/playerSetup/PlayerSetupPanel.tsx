@@ -16,6 +16,8 @@ const PlayerSetupPanel = ({
   isSinglePlayerGame,
   setPlayers,
   setIsSinglePlayer,
+  difficulty,
+  setDifficulty,
   gameStarted,
   onStartGame,
   onAbortGame,
@@ -32,8 +34,6 @@ const PlayerSetupPanel = ({
   = usePlayerNameValidation();
 
   const handleChangeNames = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    //console.log("<PlayerSetupPanel> -> handleChangeNames(e.target): ", e.target);
-
     const { name, value } = e.target;
     validateNameField(name as keyof Players, value);
 
@@ -93,6 +93,8 @@ const PlayerSetupPanel = ({
               isSinglePlayerGame={isSinglePlayerGame}
               errors={errors}
               helperTexts={helperTexts}
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
               onStartGame={startGameWithDraftPlayers}
               handleChange={handleChangeNames}
             />

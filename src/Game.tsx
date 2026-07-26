@@ -19,6 +19,7 @@ const Game = () => {
     isComputerTurn,
     currentPlayer,
     players,
+    difficulty,
     winningValue,
     winningLine,
     gameStarted,
@@ -33,6 +34,7 @@ const Game = () => {
     setPlayers,
     fetchStats,
     setIsSinglePlayer,
+    setDifficulty
   } = useGameEngine();
 
   if (!currentBoard) return <CircularProgress />;
@@ -48,6 +50,8 @@ const Game = () => {
         isSinglePlayerGame={isSinglePlayerGame}
         setPlayers={setPlayers}
         setIsSinglePlayer={setIsSinglePlayer}
+        difficulty={difficulty}
+        setDifficulty={setDifficulty}
         gameStarted={gameStarted}
         onStartGame={handleStartGame}
         onAbortGame={handleAbortGame}

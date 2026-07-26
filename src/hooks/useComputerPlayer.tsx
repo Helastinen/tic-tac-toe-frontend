@@ -9,15 +9,16 @@ export const useComputerPlayer= () => {
 
   const getEasyMove = (board: GameBoard) => {
     const availableIndices = getAvailableIndices(board);
-    console.log("<useComputerMove> -> getEasyMove() -> available indices: ", availableIndices);
+    console.log("<useComputerPlayer> -> getEasyMove() -> available indices: ", availableIndices);
 
     const randomIndex = Math.floor(Math.random() * availableIndices.length);
-    console.log("<useComputerMove> -> getEasyMove() -> random index: ", randomIndex);
+    console.log("<useComputerPlayer> -> getEasyMove() -> random index: ", randomIndex);
     return availableIndices[randomIndex];
   };
 
   const getMediumMove = (board: GameBoard) => {
     const availableIndices = getAvailableIndices(board);
+    console.log("<useComputerPlayer> -> getMediumMove() -> available indices: ", availableIndices);
 
     // try to win if computer already has two marks in a row
     for (const index of availableIndices) {
@@ -25,7 +26,10 @@ export const useComputerPlayer= () => {
       // computer always play with Mark O
       simulatedBoard[index] = PlayerMark.O;
       const result = calculateWinningResult(simulatedBoard);
-      if (result?.cell === PlayerMark.O) return index;
+      if (result?.cell === PlayerMark.O) {
+        console.log("<useComputerPlayer> -> getMediumMove() -> Try to win -> chosen move: ", result);
+        return index;
+      }
     }
 
     // try to block if player already has two marks in a row
@@ -34,9 +38,12 @@ export const useComputerPlayer= () => {
       // human always play with Mark X
       simulatedBoard[index] = PlayerMark.X;
       const result = calculateWinningResult(simulatedBoard);
-      if (result?.cell === PlayerMark.X) return index;
+      if (result?.cell === PlayerMark.X) {
+        console.log("<useComputerPlayer> -> getMediumMove() -> Try to block -> chosen move: ", result);
+        return index;
+      }
     }
-
+    console.log("<useComputerPlayer> -> getMediumMove() -> random move selected.");
     // otherwise select random move
     return getEasyMove(board);
   };
@@ -45,10 +52,13 @@ export const useComputerPlayer= () => {
     switch (difficulty) {
     case Difficulty.easy:
       // Computer selects random free cell
+      console.log("<useComputerPlayer> -> Difficulty level: easy move selected");
       return getEasyMove(board);
     case Difficulty.medium:
+      console.log("<useComputerPlayer> -> Difficulty level: medium move selected");
       return getMediumMove(board);
     case Difficulty.hard:
+      console.log("<useComputerPlayer> -> Difficulty level: hard move selected");
       return getMediumMove(board);
     default:
       return getEasyMove(board);
