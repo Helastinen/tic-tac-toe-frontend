@@ -3,24 +3,24 @@ import { render, screen } from "@testing-library/react";
 
 import MoveHistory from "./MoveHistory.js";
 import { UI_TEXT } from "../../constants/uiText.js";
-import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFiveTurns } from "../../constants/testingMocks.js";
+import { mockEmptyMoveHistory, mockMoveHistoryAfterFirstTurn, mockMoveHistoryAfterFiveTurns, mockPlayers } from "../../constants/testingMocks.js";
 
 describe("MoveHistory", () => {
   test("renders component", () => {
-    const { container } = render(<MoveHistory moveHistory={mockEmptyMoveHistory} players={null}/>);
+    const { container } = render(<MoveHistory moveHistory={mockEmptyMoveHistory} players={mockPlayers}/>);
 
     expect(container).toBeTruthy();
   });
 
   test("does not render if fewer then 3 entries", () => {
-    render(<MoveHistory moveHistory={mockMoveHistoryAfterFirstTurn} players={null}/>);
+    render(<MoveHistory moveHistory={mockMoveHistoryAfterFirstTurn} players={mockPlayers}/>);
 
     expect(screen.queryByText(UI_TEXT.HISTORY.TITLE)).not.toBeInTheDocument();
     expect(screen.queryByTestId("game-grid")).not.toBeInTheDocument();
   });
 
   test("renders grid if more then 2 entries", () => {
-    render(<MoveHistory moveHistory={mockMoveHistoryAfterFiveTurns} players={null}/>);
+    render(<MoveHistory moveHistory={mockMoveHistoryAfterFiveTurns} players={mockPlayers}/>);
 
     expect(screen.queryByText(UI_TEXT.HISTORY.TITLE)).toBeInTheDocument();
     // moveHistory grid does not show initial, empty grid or winning grid

@@ -31,7 +31,7 @@ describe("Status", () => {
       <Status
         winningValue={undefined}
         currentPlayer={PlayerMark.X}
-        players={null}
+        players={mockPlayers}
         isSinglePlayerGame={false}
         grid={mockEmptyGrid}
         gameStarted={true}

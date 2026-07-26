@@ -14,7 +14,7 @@ const Status = ({
   moveHistory
 }: StatusProps) => {
   const getCurrentPlayerName = (): string | undefined => {
-    return currentPlayer === PlayerMark.X ? players?.playerOne : players?.playerTwo;
+    return currentPlayer === PlayerMark.X ? players.playerOne : players.playerTwo;
   };
 
   const getWinningPlayerName = (winningMark: Cell): string | undefined => {
@@ -24,8 +24,8 @@ const Status = ({
 
     return (
       winningMark === PlayerMark.X
-        ? players?.playerOne
-        : players?.playerTwo
+        ? players.playerOne
+        : players.playerTwo
     );
   };
 

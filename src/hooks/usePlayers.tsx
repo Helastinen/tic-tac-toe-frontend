@@ -9,8 +9,8 @@ export const usePlayers = () => {
   });
 
   const getWinnerName = (winValue?: Cell): string | undefined => {
-    if (winValue === PlayerMark.X) return players?.playerOne;
-    if (winValue === PlayerMark.O) return players?.playerTwo;
+    if (winValue === PlayerMark.X) return players.playerOne;
+    if (winValue === PlayerMark.O) return players.playerTwo;
     return undefined;
   };
 

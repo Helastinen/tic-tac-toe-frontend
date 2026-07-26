@@ -25,6 +25,10 @@ export enum Difficulty {
 export type Nullable<T> = T | null;
 export type Optional<T> = T | undefined;
 
+//* Validation
+export type Errors = Record<string, boolean>;
+export type HelperTexts = Record<string, string>;
+
 //* Grid
 export type Cell = Nullable<PlayerMark>;
 export type GameBoard = Cell[];
@@ -36,7 +40,7 @@ export type WinningResult = null | {
   cell: Cell;
   winningLine: WinningLine;
 };
-export type Players = null | {
+export type Players = {
   playerOne: string;
   playerTwo: string;
 };
@@ -190,13 +194,26 @@ export interface PlayerSetupPanelProps {
 export interface PlayerAndDifficultyFormsProps {
   players: Players;
   isSinglePlayerGame: boolean;
-  errors: Record<string, boolean>;
-  helperTexts: Record<string, string>;
+  errors: Errors;
+  helperTexts: HelperTexts;
   difficulty: Difficulty;
   setDifficulty: (difficulty: Difficulty) => void;
   onStartGame: () => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
+
+export type PlayerKeys = "playerOne" | "playerTwo";
+
+export interface PlayerNameFieldTypes {
+  errors: Errors;
+  helperTexts: HelperTexts;
+  playerKey: PlayerKeys;
+  players: {
+    playerOne: string;
+    playerTwo: string;
+  };
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export interface PlayerNameDisplayProps {
   players: Players;

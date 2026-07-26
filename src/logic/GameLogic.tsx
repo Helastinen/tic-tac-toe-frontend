@@ -82,8 +82,8 @@ export const calculateGameResults = (
     : undefined;
 
   const gameResult = {
-    playerOne: players?.playerOne,
-    playerTwo: players?.playerTwo,
+    playerOne: players.playerOne,
+    playerTwo: players.playerTwo,
     winnerName,
     winningMark: winValue,
     gameLengthInMoves,
