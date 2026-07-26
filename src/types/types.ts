@@ -209,7 +209,6 @@ export interface PlayerNameRowProps {
 export interface GameModeControlsProps {
   board: GameBoard;
   gameStats: GameStats | null;
-  isEditingPlayers: boolean;
   onEditPlayers: () => void;
   onAbortGame: (board: GameBoard) => void;
   gameStarted: boolean;

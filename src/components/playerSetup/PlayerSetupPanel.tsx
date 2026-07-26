@@ -37,18 +37,12 @@ const PlayerSetupPanel = ({
     const { name, value } = e.target;
     validateNameField(name as keyof Players, value);
 
-    if (isSinglePlayerGame) {
-      setDraftPlayers(prev => ({
-        ...prev,
-        [name]: value,
-        playerTwo: UI_TEXT.GAME.COMPUTER_NAME
-      }) as Players);
-    } else {
-      setDraftPlayers(prev => ({
-        ...prev,
-        [name]: value
-      }) as Players);
-    }
+    setDraftPlayers(prev => ({
+      ...prev,
+      [name]: value,
+      ...(isSinglePlayerGame && { playerTwo: UI_TEXT.GAME.COMPUTER_NAME })
+    }) as Players);
+
   };
 
   const handleEditPlayers = () => {
@@ -58,13 +52,19 @@ const PlayerSetupPanel = ({
     if (!isEditingPlayers) {
       // user enters edit mode and (re)loads committed names
       setDraftPlayers(players);
+      setIsEditingPlayers(true);
     }
     else {
       // user leaves edit mode with updated names
       setPlayers(draftPlayers);
+      setIsEditingPlayers(false);
     };
+  };
 
-    setIsEditingPlayers(true);
+  const startGameWithDraftPlayers = () => {
+    setPlayers(draftPlayers);
+    setIsEditingPlayers(false);
+    onStartGame();
   };
 
   return (
@@ -78,7 +78,6 @@ const PlayerSetupPanel = ({
           <GameModeControls
             board={board}
             gameStats={gameStats}
-            isEditingPlayers={isEditingPlayers}
             onEditPlayers={handleEditPlayers}
             onAbortGame={onAbortGame}
             gameStarted={gameStarted}
@@ -94,11 +93,7 @@ const PlayerSetupPanel = ({
               isSinglePlayerGame={isSinglePlayerGame}
               errors={errors}
               helperTexts={helperTexts}
-              onStartGame={() => {
-                setPlayers(draftPlayers);
-                setIsEditingPlayers(false);
-                onStartGame();
-              }}
+              onStartGame={startGameWithDraftPlayers}
               handleChange={handleChangeNames}
             />
           </Grid>
