@@ -5,10 +5,9 @@ import Grid from "@mui/material/Grid";
 
 import { PlayerSetupPanelProps, Players } from "../../types/types.js";
 import PlayerNameFields from "./PlayerNameFields.js";
-
-import { validatePlayerName } from "../../utils/validation.js";
-import { UI_TEXT } from "../../constants/uiText.js";
 import GameModeControls from "./GameModeControls.js";
+import { usePlayerNameValidation } from "../../hooks/usePlayerNameValidation.js";
+import { UI_TEXT } from "../../constants/uiText.js";
 
 const PlayerSetupPanel = ({
   players,
@@ -24,14 +23,13 @@ const PlayerSetupPanel = ({
 }: PlayerSetupPanelProps) => {
   const [isEditingPlayers, setIsEditingPlayers] = useState(false);
   const [draftPlayers, setDraftPlayers] = useState(players);
-  const [errors, setErrors] = useState<Record<keyof Players, boolean>>({
-    playerOne: false,
-    playerTwo: false,
-  });
-  const [helperTexts, setHelperTexts] = useState<Record<keyof Players, string>>({
-    playerOne: "",
-    playerTwo: "",
-  });
+
+  const {
+    errors,
+    helperTexts,
+    validateNameField
+  }
+  = usePlayerNameValidation();
 
   const handleChangeNames = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     //console.log("<PlayerSetupPanel> -> handleChangeNames(e.target): ", e.target);
@@ -67,13 +65,6 @@ const PlayerSetupPanel = ({
     };
 
     setIsEditingPlayers(true);
-  };
-
-  const validateNameField = (field: keyof Players, value: string) => {
-    const { error, message } = validatePlayerName(value);
-
-    setErrors(prev => ({ ...prev, [field]: error }));
-    setHelperTexts(prev => ({ ...prev, [field]: message }));
   };
 
   return (

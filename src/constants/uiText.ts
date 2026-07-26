@@ -38,7 +38,7 @@ export const UI_TEXT = {
     COMPUTER_WINS: "Computer wins",
     X_WINS: "Wins with X",
     O_WINS: "Wins with O",
-    AVERAGE_ROUND: "Average round when a game was won",
+    AVERAGE_ROUND: "Average round when game ended",
     NOT_APPLICABLE: "N/A"
   },
   STATUS: {
