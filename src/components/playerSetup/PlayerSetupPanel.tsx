@@ -4,7 +4,7 @@ import { useState } from "react";
 import Grid from "@mui/material/Grid";
 
 import { PlayerSetupPanelProps, Players } from "../../types/types.js";
-import PlayerNameFields from "./PlayerNameFields.js";
+import PlayerAndDifficultyForm from "./PlayerAndDifficultyForm.js";
 import GameModeControls from "./GameModeControls.js";
 import { usePlayerNameValidation } from "../../hooks/usePlayerNameValidation.js";
 import { UI_TEXT } from "../../constants/uiText.js";
@@ -88,7 +88,7 @@ const PlayerSetupPanel = ({
 
         {isEditingPlayers && (
           <Grid size={12}>
-            <PlayerNameFields
+            <PlayerAndDifficultyForm
               players={draftPlayers}
               isSinglePlayerGame={isSinglePlayerGame}
               errors={errors}

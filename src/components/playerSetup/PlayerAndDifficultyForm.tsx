@@ -1,9 +1,9 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { UI_TEXT } from "../../constants/uiText.js";
-import { PlayerNameFieldsProps } from "../../types/types.js";
+import { PlayerAndDifficultyFormsProps } from "../../types/types.js";
 import DifficultySelector from "./DifficultySelector.js";
 
-const PlayerNameFields = ({
+const PlayerAndDifficultyForms = ({
   players,
   isSinglePlayerGame,
   errors,
@@ -12,7 +12,7 @@ const PlayerNameFields = ({
   setDifficulty,
   onStartGame,
   handleChange
-}: PlayerNameFieldsProps) => {
+}: PlayerAndDifficultyFormsProps) => {
 
   return (
     <Grid size={{ xs: 12 }}>
@@ -96,4 +96,4 @@ const PlayerNameFields = ({
   );
 };
 
-export default PlayerNameFields;
+export default PlayerAndDifficultyForms;

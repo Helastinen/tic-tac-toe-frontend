@@ -187,7 +187,7 @@ export interface PlayerSetupPanelProps {
   fetchStats: () => Promise<void>;
 };
 
-export interface PlayerNameFieldsProps {
+export interface PlayerAndDifficultyFormsProps {
   players: Players;
   isSinglePlayerGame: boolean;
   errors: Record<string, boolean>;
