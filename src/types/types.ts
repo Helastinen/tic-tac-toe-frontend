@@ -17,9 +17,9 @@ export enum GridBoardType {
 };
 
 export enum Difficulty {
-  easy = "easy",
-  medium = "medium",
-  hard = "hardcore"
+  easy = "Easy",
+  medium = "Medium",
+  hard = "Hardcore"
 }
 
 export type Nullable<T> = T | null;
@@ -175,7 +175,7 @@ export interface MoveHistoryProps {
   players: Players;
 };
 
-//* Player form
+//* Player Setup Panel
 export interface PlayerSetupPanelProps {
   players: Players;
   board: GameBoard;
@@ -204,7 +204,7 @@ export interface PlayerAndDifficultyFormsProps {
 
 export type PlayerKeys = "playerOne" | "playerTwo";
 
-export interface PlayerNameFieldTypes {
+export interface PlayerNameFieldProps{
   errors: Errors;
   helperTexts: HelperTexts;
   playerKey: PlayerKeys;
@@ -241,6 +241,12 @@ export interface DifficultySelectorProps {
   difficulty: Difficulty;
   setDifficulty: (difficulty: Difficulty) => void;
 };
+
+export interface GameInfoChipsProps {
+  difficulty: Difficulty;
+  isSinglePlayerGame: boolean;
+  players: Players;
+}
 
 //* Other
 export interface ErrorBannerProps {

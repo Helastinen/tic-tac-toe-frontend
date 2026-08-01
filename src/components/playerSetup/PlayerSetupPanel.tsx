@@ -8,6 +8,7 @@ import PlayerAndDifficultyForm from "./PlayerAndDifficultyForm.js";
 import GameModeControls from "./GameModeControls.js";
 import { usePlayerNameValidation } from "../../hooks/usePlayerNameValidation.js";
 import { UI_TEXT } from "../../constants/uiText.js";
+import GameInfoChips from "./GameInfoChips.js";
 
 const PlayerSetupPanel = ({
   players,
@@ -42,7 +43,6 @@ const PlayerSetupPanel = ({
       [name]: value,
       ...(isSinglePlayerGame && { playerTwo: UI_TEXT.GAME.COMPUTER_NAME })
     }) as Players);
-
   };
 
   const handleEditPlayers = () => {
@@ -100,6 +100,14 @@ const PlayerSetupPanel = ({
             />
           </Grid>
         )}
+
+        {!isEditingPlayers && gameStarted &&
+          <GameInfoChips
+            difficulty={difficulty}
+            isSinglePlayerGame={isSinglePlayerGame}
+            players={players}
+          />
+        }
       </Grid>
     </>
   );

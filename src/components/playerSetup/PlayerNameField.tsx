@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
 import { UI_TEXT } from "../../constants/uiText.js";
-import { PlayerNameFieldTypes } from "../../types/types.js";
+import { PlayerNameFieldProps } from "../../types/types.js";
 
-const PlayerNameField = ({ playerKey, players, errors, helperTexts, handleChange }: PlayerNameFieldTypes) => {
+const PlayerNameField = ({ playerKey, players, errors, helperTexts, handleChange }: PlayerNameFieldProps) => {
 
   return (
     <TextField
