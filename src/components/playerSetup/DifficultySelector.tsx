@@ -12,7 +12,7 @@ const DifficultySelector = ({ difficulty, setDifficulty }: DifficultySelectorPro
   ) => {
     if (newDifficulty !== null) {
       setDifficulty(newDifficulty);
-      console.log("difficulty selected: ", newDifficulty);
+      //console.log("difficulty selected: ", newDifficulty);
     }
   };
 

@@ -46,8 +46,8 @@ const PlayerSetupPanel = ({
   };
 
   const handleEditPlayers = () => {
-    console.log("<PlayerSetupPanel> -> handleEditPlayers() triggered");
-    console.log("<PlayerSetupPanel> -> handleEditPlayers() -> draftPlayers: ", draftPlayers);
+    //console.log("<PlayerSetupPanel> -> handleEditPlayers() triggered");
+    //console.log("<PlayerSetupPanel> -> handleEditPlayers() -> draftPlayers: ", draftPlayers);
 
     if (!isEditingPlayers) {
       // user enters edit mode and (re)loads committed names

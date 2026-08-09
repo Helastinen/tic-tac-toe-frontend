@@ -12,3 +12,8 @@ export const togglePlayer = (currentPlayer: PlayerMark) =>
 export const randomInteger = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+export const getAvailableIndices = (board: GameBoard) =>
+  board
+    .map((cell, index) => cell === null ? index : null)
+    .filter(index => index !== null);
