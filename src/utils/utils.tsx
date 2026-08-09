@@ -13,6 +13,7 @@ export const randomInteger = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+// Returns an array of the empty board positions e.g. [ 1, 3, 5, 7, 8 ]
 export const getAvailableIndices = (board: GameBoard) =>
   board
     .map((cell, index) => cell === null ? index : null)

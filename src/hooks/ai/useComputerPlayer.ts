@@ -1,5 +1,6 @@
 import { Difficulty, GameBoard } from "../../types/types.js";
 import { easyStrategy } from "./easyStrategy.js";
+import { hardStrategy } from "./hardStrategy.js";
 import { mediumStrategy } from "./mediumStrategy.js";
 
 export const useComputerPlayer= () => {
@@ -15,7 +16,7 @@ export const useComputerPlayer= () => {
       return mediumStrategy(board);
     case Difficulty.hard:
       console.log("<useComputerPlayer> -> Difficulty level: hard move selected");
-      return mediumStrategy(board);
+      return hardStrategy(board);
     default:
       return easyStrategy(board);
     }

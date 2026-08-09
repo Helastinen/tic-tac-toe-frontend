@@ -61,7 +61,12 @@ const useGameEngine = () => {
 
   const handleComputerMove = (board: GameBoard) => {
     //console.log("<useGameEngine> -> handleComputerMove() triggered with board: ", board);
-    const index: number = getComputerMove(board, difficulty);
+    const index = getComputerMove(board, difficulty);
+    if (index === null) {
+      console.log("No moves left — game is over.");
+      return;
+    }
+
     processMove(board, index, COMPUTERMARK);
   };
 

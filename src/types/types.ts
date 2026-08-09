@@ -248,6 +248,13 @@ export interface GameInfoChipsProps {
   players: Players;
 }
 
+//* Ai
+export interface TerminalStateDetectorProps {
+  isTerminal: boolean;
+  isDraw: boolean;
+  winner: Nullable<PlayerMark>;
+}
+
 //* Other
 export interface ErrorBannerProps {
   error: string | null;
